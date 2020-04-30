@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 const pkg = require('../../package.json')
-const {UUID, UUIDV4, STRING, INTEGER, DECIMAL} = Sequelize
+const {UUID, UUIDV4, STRING, INTEGER, DECIMAL, TEXT} = Sequelize
 const databaseName = pkg.name + (process.env.NODE_ENV === 'test' ? '-test' : '')
 
 const db = new Sequelize(
@@ -26,7 +26,7 @@ const Product = db.define('product', {
   },
   id: uuidDef,
   description: {
-    type: STRING,
+    type: TEXT,
     allowNull: false,
     validate: {
       notEmpty: true
@@ -47,11 +47,22 @@ const Product = db.define('product', {
     }
   },
   imageURL: {
-    type: STRING
+    type: STRING,
+    defaultValue: ''
   }
 })
 //product must belong to at least one category
 //If there is no photo, there must be a placeholder photo used
+
+const Category = db.define('category', {
+  name: {
+    type: STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  }
+})
 
 const User = db.define('user', {
   name: {
@@ -61,15 +72,26 @@ const User = db.define('user', {
       notEmpty: true
     }
   },
+  //valid email, must contain '@'?
   email: {
     type: STRING,
     allowNull: false,
     unique: true,
     validate: {
+      isEmail: true,
       notEmpty: true
     }
+  },
+  password: {
+    type: STRING,
+    allowNull: false
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
+
 // Orders must belong to a user OR
 // guest session (authenticated vs unauthenticated)
 // Orders must contain line items that capture the price,
@@ -87,10 +109,18 @@ const User = db.define('user', {
 //must have a minimum length
 const Review = db.define('review', {
   content: {
-    type: STRING,
+    type: TEXT,
     allowNull: false,
     len: {
-      args: [20]
+      args: [20] //this should be min characters
+    }
+  },
+  rating: {
+    type: INTEGER,
+    validate: {
+      min: 0,
+      max: 5,
+      defaultValue: 0
     }
   }
 })
@@ -99,6 +129,13 @@ Review.belongsTo(User)
 Review.belongsTo(Product)
 User.hasMany(Product)
 Product.hasMany(Review)
+Product.belongsTo(Category)
+
+// const sync = async () => {
+//   await db.sync({ force: true })
+//   //this user would be basic user---Unauthenticated
+//   const []
+// }
 
 module.exports = db
 

@@ -11,13 +11,13 @@ export default function Nav() {
         <Link>Categories()</Link>
         <div id="categoryContent">
           Beer
-          <Link>Ipa</Link>
-          <Link>Lager</Link>
-          <Link>Stout</Link>
+          <Link>Ipa()</Link>
+          <Link>Lager()</Link>
+          <Link>Stout()</Link>
           <div className="divider" />
           Wine
-          <Link>Pinot</Link>
-          <Link>Merlot</Link>
+          <Link>Pinot()</Link>
+          <Link>Merlot()</Link>
         </div>
       </div>
       <div id="navLogin">

@@ -1,13 +1,7 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
-const {UUID, UUIDV4, STRING, INTEGER, DECIMAL, TEXT} = Sequelize
+const {STRING} = Sequelize
 const db = require('../db')
-
-// const uuidDef = {
-//   type: UUID,
-//   primaryKey: true,
-//   defaultValue: UUIDV4
-// }
 
 const User = db.define('user', {
   email: {

@@ -10,6 +10,7 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
+const {Category, User, Product, Review} = require('./db/models') //add more??
 module.exports = app
 
 // This is a global Mocha hook, used for resource cleanup.
@@ -105,7 +106,12 @@ const startListening = () => {
   require('./socket')(io)
 }
 
-const syncDb = () => db.sync()
+//sample///////////////////
+const syncDb = async () => {
+  await db.sync({force: true})
+  await Category.create({name: 'beer'})
+  await Category.create({name: 'wine'})
+}
 
 async function bootApp() {
   await sessionStore.sync()

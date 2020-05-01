@@ -9,14 +9,14 @@ const uuidDef = {
 }
 
 const Product = db.define('product', {
-  title: {
+  id: uuidDef,
+  name: {
     type: STRING,
     allowNull: false,
     validate: {
       notEmpty: true
     }
   },
-  id: uuidDef,
   description: {
     type: TEXT,
     allowNull: false,

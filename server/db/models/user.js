@@ -11,7 +11,7 @@ const db = require('../db')
 
 const User = db.define('user', {
   email: {
-    type: Sequelize.STRING,
+    type: STRING,
     unique: true,
     allowNull: false,
     validate: {
@@ -20,7 +20,7 @@ const User = db.define('user', {
     }
   },
   password: {
-    type: Sequelize.STRING,
+    type: STRING,
     allowNull: false,
     // Making `.password` act like a func hides it when serializing to JSON.
     // This is a hack to get around Sequelize's lack of a "private" option.
@@ -29,7 +29,7 @@ const User = db.define('user', {
     }
   },
   salt: {
-    type: Sequelize.STRING,
+    type: STRING,
     // Making `.salt` act like a function hides it when serializing to JSON.
     // This is a hack to get around Sequelize's lack of a "private" option.
     get() {
@@ -37,7 +37,7 @@ const User = db.define('user', {
     }
   },
   googleId: {
-    type: Sequelize.STRING
+    type: STRING
   },
   isAdmin: {
     type: Sequelize.BOOLEAN,

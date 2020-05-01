@@ -1,15 +1,27 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
+const {UUID, UUIDV4, STRING, INTEGER, DECIMAL, TEXT} = Sequelize
 const db = require('../db')
+
+// const uuidDef = {
+//   type: UUID,
+//   primaryKey: true,
+//   defaultValue: UUIDV4
+// }
 
 const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      isEmail: true,
+      notEmpty: true
+    }
   },
   password: {
     type: Sequelize.STRING,
+    allowNull: false,
     // Making `.password` act like a func hides it when serializing to JSON.
     // This is a hack to get around Sequelize's lack of a "private" option.
     get() {
@@ -26,6 +38,10 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
 

@@ -10,7 +10,6 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
-const {User} = require('./db/models')
 module.exports = app
 
 // This is a global Mocha hook, used for resource cleanup.
@@ -106,11 +105,7 @@ const startListening = () => {
   require('./socket')(io)
 }
 
-const syncDb = () => {
-  return db
-    .sync({force: true})
-    .then(() => User.create({email: 'diana@gmail.com', password: 'password'}))
-}
+const syncDb = () => db.sync()
 
 async function bootApp() {
   await sessionStore.sync()

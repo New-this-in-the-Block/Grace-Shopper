@@ -1,9 +1,13 @@
-const crypto = require('crypto')
 const Sequelize = require('sequelize')
-const {UUID, UUIDV4, STRING, INTEGER, DECIMAL, TEXT} = Sequelize
+const {STRING, UUID, UUIDV4} = Sequelize
 const db = require('../db')
 
 const Category = db.define('category', {
+  id: {
+    type: UUID,
+    primaryKey: true,
+    defaultValue: UUIDV4
+  },
   name: {
     type: STRING,
     allowNull: false,

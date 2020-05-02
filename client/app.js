@@ -7,6 +7,9 @@ const App = () => {
   return (
     <div>
       <Nav />
+      {
+        //nav bar is fixed
+      }
       <div id="spacer" />
       <Routes />
     </div>

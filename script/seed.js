@@ -15,9 +15,12 @@ async function seed() {
   ])
 
   //create 5 categories
-  const categories = ['IPA', 'Lager', 'Stout', 'Pinot', 'Merlot']
-  const [ipa, lager, stout, pinot, merlot] = await Promise.all([
-    Promise.all(categories.map(name => Category.create({name})))
+  const [ipa, lager, stout, pinot, cabernet] = await Promise.all([
+    Category.create({name: 'IPA'}),
+    Category.create({name: 'Lager'}),
+    Category.create({name: 'Stout'}),
+    Category.create({name: 'Pinot'}),
+    Category.create({name: 'Cabernet'})
   ])
 
   const [ipa01, ipa02, ipa03, wine01, wine02, wine03] = await Promise.all([
@@ -68,7 +71,7 @@ async function seed() {
       price: 19.99,
       quantity: 50,
       imageURL: 'https://images.heb.com/is/image/HEBGrocery/002210067',
-      categoryId: merlot.id
+      categoryId: cabernet.id
     }),
     Product.create({
       name: 'Stags Leap Winery Napa Valley Cabernet Sauvignon 2016',
@@ -78,13 +81,9 @@ async function seed() {
       quantity: 50,
       imageURL:
         'https://www.stagsleap.com/-/media/Images/StagsLeap/Bottle-Shots/SLW-2016-Napa-Valley-CabSauv-750.ashx?la=en&modified=20190107222619&mw=1382&hash=F2B8739735BF4ACB0BFE99F895C8E6C441673192',
-      categoryId: merlot.id
+      categoryId: cabernet.id
     })
   ])
-  // cant get this to work because i guess i still dont really understand promises
-  // ipa01.categoryId = ipa
-
-  console.log(`seeded ${categories.length} categories`)
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
 }

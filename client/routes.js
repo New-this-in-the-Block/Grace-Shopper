@@ -49,6 +49,7 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
+      dispatch(thunkLoadProducts)
     }
   }
 }

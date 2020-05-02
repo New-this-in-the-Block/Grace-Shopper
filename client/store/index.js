@@ -14,10 +14,23 @@ const actionLoadProducts = products => ({type: LOAD_PRODUCTS, products})
 //Thunks
 const thunkLoadProducts = () => async dispatch => {
   const products = (await axios.get('/api/products')).data
-  dispatch(actionLoadProducts(products))
+  return dispatch(actionLoadProducts(products))
 }
 
-const reducer = combineReducers({user})
+//Reducers
+const productReducer = (state = [], action) => {
+  switch (action.type) {
+    case LOAD_PRODUCTS:
+      return action.products
+    default:
+      return state
+  }
+}
+const reducer = combineReducers({
+  user,
+  products: productReducer
+})
+
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

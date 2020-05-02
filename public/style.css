@@ -28,10 +28,13 @@ nav a {
 
 #navLogin {
   display: flex;
-  justify-content: space-evenly;
-  width: 10rem;
+  justify-content: space-around;
   margin: 2rem;
   border: dotted 1px white;
+  padding: 0.25rem;
+}
+#navLogin > * {
+  margin: 0 0.5rem;
 }
 
 #spacer {

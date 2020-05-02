@@ -14,7 +14,7 @@ const actionLoadProducts = products => ({type: LOAD_PRODUCTS, products})
 //Thunks
 const thunkLoadProducts = () => async dispatch => {
   const products = (await axios.get('/api/products')).data
-  dispatch(actionLoadProducts(products))
+  return dispatch(actionLoadProducts(products))
 }
 
 const reducer = combineReducers({user})

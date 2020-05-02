@@ -23,7 +23,7 @@ async function seed() {
   const [ipa01, ipa02, ipa03, wine01, wine02, wine03] = await Promise.all([
     Product.create({
       name: 'Missile IPA',
-      ędescription:
+      description:
         'An American India Pale Ale with firm bitterness and intense citrusy hop aromas. Made with two-row pale ale malt and dry hopped with simcoe, cascade, summit, and more for the full experience of an American IPAe',
       price: 4,
       quantity: 50,

@@ -1,7 +1,12 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {logout} from '../store'
 
-export default function Nav() {
+export default function Nav(props) {
+  const user = useSelector(state => state.user.email)
+  const dispatch = useDispatch()
+
   return (
     <nav>
       <h2>Temp Name</h2>
@@ -21,7 +26,14 @@ export default function Nav() {
         </div>
       </div>
       <div id="navLogin">
-        <Link>Login</Link>
+        {user ? (
+          <span>{user.email}</span>
+        ) : (
+          <span>
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Sign Up</Link>
+          </span>
+        )}
         <Link>Cart</Link>
       </div>
     </nav>

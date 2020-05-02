@@ -9,25 +9,27 @@ export default function Nav() {
 
   return (
     <nav>
-      <h2>Temp Name</h2>
-      <Link>All Beer()</Link>
-      <Link>All Wine()</Link>
-      <div id="categoryDropdown">
-        <Link>Categories()</Link>
-        <div id="categoryContent">
-          Beer
-          <Link>Ipa()</Link>
-          <Link>Lager()</Link>
-          <Link>Stout()</Link>
-          <div className="divider" />
-          Wine
-          <Link>Pinot()</Link>
-          <Link>Merlot()</Link>
+      <img src="/img/logo.jpg" />
+      <Link>All Drinks ()</Link>
+      <div id="styleDropdown">
+        <Link>Beer ()</Link>
+        <div id="styleContent">
+          <Link>Ipa ()</Link>
+          <Link>Lager ()</Link>
+          <Link>Stout ()</Link>
+        </div>
+      </div>
+      <div id="styleDropdown">
+        <Link>Wine ()</Link>
+        <div id="styleContent">
+          <Link>Pinot ()</Link>
+          <Link>Merlot ()</Link>
         </div>
       </div>
       {user.id ? (
         <div id="navLogin">
           <span>{user.email}</span>
+          <span className="horDivider" />
           <a href="#" onClick={() => dispatch(logout())}>
             Logout
           </a>
@@ -35,10 +37,11 @@ export default function Nav() {
       ) : (
         <div id="navLogin">
           <Link to="/login">Login</Link>
+          <span className="horDivider" />
           <Link to="/signup">Sign Up</Link>
         </div>
       )}
-      <Link>Cart</Link>
+      <img src="/img/cart.jpg" />
     </nav>
   )
 }

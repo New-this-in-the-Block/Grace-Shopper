@@ -2,6 +2,8 @@
 
 const db = require('../server/db')
 const {User} = require('../server/db/models')
+const {Product} = require('../server/db/models')
+const {Category} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -12,6 +14,18 @@ async function seed() {
     User.create({email: 'murphy@email.com', password: '123'})
   ])
 
+  await Category.create({name: 'beer'})
+  await Category.create({name: 'wine'})
+
+  const newProduct = await Product.create({
+    name: 'test_product_123',
+    description: 'test description',
+    price: 2,
+    quantity: 50,
+    imageURL: ''
+  })
+
+  console.log(newProduct.name)
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
 }

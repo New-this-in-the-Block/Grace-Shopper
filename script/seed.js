@@ -2,6 +2,8 @@
 
 const db = require('../server/db')
 const {User} = require('../server/db/models')
+const {Product} = require('../server/db/models')
+const {Category} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -12,6 +14,24 @@ async function seed() {
     User.create({email: 'murphy@email.com', password: '123'})
   ])
 
+  //create 5 categories
+  const categories = ['IPA', 'Lager', 'Stout', 'Pinot', 'Merlot']
+  const [ipa, lager, stout, pinot, merlot] = await Promise.all([
+    Promise.all(categories.map(name => Category.create({name})))
+  ])
+
+  const ipa01 = await Product.create({
+    name: 'test_product_123',
+    description: 'test description',
+    price: 2,
+    quantity: 50,
+    imageURL: ''
+  })
+
+  // cant get this to work because i guess i still dont really understand promises
+  // ipa01.categoryId = ipa
+
+  console.log(`seeded ${categories.length} categories`)
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
 }

@@ -108,9 +108,11 @@ const startListening = () => {
 
 //sample///////////////////
 const syncDb = async () => {
-  await db.sync({force: true})
-  await Category.create({name: 'beer'})
-  await Category.create({name: 'wine'})
+  //force:true will drop all tables and data in the database
+  //use npm run seed instead!
+  // await db.sync({force: true})
+  // await Category.create({name: 'beer'})
+  // await Category.create({name: 'wine'})
 }
 
 async function bootApp() {

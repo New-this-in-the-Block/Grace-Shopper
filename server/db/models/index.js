@@ -3,10 +3,10 @@ const Product = require('./product')
 const Category = require('./category')
 const Review = require('./review')
 
-Review.belongsTo(User)
-Review.belongsTo(Product)
-User.hasMany(Product)
-Product.hasMany(Review)
+// Review.belongsTo(User)
+// Review.belongsTo(Product)
+// User.hasMany(Product)
+// Product.hasMany(Review)
 Product.belongsTo(Category)
 
 /**

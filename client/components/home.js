@@ -1,13 +1,14 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import ProductCard from './ProductCard'
 
 export const Home = ({products}) => {
-  console.log('products', products)
-  if (!products) {
-    return <span>Still Loading ...</span>
-  }
   return (
-    <ul>{products.map(product => <li key={product.id}>{product.name}</li>)}</ul>
+    // <ul>{products.map(product => <li key={product.id}>{product.name}</li>)}</ul>
+    <ul className="productCards">
+      {products &&
+        products.map(product => <ProductCard {...product} key={product.id} />)}
+    </ul>
   )
 }
 

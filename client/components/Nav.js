@@ -10,20 +10,20 @@ export default function Nav() {
   return (
     <nav>
       <img src="/img/logo.jpg" />
-      <Link>All Drinks ()</Link>
+      <Link to="/">All Drinks ()</Link>
       <div id="styleDropdown">
-        <Link>Beer ()</Link>
+        <Link to="/">Beer ()</Link>
         <div id="styleContent">
-          <Link>Ipa ()</Link>
-          <Link>Lager ()</Link>
-          <Link>Stout ()</Link>
+          <Link to="/">Ipa ()</Link>
+          <Link to="/">Lager ()</Link>
+          <Link to="/">Stout ()</Link>
         </div>
       </div>
       <div id="styleDropdown">
-        <Link>Wine ()</Link>
+        <Link to="/">Wine ()</Link>
         <div id="styleContent">
-          <Link>Pinot ()</Link>
-          <Link>Merlot ()</Link>
+          <Link to="/">Pinot ()</Link>
+          <Link to="/">Merlot ()</Link>
         </div>
       </div>
       {user.id ? (

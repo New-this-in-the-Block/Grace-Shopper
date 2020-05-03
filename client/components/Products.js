@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import ProductCard from './ProductCard'
 
-export const Products = ({products}) => {
+const Products = ({products}) => {
   console.log('here are the products', products)
   return (
     <ul>{product && products.map(product => <li>{product.id}</li>)}</ul>

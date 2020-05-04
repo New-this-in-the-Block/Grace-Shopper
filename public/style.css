@@ -125,3 +125,29 @@ nav > * {
   height: 120px;
   margin: 10px;
 }
+.detailBox {
+  display: flex;
+  margin: 30px 100px;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  border: rgb(248, 192, 69) solid 8px;
+  border-style: dashed;
+  border-radius: 30px;
+  padding: 50px 50px 70px 50px;
+  color: rgb(73, 92, 110);
+}
+.detailPhoto {
+  height: 400px;
+}
+.prodInfo {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+}
+button {
+  background-color: rgb(248, 192, 69);
+  padding: 12px;
+  width: 70%;
+}

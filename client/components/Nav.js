@@ -9,8 +9,10 @@ export default function Nav() {
 
   return (
     <nav>
-      <img src="/img/logo.jpg" />
-      <Link to="/">All Drinks ()</Link>
+      <Link to="/products">
+        <img src="/img/logo.jpg" />
+      </Link>
+      <Link to="/products">All Drinks ()</Link>
       <div id="styleDropdown">
         <Link to="/">Beer ()</Link>
         <div id="styleContent">

@@ -1,6 +1,8 @@
 const User = require('./user')
 const Product = require('./product')
 const Category = require('./category')
+const LineItem = require('./lineItem')
+const Order = require('./order')
 const Review = require('./review')
 
 // Review.belongsTo(User)
@@ -8,6 +10,14 @@ const Review = require('./review')
 // User.hasMany(Product)
 // Product.hasMany(Review)
 Product.belongsTo(Category)
+Category.hasMany(Product)
+LineItem.belongsTo(Product)
+Product.hasMany(LineItem)
+Review.belongsTo(LineItem)
+Order.belongsTo(User)
+User.hasMany(Order)
+LineItem.belongsTo(Order)
+Order.hasMany(LineItem)
 
 /**
  * If we had any associations to make, this would be a great place to put them!

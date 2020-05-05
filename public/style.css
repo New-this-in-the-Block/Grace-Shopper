@@ -160,3 +160,25 @@ a:hover {
   padding-bottom: 0.3em;
   text-decoration: none;
 }
+#prodform {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-around;
+  margin: 20px;
+}
+input {
+  height: 20px;
+  margin: 7px 0;
+}
+select {
+  margin: 5px;
+  height: 30px;
+  width: 95%;
+}
+#submitbt {
+  width: 100%;
+  align-self: center;
+  margin: 15px;
+}

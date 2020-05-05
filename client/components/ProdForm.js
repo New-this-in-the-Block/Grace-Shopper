@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {thunkCreateProduct} from '../store'
 
 class ProdForm extends Component {
   constructor() {
@@ -12,9 +13,21 @@ class ProdForm extends Component {
       //need a dropdown for category
       category: ''
     }
+    this.onSubmit = this.onSubmit.bind(this)
   }
   async onSubmit(ev) {
     ev.preventDefault()
+    try {
+      await this.props.create({
+        name: this.state.name,
+        description: this.state.description,
+        price: this.state.price,
+        quantity: this.state.quantity,
+        category: this.state.category
+      })
+    } catch (ev) {
+      console.log(ev)
+    }
   }
   render() {
     const {onSubmit} = this
@@ -50,4 +63,15 @@ class ProdForm extends Component {
   }
 }
 
-export default ProdForm
+const mapDispatch = dispatch => {
+  return {
+    create: product => dispatch(thunkCreateProduct(product))
+  }
+}
+const mapState = (props, ownprops) => {
+  return {
+    props,
+    ownprops
+  }
+}
+export default connect(mapState, mapDispatch)(ProdForm)

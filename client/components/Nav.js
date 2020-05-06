@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
@@ -47,7 +47,7 @@ export default function Nav() {
       </div>
       {user.id ? (
         <div id="navLogin">
-          <span>{user.email}</span>
+          <Link to="/profile">{user.email}</Link>
           <span className="horDivider" />
           <a href="#" onClick={() => dispatch(logout())}>
             Logout

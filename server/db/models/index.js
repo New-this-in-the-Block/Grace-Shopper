@@ -37,6 +37,6 @@ module.exports = {
   Product,
   Category,
   Review,
-  LineItem,
-  Order
+  Order,
+  LineItem
 }

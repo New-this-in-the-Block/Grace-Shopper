@@ -14,6 +14,17 @@ router.get('/:id', (req, res, next) => {
     .catch(next)
 })
 
+//tyring this out
+router.get('/categories/:id', (req, res, next) => {
+  Product.findAll({
+    where: {
+      categoryId: req.params.id
+    }
+  })
+    .then(products => res.send(products))
+    .catch(next)
+})
+
 router.post('/', (req, res, next) => {
   Product.create(req.body)
     .then(newProduct => res.status(201).send(newProduct))

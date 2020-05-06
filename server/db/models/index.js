@@ -5,17 +5,17 @@ const LineItem = require('./lineItem')
 const Order = require('./order')
 const Review = require('./review')
 
-// Review.belongsTo(User)
-// Review.belongsTo(Product)
-// User.hasMany(Product)
-// Product.hasMany(Review)
 Product.belongsTo(Category)
 Category.hasMany(Product)
+
 LineItem.belongsTo(Product)
 Product.hasMany(LineItem)
+
 Review.belongsTo(LineItem)
+
 Order.belongsTo(User)
 User.hasMany(Order)
+
 LineItem.belongsTo(Order)
 Order.hasMany(LineItem)
 
@@ -36,5 +36,7 @@ module.exports = {
   User,
   Product,
   Category,
-  Review
+  Review,
+  LineItem,
+  Order
 }

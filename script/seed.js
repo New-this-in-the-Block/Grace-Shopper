@@ -4,12 +4,14 @@ const db = require('../server/db')
 const {User} = require('../server/db/models')
 const {Product} = require('../server/db/models')
 const {Category} = require('../server/db/models')
+const {LineItem} = require('../server/db/models')
+const {Order} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  const users = await Promise.all([
+  const [cody, murphy] = await Promise.all([
     User.create({email: 'cody@email.com', password: '123'}),
     User.create({email: 'murphy@email.com', password: '123'})
   ])
@@ -265,7 +267,18 @@ async function seed() {
       categoryId: cabernet.id
     })
   ])
-  console.log(`seeded ${users.length} users`)
+
+  const order1 = await Order.create({userId: cody.id})
+  const order2 = await Order.create({userId: cody.id})
+
+  await LineItem.create({quantity: 3, productId: beer01.id, orderId: order1.id})
+  await LineItem.create({quantity: 2, productId: beer06.id, orderId: order1.id})
+  await LineItem.create({quantity: 4, productId: beer02.id, orderId: order1.id})
+
+  await LineItem.create({quantity: 4, productId: wine01.id, orderId: order2.id})
+  await LineItem.create({quantity: 1, productId: wine03.id, orderId: order2.id})
+  await LineItem.create({quantity: 2, productId: wine04.id, orderId: order2.id})
+
   console.log(`seeded successfully`)
 }
 

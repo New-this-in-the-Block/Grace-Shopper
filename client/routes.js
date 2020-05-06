@@ -10,7 +10,7 @@ import {
   ProductDetails,
   ProdForm
 } from './components'
-import {me, thunkLoadProducts} from './store'
+import {me, thunkLoadProducts, thunkLoadCategories} from './store'
 
 /**
  * COMPONENT
@@ -61,6 +61,7 @@ const mapDispatch = dispatch => {
     loadInitialData() {
       dispatch(me())
       dispatch(thunkLoadProducts())
+      dispatch(thunkLoadCategories())
     }
   }
 }

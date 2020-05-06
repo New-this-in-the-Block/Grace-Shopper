@@ -5,25 +5,27 @@ import {thunkCreateProduct} from '../store'
 class ProdForm extends Component {
   constructor() {
     super()
+
     this.state = {
       name: '',
       description: '',
       price: 0,
       quantity: 0,
-      //need a dropdown for category
-      category: ''
+      categoryId: ''
     }
     this.onSubmit = this.onSubmit.bind(this)
   }
+
   async onSubmit(ev) {
     ev.preventDefault()
+    console.log(this.state)
     try {
       await this.props.create({
         name: this.state.name,
         description: this.state.description,
         price: this.state.price,
         quantity: this.state.quantity,
-        category: this.state.category
+        categoryId: this.state.categoryId
       })
     } catch (ev) {
       console.log(ev)
@@ -31,6 +33,7 @@ class ProdForm extends Component {
   }
   render() {
     const {onSubmit} = this
+    const {categories} = this.props
     const {name, description, price, quantity, category} = this.state
     return (
       <form id="prodform" onSubmit={onSubmit}>
@@ -50,12 +53,20 @@ class ProdForm extends Component {
           value={quantity}
           onChange={ev => this.setState({quantity: ev.target.value})}
         />
-        <select>
-          <option>choose a category</option>
-          {
-            //dropdown for category here, need to bring in categories from db
-          }
-          <option>category2</option>
+        Category
+        <select
+          value={categoryId}
+          onChange={ev => this.setState({categoryId: ev.target.value})}
+        >
+          {/* <select value={ category } onChange={ ev => console.log('ev target here',ev.target.value)} > */}
+          <option value="">choose a category</option>
+          {categories.map(category => {
+            return (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            )
+          })}
         </select>
         <button id="submitbt">Add</button>
       </form>
@@ -68,9 +79,10 @@ const mapDispatch = dispatch => {
     create: product => dispatch(thunkCreateProduct(product))
   }
 }
-const mapState = (props, ownprops) => {
+const mapState = ({categories}, ownprops) => {
+  console.log(categories)
   return {
-    props,
+    categories,
     ownprops
   }
 }

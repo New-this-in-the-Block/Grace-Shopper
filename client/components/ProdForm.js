@@ -34,7 +34,7 @@ class ProdForm extends Component {
   render() {
     const {onSubmit} = this
     const {categories} = this.props
-    const {name, description, price, quantity, category} = this.state
+    const {name, description, price, quantity, categoryId} = this.state
     return (
       <form id="prodform" onSubmit={onSubmit}>
         Name<input

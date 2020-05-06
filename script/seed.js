@@ -1,11 +1,6 @@
 'use strict'
-
 const db = require('../server/db')
-const {User} = require('../server/db/models')
-const {Product} = require('../server/db/models')
-const {Category} = require('../server/db/models')
-const {LineItem} = require('../server/db/models')
-const {Order} = require('../server/db/models')
+const {User, Product, Category, LineItem, Order} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -13,10 +8,11 @@ async function seed() {
 
   const [cody, murphy] = await Promise.all([
     User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({email: 'murphy@email.com', password: '123'}),
+    User.create({email: 'mike@email.com', password: '123', isAdmin: true})
   ])
 
-  //create 5 categories
+  //Categories
   const [ipa, lager, stout, pinot, cabernet, chardonnay] = await Promise.all([
     Category.create({name: 'IPA'}),
     Category.create({name: 'Lager'}),
@@ -26,6 +22,7 @@ async function seed() {
     Category.create({name: 'Chardonnay'})
   ])
 
+  //Products
   const [
     beer01,
     beer02,

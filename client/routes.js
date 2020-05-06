@@ -7,14 +7,14 @@ import {
   Signup,
   UserHome,
   Home,
+  Products,
   ProductDetails,
+  ProdForm,
+  Categories,
   Profile
 } from './components'
-import {me, thunkLoadProducts} from './store'
+import {me, thunkLoadProducts, thunkLoadCategories} from './store'
 
-/**
- * COMPONENT
- */
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
@@ -26,10 +26,11 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        {/* <Route exact path="/" component={Home} /> */}
-        <Route path="/profile" component={Profile} />
+        <Route path="/profile" component={Profile} /> 
+        <Route exact path="/products" component={Products} />
+        <Route exact path="/test" component={ProdForm} />
         <Route exact path="/products/:id" component={ProductDetails} />
-        {/* <Route path="/" component={ Products } /> */}
+        <Route exact path="/products/categories/:id" component={Categories} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         {isLoggedIn && (
@@ -45,9 +46,6 @@ class Routes extends Component {
   }
 }
 
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
@@ -61,6 +59,7 @@ const mapDispatch = dispatch => {
     loadInitialData() {
       dispatch(me())
       dispatch(thunkLoadProducts())
+      dispatch(thunkLoadCategories())
     }
   }
 }

@@ -6,9 +6,19 @@ import {logout} from '../store'
 export default function Nav() {
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
-  // const categories = useSelector(state => state.categories)
-  // const api = categories.find(cat => cat.name === "API")
-  //why does api.id = undefined?????????????
+  const categories = useSelector(state => state.categories)
+  const products = useSelector(state => state.products)
+  if (!categories[0]) {
+    return null
+  }
+  const ipa = categories.find(cat => cat.name === 'IPA')
+  const lager = categories.find(cat => cat.name === 'Lager')
+  const stout = categories.find(cat => cat.name === 'Stout')
+  const pinot = categories.find(cat => cat.name === 'Pinot')
+  const cab = categories.find(cat => cat.name === 'Cabernet')
+  const char = categories.find(cat => cat.name === 'Chardonnay')
+  const beer = products.filter(pro => pro.alcohol === 'Beer')
+  const wine = products.filter(pro => pro.alcohol === 'Wine')
   return (
     <nav>
       <Link to="/">
@@ -16,34 +26,30 @@ export default function Nav() {
       </Link>
       <Link to="/products">All Drinks ()</Link>
       <div id="styleDropdown">
-        <Link to="/products">Beer ()</Link>
+        <Link to="/products">Beer ({beer.length})</Link>
         <div id="styleContent">
-          {/* Todo - change manually input id and links to a map function */}
-
-          <Link to="/products/categories/4d832b6e-1f9c-44df-ac83-4a930b5b5b35">
-            Ipa ()
+          <Link to={`/products/categories/${ipa.id}`}>
+            IPA ({ipa.products.length})
           </Link>
-          <Link to="/products/categories/f9be5aa7-479a-433c-89c2-6d59680c7d47">
-            Lager ()
+          <Link to={`/products/categories/${lager.id}`}>
+            Lager ({lager.products.length})
           </Link>
-          <Link to="/products/categories/f5f249df-c2a6-4182-8d5d-60053277c11a">
-            Stout ()
+          <Link to={`/products/categories/${stout.id}`}>
+            Stout ({stout.products.length})
           </Link>
         </div>
       </div>
       <div id="styleDropdown">
-        <Link to="/products">Wine ()</Link>
+        <Link to="/products">Wine ({wine.length})</Link>
         <div id="styleContent">
-          {/* Todo - change manually input id and links to a map function */}
-
-          <Link to="/products/categories/c1fa7795-8a3f-490b-8631-ef72f83aa3a0">
-            Pinot ()
+          <Link to={`/products/categories/${pinot.id}`}>
+            Pinot ({pinot.products.length})
           </Link>
-          <Link to="/products/categories/9a3c79d6-4cfd-4582-8d07-1cb78bdfdbfd">
-            Chardonnay ()
+          <Link to={`/products/categories/${cab.id}`}>
+            Cabernet ({cab.products.length})
           </Link>
-          <Link to="/products/categories/8cda84a2-817b-45ca-a0b6-18120e65976b">
-            Cabernet ()
+          <Link to={`/products/categories/${char.id}`}>
+            Chardonnay ({char.products.length})
           </Link>
         </div>
       </div>

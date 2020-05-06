@@ -182,3 +182,11 @@ select {
   align-self: center;
   margin: 15px;
 }
+
+#profile {
+  margin: 1rem;
+}
+
+#profile > ul > li {
+  margin: 1rem;
+}

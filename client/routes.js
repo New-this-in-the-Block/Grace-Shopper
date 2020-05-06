@@ -6,11 +6,12 @@ import {
   Login,
   Signup,
   UserHome,
+  Products,
   ProductDetails,
-  Categories,
-  Products
+  ProdForm,
+  Categories
 } from './components'
-import {me, thunkLoadProducts} from './store'
+import {me, thunkLoadProducts, thunkLoadCategories} from './store'
 
 class Routes extends Component {
   componentDidMount() {
@@ -24,6 +25,7 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/products" component={Products} />
+        <Route exact path="/test" component={ProdForm} />
         <Route exact path="/products/:id" component={ProductDetails} />
         <Route exact path="/products/categories/:id" component={Categories} />
         <Route exact path="/login" component={Login} />
@@ -54,6 +56,7 @@ const mapDispatch = dispatch => {
     loadInitialData() {
       dispatch(me())
       dispatch(thunkLoadProducts())
+      dispatch(thunkLoadCategories())
     }
   }
 }

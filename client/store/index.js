@@ -9,11 +9,13 @@ import axios from 'axios'
 const LOAD_PRODUCTS = 'LOAD_PRODUCTS'
 const CREATE_PRODUCT = 'CREATE_PRODUCT'
 const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
+const LOAD_CATEGORIES = 'LOAD_CATEGORIES'
 
 //Action Creators
 const actionLoadProducts = products => ({type: LOAD_PRODUCTS, products})
 const actionCreateProduct = product => ({type: CREATE_PRODUCT, product})
 const actionUpdateProduct = product => ({type: UPDATE_PRODUCT, product})
+const actionLoadCategories = categories => ({type: LOAD_CATEGORIES, categories})
 
 //Thunks
 const thunkLoadProducts = () => async dispatch => {
@@ -30,6 +32,10 @@ const thunkUpdateProduct = product => async dispatch => {
     product
   )).data
   dispatch(actionUpdateProduct(currentProduct))
+}
+const thunkLoadCategories = () => async dispatch => {
+  const categories = (await axios.get('/api/categories')).data
+  return dispatch(actionLoadCategories(categories))
 }
 
 //Reducers
@@ -51,9 +57,18 @@ const productReducer = (state = [], action) => {
       return state
   }
 }
+const categoryReducer = (state = [], action) => {
+  switch (action.type) {
+    case LOAD_CATEGORIES:
+      return action.categories
+    default:
+      return state
+  }
+}
 const reducer = combineReducers({
   user,
-  products: productReducer
+  products: productReducer,
+  categories: categoryReducer
 })
 
 const middleware = composeWithDevTools(
@@ -64,4 +79,9 @@ const store = createStore(reducer, middleware)
 export default store
 export * from './user'
 
-export {thunkLoadProducts, thunkCreateProduct, thunkUpdateProduct}
+export {
+  thunkLoadProducts,
+  thunkCreateProduct,
+  thunkUpdateProduct,
+  thunkLoadCategories
+}

@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const {UUID, UUIDV4, STRING, INTEGER, DECIMAL, TEXT} = Sequelize
+const {UUID, UUIDV4, STRING, INTEGER, DECIMAL, TEXT, ENUM} = Sequelize
 const db = require('../db')
 
 const uuidDef = {
@@ -10,6 +10,9 @@ const uuidDef = {
 
 const Product = db.define('product', {
   id: uuidDef,
+  alcohol: {
+    type: ENUM ('Beer', 'Wine')
+  },
   name: {
     type: STRING,
     allowNull: false,

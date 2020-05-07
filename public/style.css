@@ -217,3 +217,10 @@ tr:nth-child(even) {
 #editableRow {
   background-color: lightgoldenrodyellow;
 }
+#updateForm {
+  width: 80%;
+  flex-direction: row;
+  justify-content: center;
+  align-content: space-around;
+  margin: 20px;
+}

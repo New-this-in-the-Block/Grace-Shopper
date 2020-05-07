@@ -4,7 +4,7 @@ import ProductCard from './ProductCard'
 
 const Products = ({products}) => {
   const [displayProducts, setDisplayProducts] = useState(products)
-  let search = location.search.slice(1)
+  const search = location.search.slice(1)
 
   useEffect(
     () => {
@@ -20,7 +20,9 @@ const Products = ({products}) => {
   if (search)
     return (
       <div>
-        <h2>searching for {search}</h2>
+        <h2>
+          searching for {search} ({displayProducts.length})
+        </h2>
         <ul className="productCards">
           {displayProducts.map(product => (
             <ProductCard {...product} key={product.id} />

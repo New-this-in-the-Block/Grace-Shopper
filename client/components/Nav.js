@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
@@ -10,6 +10,14 @@ export default function Nav() {
   const dispatch = useDispatch()
   const categories = useSelector(state => state.categories)
   const products = useSelector(state => state.products)
+
+  useEffect(
+    () =>
+      !search
+        ? history.push(`/products/`)
+        : history.push(`/products/?${search}`),
+    [search]
+  )
 
   const searchSubmit = ev => {
     ev.preventDefault()

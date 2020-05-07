@@ -1,16 +1,25 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import history from '../history'
 
 export default function Nav() {
+  const [search, setSearch] = useState('')
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
   const categories = useSelector(state => state.categories)
   const products = useSelector(state => state.products)
+
+  const searchSubmit = ev => {
+    ev.preventDefault()
+    history.push(`/products/?${search}`)
+  }
+
   if (!categories[0]) {
     return null
   }
+
   const ipa = categories.find(cat => cat.name === 'IPA')
   const lager = categories.find(cat => cat.name === 'Lager')
   const stout = categories.find(cat => cat.name === 'Stout')
@@ -19,10 +28,11 @@ export default function Nav() {
   const char = categories.find(cat => cat.name === 'Chardonnay')
   const beer = products.filter(pro => pro.alcohol === 'Beer')
   const wine = products.filter(pro => pro.alcohol === 'Wine')
+
   return (
     <nav>
-      <Link to="/">
-        <img src="/img/logo.jpg" />
+      <Link to="/home">
+        <img width="75%" src="/img/logo.jpg" />
       </Link>
       <Link to="/products">All Drinks ()</Link>
       <div id="styleDropdown">
@@ -53,8 +63,15 @@ export default function Nav() {
           </Link>
         </div>
       </div>
+      <div id="search">
+        <img width="16px" src="/img/search.jpg" />
+        <form onSubmit={searchSubmit}>
+          <input onChange={ev => setSearch(ev.target.value)} />
+        </form>
+      </div>
       {user.id ? (
         <div id="navLogin">
+          <img width="20px" src="/img/user.jpg" />
           <Link to="/profile">{user.email}</Link>
           <span className="horDivider" />
           <a href="#" onClick={() => dispatch(logout())}>
@@ -63,12 +80,15 @@ export default function Nav() {
         </div>
       ) : (
         <div id="navLogin">
+          <img width="20px" src="/img/user.jpg" />
           <Link to="/login">Login</Link>
           <span className="horDivider" />
           <Link to="/signup">Sign Up</Link>
         </div>
       )}
-      <img src="/img/cart.jpg" />
+      <Link to="/cart">
+        <img width="75%" src="/img/cart.jpg" />
+      </Link>
     </nav>
   )
 }

@@ -182,3 +182,38 @@ select {
   align-self: center;
   margin: 15px;
 }
+#prodListWrapper {
+  display: flex;
+  align-self: center;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+table {
+  border: 2px solid rgb(73, 92, 110);
+  overflow: auto;
+}
+th {
+  background-color: rgb(73, 92, 110);
+  color: white;
+  padding: 10px 5px;
+}
+tr {
+  padding: 5px;
+  border: 1px solid rgb(73, 92, 110);
+}
+tr:nth-child(even) {
+  background-color: rgba(172, 207, 240, 0.589);
+}
+
+#editBt {
+  width: 70px;
+  height: 35px;
+}
+#removeBt {
+  width: 70px;
+  height: 35px;
+  background-color: tomato;
+}
+#editableRow {
+  background-color: lightgoldenrodyellow;
+}

@@ -11,7 +11,8 @@ import {
   ProductDetails,
   ProdForm,
   Categories,
-  Profile
+  Profile,
+  AdminProdList
 } from './components'
 import {me, thunkLoadProducts, thunkLoadCategories} from './store'
 
@@ -26,9 +27,10 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/profile" component={Profile} /> 
+        <Route path="/profile" component={Profile} />
         <Route exact path="/products" component={Products} />
         <Route exact path="/test" component={ProdForm} />
+        <Route exact path="/test2" component={AdminProdList} />
         <Route exact path="/products/:id" component={ProductDetails} />
         <Route exact path="/products/categories/:id" component={Categories} />
         <Route exact path="/login" component={Login} />

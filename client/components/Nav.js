@@ -7,9 +7,9 @@ import history from '../history'
 export default function Nav() {
   const [search, setSearch] = useState('')
   const user = useSelector(state => state.user)
-  const dispatch = useDispatch()
   const categories = useSelector(state => state.categories)
   const products = useSelector(state => state.products)
+  const dispatch = useDispatch()
 
   useEffect(
     () =>

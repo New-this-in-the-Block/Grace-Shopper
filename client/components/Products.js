@@ -6,6 +6,7 @@ const Products = ({products}) => {
   const [displayProducts, setDisplayProducts] = useState(products)
   const search = location.search.slice(1)
 
+  //filter the products if the search changes
   useEffect(
     () => {
       setDisplayProducts(
@@ -17,6 +18,7 @@ const Products = ({products}) => {
     [search]
   )
 
+  //if searching return the filtered products
   if (search)
     return (
       <div>
@@ -31,6 +33,7 @@ const Products = ({products}) => {
       </div>
     )
 
+  //if not searching return all products
   return (
     <ul className="productCards">
       {products &&

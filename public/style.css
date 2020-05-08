@@ -201,6 +201,9 @@ tr {
   padding: 5px;
   border: 1px solid rgb(73, 92, 110);
 }
+td {
+  padding: 10px;
+}
 tr:nth-child(even) {
   background-color: rgba(172, 207, 240, 0.589);
 }
@@ -218,9 +221,12 @@ tr:nth-child(even) {
   background-color: lightgoldenrodyellow;
 }
 #updateForm {
-  width: 80%;
+  width: 70%;
   flex-direction: row;
-  justify-content: center;
   align-content: space-around;
+  align-items: center;
   margin: 20px;
+}
+.editInput {
+  width: 100%;
 }

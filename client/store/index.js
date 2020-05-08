@@ -9,12 +9,14 @@ import axios from 'axios'
 const LOAD_PRODUCTS = 'LOAD_PRODUCTS'
 const CREATE_PRODUCT = 'CREATE_PRODUCT'
 const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
+const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 const LOAD_CATEGORIES = 'LOAD_CATEGORIES'
 
 //Action Creators
 const actionLoadProducts = products => ({type: LOAD_PRODUCTS, products})
 const actionCreateProduct = product => ({type: CREATE_PRODUCT, product})
 const actionUpdateProduct = product => ({type: UPDATE_PRODUCT, product})
+const actionRemoveProduct = id => ({type: REMOVE_PRODUCT, id})
 const actionLoadCategories = categories => ({type: LOAD_CATEGORIES, categories})
 
 //Thunks
@@ -25,6 +27,10 @@ const thunkLoadProducts = () => async dispatch => {
 const thunkCreateProduct = product => async dispatch => {
   const newProduct = (await axios.post('/api/products', product)).data
   dispatch(actionCreateProduct(newProduct))
+}
+const thunkRemoveProduct = id => async dispatch => {
+  await axios.delete(`/api/products/${id}`)
+  dispatch(actionRemoveProduct(id))
 }
 const thunkUpdateProduct = product => async dispatch => {
   const currentProduct = (await axios.put(
@@ -45,6 +51,8 @@ const productReducer = (state = [], action) => {
       return action.products
     case CREATE_PRODUCT:
       return [...state, action.product]
+    case REMOVE_PRODUCT:
+      return state.filter(product => product.id !== action.id)
     case UPDATE_PRODUCT:
       return state.map(product => {
         if (product.id === action.product.id) {
@@ -83,5 +91,6 @@ export {
   thunkLoadProducts,
   thunkCreateProduct,
   thunkUpdateProduct,
+  thunkRemoveProduct,
   thunkLoadCategories
 }

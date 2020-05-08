@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {thunkUpdateProduct} from '../store'
+import {thunkUpdateProduct, thunkRemoveProduct} from '../store'
 
 class AdminProdList extends Component {
   constructor() {
@@ -38,21 +38,23 @@ class AdminProdList extends Component {
   }
   async updateProd(ev) {
     ev.preventDefault()
-    // console.log(this.state)
     try {
       await this.props.update({
         name: this.state.name,
         description: this.state.description,
         price: this.state.price,
+        quantity: this.state.quantity,
+        category: this.state.category,
         categoryId: this.state.categoryId,
         id: this.state.id
       })
     } catch (ev) {
       console.log(ev)
     }
+    this.setState({isEditing: !this.state.isEditing})
   }
   render() {
-    const {products, categories} = this.props
+    const {products, categories, destroy} = this.props
     const {updateProd} = this
     const {
       name,
@@ -62,24 +64,27 @@ class AdminProdList extends Component {
       category,
       categoryId
     } = this.state
-    console.log(this.state)
-
+    console.log(products)
     if (this.state.isEditing) {
       return (
         <form id="updateForm" onSubmit={updateProd}>
           Name<input
+            className="editInput"
             value={name}
             onChange={ev => this.setState({name: ev.target.value})}
           />
           Description<input
+            className="editInput"
             value={description}
             onChange={ev => this.setState({description: ev.target.value})}
           />
           Price<input
+            className="editInput"
             value={price}
             onChange={ev => this.setState({price: ev.target.value})}
           />
           Quantity<input
+            className="editInput"
             value={quantity}
             onChange={ev => this.setState({quantity: ev.target.value})}
           />
@@ -88,15 +93,16 @@ class AdminProdList extends Component {
             value={categoryId}
             onChange={ev => this.setState({categoryId: ev.target.value})}
           >
-            {/* <select value={ category } onChange={ ev => console.log('ev target here',ev.target.value)} > */}
-            <option value="">{category.name}</option>
-            {/* {categories.map(category => {
-            return (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            )
-          })} */}
+            <option value="">Current Category: {category}</option>
+            {categories.map(_category => {
+              if (_category.name !== category) {
+                return (
+                  <option key={_category.id} value={_category.id}>
+                    {_category.name}
+                  </option>
+                )
+              }
+            })}
           </select>
           <button id="submitbt">Update</button>
         </form>
@@ -119,36 +125,13 @@ class AdminProdList extends Component {
           <tbody>
             {products &&
               products.map(product => {
-                // if (this.state.isEditing) {
-                //   return (
-                //     // <form>
-                //     //   <input>{product.name}</input>
-                //     //   <input>{product.description}</input>
-                //     //   <input>${product.price}</input>
-                //     //   <input>{product.category}</input>
-                //     //   <button id='editBt' onClick={updateProd}>Save</button><button id='removeBt'>Remove</button>
-                //     // </form>
-                //     <tr key={product.id} id="editableRow">
-                //       <td contentEditable="true">{product.name}</td>
-                //       <td contentEditable="true">{product.description}</td>
-                //       <td contentEditable="true">${product.price}</td>
-                //       <td contentEditable="true">{product.category}</td>
-                //       <td>
-                //         <button id="editBt" onClick={updateProd}>
-                //           Save
-                //         </button>
-                //         <button id="removeBt">Remove</button>
-                //       </td>
-                //     </tr>
-                //   )
-                // }
                 return (
                   <tr key={product.id}>
                     <td>{product.name}</td>
                     <td>{product.description}</td>
                     <td>${product.price}</td>
                     <td>{product.quantity}</td>
-                    <td>{}</td>
+                    <td>{product.category.name}</td>
                     <td>
                       <button
                         id="editBt"
@@ -157,7 +140,9 @@ class AdminProdList extends Component {
                       >
                         Edit
                       </button>
-                      <button id="removeBt">Remove</button>
+                      <button id="removeBt" onClick={() => destroy(product.id)}>
+                        Remove
+                      </button>
                     </td>
                   </tr>
                 )
@@ -168,16 +153,23 @@ class AdminProdList extends Component {
     )
   }
 }
-//NOTE category name should be added!!
-
 const mapDispatch = dispatch => {
   return {
-    update: product => dispatch(thunkUpdateProduct(product))
+    update: product => dispatch(thunkUpdateProduct(product)),
+    destroy: id => dispatch(thunkRemoveProduct(id))
   }
 }
 const mapState = ({products, categories}, ownprops) => {
+  const processedProds = products.map(product => {
+    return {
+      ...product,
+      category:
+        categories &&
+        categories.find(category => category.id === product.categoryId)
+    }
+  })
   return {
-    products,
+    products: processedProds,
     categories,
     ownprops
   }

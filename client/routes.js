@@ -60,8 +60,8 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
-      dispatch(thunkLoadProducts())
       dispatch(thunkLoadCategories())
+      dispatch(thunkLoadProducts())
     }
   }
 }

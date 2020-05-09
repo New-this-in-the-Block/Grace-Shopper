@@ -1,9 +1,10 @@
 const router = require('express').Router()
-const {Product} = require('../db/models')
+const {Product, Category} = require('../db/models')
+
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  Product.findAll()
+  Product.findAll({include: [Category]})
     .then(product => res.send(product))
     .catch(next)
 })
@@ -31,12 +32,25 @@ router.post('/', (req, res, next) => {
     .catch(next)
 })
 
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const product = await Product.findByPk(req.params.id)
+    await product.destroy()
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.put('/:id', (req, res, next) => {
   Product.findByPk(req.params.id)
     .then(thisProduct =>
       thisProduct.update({
+        name: req.body.name,
+        description: req.body.description,
         price: req.body.price,
-        quantity: req.body.quantity
+        quantity: req.body.quantity,
+        categoryId: req.body.categoryId
       })
     )
     .then(updatedProduct => res.send(updatedProduct))

@@ -11,6 +11,7 @@ export default function Nav() {
   const products = useSelector(state => state.products)
   const dispatch = useDispatch()
 
+  // real time search functionality - Buggy come back to later
   // useEffect(
   //   () =>
   //     !search

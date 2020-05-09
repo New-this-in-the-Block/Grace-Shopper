@@ -149,7 +149,14 @@ nav > * {
   color: rgb(73, 92, 110);
 }
 .prodName {
-  background-color: rgb(248, 192, 69);
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(248, 192, 69),
+    rgb(248, 210, 86),
+    rgb(248, 232, 86)
+  );
+  /* background-color: rgb(248, 192, 69); */
+  padding: 4px;
   margin: 0;
 }
 .productImg {
@@ -172,6 +179,7 @@ nav > * {
 }
 .detailPhoto {
   height: 400px;
+  margin: 30px;
 }
 .prodInfo {
   display: flex;
@@ -214,6 +222,62 @@ select {
   align-self: center;
   margin: 15px;
 }
+
+#prodListWrapper {
+  display: flex;
+  align-self: center;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+table {
+  border: 2px solid rgb(73, 92, 110);
+  overflow: auto;
+}
+th {
+  background-color: rgb(73, 92, 110);
+  color: white;
+  padding: 10px 5px;
+}
+tr {
+  padding: 5px;
+  border: 1px solid rgb(73, 92, 110);
+}
+td {
+  padding: 10px;
+}
+tr:nth-child(even) {
+  background-color: rgba(172, 207, 240, 0.589);
+}
+
+#editBt {
+  width: 70px;
+  height: 35px;
+}
+#removeBt {
+  width: 70px;
+  height: 35px;
+  background-color: tomato;
+}
+#editableRow {
+  background-color: lightgoldenrodyellow;
+}
+#updateForm {
+  width: 70%;
+  flex-direction: row;
+  align-content: space-around;
+  align-items: center;
+  margin: 20px;
+}
+.editInput {
+  width: 100%;
+}
+#signature {
+  text-align: center;
+  color: rgb(73, 92, 110);
+}
+hr {
+  margin-top: 150px;
+  color: rgb(73, 92, 110);
 
 #profile {
   margin: 1rem;

@@ -1,52 +1,85 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import history from '../history'
 
 export default function Nav() {
+  const [search, setSearch] = useState('')
   const user = useSelector(state => state.user)
+  const categories = useSelector(state => state.categories)
+  const products = useSelector(state => state.products)
   const dispatch = useDispatch()
+
+  useEffect(
+    () =>
+      !search
+        ? history.push(`/products/`)
+        : history.push(`/products/?${search}`),
+    [search]
+  )
+
+  const searchSubmit = ev => {
+    ev.preventDefault()
+    history.push(`/products/?${search}`)
+  }
+
+  if (!categories[0]) {
+    return null
+  }
+
+  const ipa = categories.find(cat => cat.name === 'IPA')
+  const lager = categories.find(cat => cat.name === 'Lager')
+  const stout = categories.find(cat => cat.name === 'Stout')
+  const pinot = categories.find(cat => cat.name === 'Pinot')
+  const cab = categories.find(cat => cat.name === 'Cabernet')
+  const char = categories.find(cat => cat.name === 'Chardonnay')
+  const beer = products.filter(pro => pro.alcohol === 'Beer')
+  const wine = products.filter(pro => pro.alcohol === 'Wine')
 
   return (
     <nav>
-      <Link to="/products">
-        <img src="/img/logo.jpg" />
+      <Link to="/home">
+        <img width="75%" src="/img/logo.jpg" />
       </Link>
       <Link to="/products">All Drinks ()</Link>
       <div id="styleDropdown">
-        <Link to="/products">Beer ()</Link>
+        <Link to="/products">Beer ({beer.length})</Link>
         <div id="styleContent">
-          {/* Todo - change manually input id and links to a map function */}
-
-          <Link to="/products/categories/b2f75885-8d97-4b65-beeb-56eeeda65764">
-            Ipa ()
+          <Link to={`/products/categories/${ipa.id}`}>
+            IPA ({ipa.products.length})
           </Link>
-          <Link to="/products/categories/f9be5aa7-479a-433c-89c2-6d59680c7d47">
-            Lager ()
+          <Link to={`/products/categories/${lager.id}`}>
+            Lager ({lager.products.length})
           </Link>
-          <Link to="/products/categories/f5f249df-c2a6-4182-8d5d-60053277c11a">
-            Stout ()
+          <Link to={`/products/categories/${stout.id}`}>
+            Stout ({stout.products.length})
           </Link>
         </div>
       </div>
       <div id="styleDropdown">
-        <Link to="/products">Wine ()</Link>
+        <Link to="/products">Wine ({wine.length})</Link>
         <div id="styleContent">
-          {/* Todo - change manually input id and links to a map function */}
-
-          <Link to="/products/categories/c1fa7795-8a3f-490b-8631-ef72f83aa3a0">
-            Pinot ()
+          <Link to={`/products/categories/${pinot.id}`}>
+            Pinot ({pinot.products.length})
           </Link>
-          <Link to="/products/categories/9a3c79d6-4cfd-4582-8d07-1cb78bdfdbfd">
-            Chardonnay ()
+          <Link to={`/products/categories/${cab.id}`}>
+            Cabernet ({cab.products.length})
           </Link>
-          <Link to="/products/categories/8cda84a2-817b-45ca-a0b6-18120e65976b">
-            Cabernet ()
+          <Link to={`/products/categories/${char.id}`}>
+            Chardonnay ({char.products.length})
           </Link>
         </div>
       </div>
+      <div id="search">
+        <img width="16px" src="/img/search.jpg" />
+        <form onSubmit={searchSubmit}>
+          <input onChange={ev => setSearch(ev.target.value)} />
+        </form>
+      </div>
       {user.id ? (
         <div id="navLogin">
+          <img width="20px" src="/img/user.jpg" />
           <Link to="/profile">{user.email}</Link>
           <span className="horDivider" />
           <a href="#" onClick={() => dispatch(logout())}>
@@ -55,12 +88,15 @@ export default function Nav() {
         </div>
       ) : (
         <div id="navLogin">
+          <img width="20px" src="/img/user.jpg" />
           <Link to="/login">Login</Link>
           <span className="horDivider" />
           <Link to="/signup">Sign Up</Link>
         </div>
       )}
-      <img src="/img/cart.jpg" />
+      <Link to="/cart">
+        <img width="75%" src="/img/cart.jpg" />
+      </Link>
     </nav>
   )
 }

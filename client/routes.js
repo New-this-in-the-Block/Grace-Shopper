@@ -6,7 +6,6 @@ import {
   Login,
   Signup,
   UserHome,
-  Home,
   Products,
   ProductDetails,
   ProdForm,

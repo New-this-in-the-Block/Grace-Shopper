@@ -81,7 +81,13 @@ export default function Nav() {
       {user.id ? (
         <div id="navLogin">
           <img width="20px" src="/img/user.jpg" />
-          <Link to="/profile">{user.email}</Link>
+          {/* //if admin Link to='/admin' */}
+          {user.isAdmin ? (
+            <Link to="/admin">{user.email}</Link>
+          ) : (
+            <Link to="/profile">{user.email}</Link>
+          )}
+
           <span className="horDivider" />
           <a href="#" onClick={() => dispatch(logout())}>
             Logout

@@ -80,7 +80,6 @@ const mapDispatch = dispatch => {
   }
 }
 const mapState = ({categories}, ownprops) => {
-  console.log(categories)
   return {
     categories,
     ownprops

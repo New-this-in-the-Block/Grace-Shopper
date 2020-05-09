@@ -36,40 +36,42 @@ class ProdForm extends Component {
     const {categories} = this.props
     const {name, description, price, quantity, categoryId} = this.state
     return (
-      <form id="prodform" onSubmit={onSubmit}>
-        Name<input
-          value={name}
-          onChange={ev => this.setState({name: ev.target.value})}
-        />
-        Description<input
-          value={description}
-          onChange={ev => this.setState({description: ev.target.value})}
-        />
-        Price<input
-          value={price}
-          onChange={ev => this.setState({price: ev.target.value})}
-        />
-        Quantity<input
-          value={quantity}
-          onChange={ev => this.setState({quantity: ev.target.value})}
-        />
-        Category
-        <select
-          value={categoryId}
-          onChange={ev => this.setState({categoryId: ev.target.value})}
-        >
-          {/* <select value={ category } onChange={ ev => console.log('ev target here',ev.target.value)} > */}
-          <option value="">choose a category</option>
-          {categories.map(category => {
-            return (
-              <option key={category.id} value={category.id}>
-                {category.name}
-              </option>
-            )
-          })}
-        </select>
-        <button id="submitbt">Add</button>
-      </form>
+      <div>
+        <form id="prodform" onSubmit={onSubmit}>
+          Name<input
+            value={name}
+            onChange={ev => this.setState({name: ev.target.value})}
+          />
+          Description<input
+            value={description}
+            onChange={ev => this.setState({description: ev.target.value})}
+          />
+          Price<input
+            value={price}
+            onChange={ev => this.setState({price: ev.target.value})}
+          />
+          Quantity<input
+            value={quantity}
+            onChange={ev => this.setState({quantity: ev.target.value})}
+          />
+          Category
+          <select
+            value={categoryId}
+            onChange={ev => this.setState({categoryId: ev.target.value})}
+          >
+            {/* <select value={ category } onChange={ ev => console.log('ev target here',ev.target.value)} > */}
+            <option value="">choose a category</option>
+            {categories.map(category => {
+              return (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              )
+            })}
+          </select>
+          <button id="submitbt">Add</button>
+        </form>
+      </div>
     )
   }
 }

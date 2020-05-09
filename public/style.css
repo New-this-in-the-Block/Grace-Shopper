@@ -103,7 +103,7 @@ input:focus {
 }
 
 nav {
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   width: 100%;
   height: 45px;
@@ -201,7 +201,7 @@ button {
   text-decoration: none;
 }
 #prodform {
-  width: 30%;
+  align-self: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -278,11 +278,20 @@ tr:nth-child(even) {
 hr {
   margin-top: 150px;
   color: rgb(73, 92, 110);
-
+}
 #profile {
   margin: 1rem;
 }
 
 #profile > ul > li {
   margin: 1rem;
+}
+#adminNav {
+  margin-top: 200px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.selected {
+  background-color: lightgreen;
 }

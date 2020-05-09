@@ -11,13 +11,13 @@ export default function Nav() {
   const products = useSelector(state => state.products)
   const dispatch = useDispatch()
 
-  useEffect(
-    () =>
-      !search
-        ? history.push(`/products/`)
-        : history.push(`/products/?${search}`),
-    [search]
-  )
+  // useEffect(
+  //   () =>
+  //     !search
+  //       ? history.push(`/products/`)
+  //       : history.push(`/products/?${search}`),
+  //   [search]
+  // )
 
   const searchSubmit = ev => {
     ev.preventDefault()

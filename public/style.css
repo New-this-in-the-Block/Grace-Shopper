@@ -117,7 +117,14 @@ nav > * {
   color: rgb(73, 92, 110);
 }
 .prodName {
-  background-color: rgb(248, 192, 69);
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(248, 192, 69),
+    rgb(248, 210, 86),
+    rgb(248, 232, 86)
+  );
+  /* background-color: rgb(248, 192, 69); */
+  padding: 4px;
   margin: 0;
 }
 .productImg {
@@ -140,6 +147,7 @@ nav > * {
 }
 .detailPhoto {
   height: 400px;
+  margin: 30px;
 }
 .prodInfo {
   display: flex;
@@ -229,4 +237,12 @@ tr:nth-child(even) {
 }
 .editInput {
   width: 100%;
+}
+#signature {
+  text-align: center;
+  color: rgb(73, 92, 110);
+}
+hr {
+  margin-top: 150px;
+  color: rgb(73, 92, 110);
 }

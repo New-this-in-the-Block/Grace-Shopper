@@ -55,6 +55,7 @@ class AdminProdList extends Component {
   }
   render() {
     const {products, categories, destroy} = this.props
+    console.log(products)
     const {updateProd} = this
     const {
       name,
@@ -169,7 +170,7 @@ const mapState = ({products, categories}, ownprops) => {
     }
   })
   return {
-    products: processedProds,
+    products: products,
     categories,
     ownprops
   }

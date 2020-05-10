@@ -27,19 +27,23 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/profile" component={Profile} />
-        <Route path="/products" component={Products} />
-        <Route path="/admin/addproduct" component={ProdForm} />
-        <Route path="/admin/editproduct" component={AdminProdList} />
+        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/products" component={Products} />
+        {/* <Route  path="/admin/addproduct" component={ProdForm} />
+        <Route  path="/admin/editproduct" component={AdminProdList} /> */}
         <Route exact path="/products/:id" component={ProductDetails} />
         <Route exact path="/products/categories/:id" component={Categories} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
-        <Route path="/admin" component={AdminProfile} />
+        <Route
+          path="/admin"
+          render={({location}) => <AdminProfile path={location.pathname} />}
+        />
+        {/* <Route exact path="/admin" component={AdminProfile} /> */}
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
+            <Route exact path="/home" component={UserHome} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
@@ -50,6 +54,7 @@ class Routes extends Component {
 }
 
 const mapState = state => {
+  // console.log(state.products)
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey

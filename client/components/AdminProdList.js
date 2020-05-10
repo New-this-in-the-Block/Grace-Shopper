@@ -48,14 +48,13 @@ class AdminProdList extends Component {
         categoryId: this.state.categoryId,
         id: this.state.id
       })
+      await this.setState({isEditing: !this.state.isEditing})
     } catch (ev) {
       console.log(ev)
     }
-    this.setState({isEditing: !this.state.isEditing})
   }
   render() {
     const {products, categories, destroy} = this.props
-    console.log(products)
     const {updateProd} = this
     const {
       name,
@@ -125,13 +124,14 @@ class AdminProdList extends Component {
           <tbody>
             {products &&
               products.map(product => {
+                console.log(product)
                 return (
                   <tr key={product.id}>
                     <td>{product.name}</td>
                     <td>{product.description}</td>
                     <td>${product.price}</td>
                     <td>{product.quantity}</td>
-                    <td>{product.category.name}</td>
+                    {/* <td>{product.category.name}</td> */}
                     <td>
                       <button
                         id="editBt"
@@ -160,16 +160,8 @@ const mapDispatch = dispatch => {
   }
 }
 const mapState = ({products, categories}, ownprops) => {
-  const processedProds = products.map(product => {
-    return {
-      ...product,
-      category:
-        categories &&
-        categories.find(category => category.id === product.categoryId)
-    }
-  })
   return {
-    products: products,
+    products,
     categories,
     ownprops
   }

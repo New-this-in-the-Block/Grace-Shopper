@@ -3,6 +3,7 @@ import {NavLink, HashRouter, Route} from 'react-router-dom'
 import {connect} from 'react-redux'
 import AdminProdList from './AdminProdList'
 import ProdForm from './ProdForm'
+import {withRouter, Route, Switch} from 'react-router-dom'
 
 const AdminProfile = ({path}) => {
   return (

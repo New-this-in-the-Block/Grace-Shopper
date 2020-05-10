@@ -12,7 +12,8 @@ import {
   Categories,
   Profile,
   AdminProdList,
-  AdminProfile
+  AdminProfile,
+  Cart
 } from './components'
 import {me, thunkLoadProducts, thunkLoadCategories} from './store'
 
@@ -28,6 +29,7 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/profile" component={Profile} />
+        <Route exact path="/cart" component={Cart} />
         <Route exact path="/products" component={Products} />
         <Route exact path="/products/:id" component={ProductDetails} />
         <Route exact path="/products/categories/:id" component={Categories} />

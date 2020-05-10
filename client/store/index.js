@@ -14,6 +14,11 @@ const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 const LOAD_CATEGORIES = 'LOAD_CATEGORIES'
 
 const LOAD_ORDERS = 'LOAD_ORDERS'
+const LOAD_CART = 'LOAD_CART'
+
+const CREATE_ORDER = 'CREATE_ORDER'
+
+const CREATE_LINEITEM = 'CREATE_LINEITEM'
 
 //Action Creators
 const actionLoadProducts = products => ({type: LOAD_PRODUCTS, products})
@@ -24,6 +29,10 @@ const actionRemoveProduct = id => ({type: REMOVE_PRODUCT, id})
 const actionLoadCategories = categories => ({type: LOAD_CATEGORIES, categories})
 
 const actionLoadOrders = orders => ({type: LOAD_ORDERS, orders})
+const actionLoadCart = cart => ({type: LOAD_CART, cart})
+const actionCreateOrder = order => ({type: CREATE_ORDER, order})
+
+const actionCreatLineItem = lineItem => ({type: CREATE_LINEITEM, lineItem})
 
 //Thunks
 const thunkLoadProducts = () => async dispatch => {
@@ -61,6 +70,16 @@ const thunkLoadMyOrders = id => async dispatch => {
   return dispatch(actionLoadOrders(orders))
 }
 
+const thunkLoadMyCart = id => async dispatch => {
+  const cart = (await axios.get(`/api/orders/cart/${id}`)).data
+  return dispatch(actionLoadCart(cart))
+}
+
+const thunkCreateOrder = order => async dispatch => {
+  const order = (await axios.post('/api/orders')).data
+  return dispatch(actionCreateOrder(order))
+}
+
 //Reducers
 const productReducer = (state = [], action) => {
   switch (action.type) {
@@ -96,6 +115,10 @@ const orderReducer = (state = [], action) => {
   switch (action.type) {
     case LOAD_ORDERS:
       return action.orders
+    case LOAD_CART:
+      return action.cart
+    case CREATE_ORDER:
+      return [...state, action.order]
     default:
       return state
   }
@@ -123,5 +146,7 @@ export {
   thunkRemoveProduct,
   thunkLoadCategories,
   thunkLoadAllOrders,
-  thunkLoadMyOrders
+  thunkLoadMyOrders,
+  thunkCreateOrder,
+  thunkLoadMyCart
 }

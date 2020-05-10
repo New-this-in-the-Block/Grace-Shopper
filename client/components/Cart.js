@@ -37,6 +37,10 @@ export default function Cart() {
             ))
             }
           </ul>
+          Total: 
+          {
+          cart.lineItems.reduce( (total, item) => total + (item.quantity * item.product.price), 0)
+          }
         </div>
       }
 

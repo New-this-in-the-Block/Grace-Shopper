@@ -80,11 +80,6 @@ const thunkCreateOrder = order => async dispatch => {
   return dispatch(actionCreateOrder(order))
 }
 
-const thunkCreateLineItem = lineItem => async dispatch => {
-  const lineItem = (await axios.post('/api/lineItems')).data
-  return dispatch(actionCreateLineItem(lineItem))
-}
-
 //Reducers
 const productReducer = (state = [], action) => {
   switch (action.type) {

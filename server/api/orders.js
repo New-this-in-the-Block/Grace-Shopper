@@ -21,7 +21,10 @@ router.post('/', (req, res, next) => {
 
 //get the cart - if no cart, create one - only works for users atm
 router.get('/cart/:id', (req, res, next) => {
-  Order.findOne({where: {userId: req.params.id, status: 'Cart'}})
+  Order.findOne(
+    {where: {userId: req.params.id, status: 'Cart'},
+    include: [{model: LineItem}]
+  })
   .then( cart => {
     if (cart) return cart
     else return Order.create({userId: req.params.id, status: 'Cart'})

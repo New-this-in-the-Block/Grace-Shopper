@@ -7,10 +7,17 @@ const ProductDetails = ({currentProduct, user, getCart, createCart}) => {
 
 
   const addToCart = async () => {
-    console.log('add to cart!')
+    if (user.id === 0) return
     const cart = (await axios.get(`/api/orders/cart/${user.id}`)).data
-    const lineItem = {quantity: 1, productId: currentProduct.id, orderId: cart.id}
-    const newLineItem = (await axios.post('/api/lineItems', lineItem)).data
+    let lineItem = undefined
+    if (cart) lineItem = cart.lineItems.find(item => item.productId === currentProduct.id)
+    if (lineItem) {
+      const quantity = lineItem.quantity + 1
+      await axios.put(`/api/lineItems/${lineItem.id}`, {quantity}).data
+    } else {
+      lineItem = {quantity: 1, productId: currentProduct.id, orderId: cart.id}
+      await axios.post('/api/lineItems', lineItem).data
+    }
   }
 
   return (

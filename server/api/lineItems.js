@@ -21,3 +21,12 @@ router.post('/', (req, res, next) => {
   console.log(req.body)
   LineItem.create(req.body)
 })
+
+router.put('/:id', (req, res, next) => {
+  LineItem.findByPk(req.params.id)
+    .then(thisProduct =>
+      thisProduct.update({
+        quantity: req.body.quantity
+      })
+    )
+})

@@ -4,12 +4,15 @@ import ProductCard from './ProductCard'
 
 const Categories = ({filteredProducts}) => {
   return (
-    <ul className="productCards">
-      {filteredProducts &&
-        filteredProducts.map(product => (
-          <ProductCard {...product} key={product.id} />
-        ))}
-    </ul>
+    <div>
+      <div id="spacer" />
+      <ul className="productCards">
+        {filteredProducts &&
+          filteredProducts.map(product => (
+            <ProductCard {...product} key={product.id} />
+          ))}
+      </ul>
+    </div>
   )
 }
 

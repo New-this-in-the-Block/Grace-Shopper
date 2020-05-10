@@ -39,7 +39,7 @@ export default function Nav() {
   const wine = products.filter(pro => pro.alcohol === 'Wine')
 
   return (
-    <nav>
+    <nav className={location.pathname.slice(1).startsWith('') ? '' : 'topNav'}>
       <Link to="/home">
         <img width="75%" src="/img/logo.jpg" />
       </Link>

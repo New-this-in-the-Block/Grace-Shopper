@@ -36,14 +36,17 @@ const Products = ({products}) => {
   //if not searching return all products
   return (
     <div>
-      <ul className="productCards">
-        {products &&
-          products.map(product => (
-            <ProductCard {...product} key={product.id} />
-          ))}
-      </ul>
-      <hr />
-      <p id="signature">© 2020, Craft Beer and Wine</p>
+      <div id="spacer" />
+      <div>
+        <ul className="productCards">
+          {products &&
+            products.map(product => (
+              <ProductCard {...product} key={product.id} />
+            ))}
+        </ul>
+        <hr />
+        <p id="signature">© 2020, Craft Beer and Wine</p>
+      </div>
     </div>
   )
 }

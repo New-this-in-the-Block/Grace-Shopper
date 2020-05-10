@@ -287,11 +287,12 @@ hr {
   margin: 1rem;
 }
 #adminNav {
-  margin-top: 200px;
+  margin-top: 10px;
   display: flex;
   justify-content: space-around;
 }
 
 .selected {
-  background-color: lightgreen;
+  background-color: rgb(248, 192, 69);
+  padding: 13.5px;
 }

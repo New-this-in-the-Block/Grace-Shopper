@@ -4,6 +4,7 @@
  * having to figure out which file they belong to!
  */
 export {default as Navbar} from './navbar'
+export {default as SplashPage} from './SplashPage'
 export {default as UserHome} from './user-home'
 export {default as ProductDetails} from './ProductDetails'
 export {default as ProdForm} from './ProdForm'

@@ -278,6 +278,7 @@ tr:nth-child(even) {
 hr {
   margin-top: 150px;
   color: rgb(73, 92, 110);
+}
 
 #profile {
   margin: 1rem;
@@ -285,4 +286,18 @@ hr {
 
 #profile > ul > li {
   margin: 1rem;
+}
+
+.topNav {
+  display: none;
+}
+
+div.splashpic {
+  background-image: url('/img/beer_splash.jpg');
+  background-color: blanchedalmond;
+  height: 1000px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }

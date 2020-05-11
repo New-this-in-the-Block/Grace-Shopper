@@ -1,5 +1,18 @@
+/* colors
+#495c6e
+#658791
+#F2EBD5
+#F2A62A
+#F27649
+#B4766A 
+https://color.adobe.com/08Aug2020-Slice-03-color-theme-14648904
+*/
+
 body {
   font-family: sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  background-color: white;
 }
 
 a {
@@ -11,11 +24,289 @@ label {
 }
 
 nav a {
-  display: inline-block;
-  margin: 1em;
+  color: white;
 }
 
-form div {
-  margin: 1em;
+#navLogin {
+  display: flex;
+  justify-content: space-around;
+  margin: 1rem;
+  border: solid 1px white;
+  padding: 0.25rem;
+}
+#navLogin > * {
+  margin: 0 0.5rem;
+}
+
+#search {
+  border: solid 1px white;
+  padding: 0.25rem;
+}
+
+#search > form {
+  display: inline;
+}
+#search > form > input {
+  height: 1rem;
+  width: 6rem;
+  border: 0;
+  padding: 0;
+  background-color: #495c6e;
+  color: white;
+  margin-top: -5px;
+  margin-bottom: 0;
+}
+
+#search > img {
+  margin-bottom: -3px;
+  margin-right: 5px;
+}
+
+nav > a > img {
+  margin-bottom: -3px;
+}
+
+input:focus {
+  outline: none;
+}
+
+#spacer {
+  height: 60px;
+}
+
+#styleDropdown {
+  position: relative;
   display: inline-block;
+}
+
+#styleDropdown:hover #styleContent {
+  display: block;
+}
+
+#styleContent a:hover {
+  background-color: #f2a62a;
+}
+
+#styleContent {
+  display: none;
+  position: absolute;
+  background-color: #495c6e;
+  width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  padding: 0.5rem;
+}
+
+#styleContent * {
+  display: block;
+  padding: 0.5rem;
+}
+
+nav {
+  /* position: fixed; */
+  top: 0;
+  width: 100%;
+  height: 45px;
+  background-color: #495c6e;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+nav > * {
+  margin: 1rem 0;
+}
+
+.divider {
+  border-bottom: solid 1px white;
+  margin-bottom: 1rem;
+}
+
+.horDivider {
+  margin: 0;
+  border-right: solid 2px white;
+}
+.productCards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px 40px;
+}
+.productCard {
+  border: solid rgb(248, 192, 69) 2px;
+  width: 250px;
+  height: 250px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+  border-radius: 30px;
+  margin: 10px;
+  color: rgb(73, 92, 110);
+}
+.prodName {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(248, 192, 69),
+    rgb(248, 210, 86),
+    rgb(248, 232, 86)
+  );
+  /* background-color: rgb(248, 192, 69); */
+  padding: 4px;
+  margin: 0;
+}
+.productImg {
+  width: auto;
+  height: 120px;
+  margin: 10px;
+}
+.detailBox {
+  display: flex;
+  margin: 30px 100px;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  border: rgb(248, 192, 69) solid 8px;
+  border-style: dashed;
+  border-radius: 30px;
+  padding: 50px 50px 70px 50px;
+  color: rgb(73, 92, 110);
+}
+.detailPhoto {
+  height: 400px;
+  margin: 30px;
+}
+.prodInfo {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+}
+button {
+  background-color: rgb(248, 192, 69);
+  padding: 12px;
+  width: 70%;
+}
+.productCard > a:hover {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg id='squiggle-link' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:ev='http://www.w3.org/2001/xml-events' viewBox='0 0 20 4'%3E%3Cstyle type='text/css'%3E.squiggle{animation:shift .3s linear infinite;}@keyframes shift {from {transform:translateX(0);}to {transform:translateX(-20px);}}%3C/style%3E%3Cpath fill='none' stroke='%23453886' stroke-width='2' class='squiggle' d='M0,3.5 c 5,0,5,-3,10,-3 s 5,3,10,3 c 5,0,5,-3,10,-3 s 5,3,10,3'/%3E%3C/svg%3E");
+  background-position: inherit;
+  background-repeat: repeat-x;
+  background-size: 20%;
+  border-bottom: 0;
+  padding-bottom: 0.3em;
+  text-decoration: none;
+}
+#prodform {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-around;
+  margin: 20px;
+}
+input {
+  height: 20px;
+  margin: 7px 0;
+}
+select {
+  margin: 5px;
+  height: 30px;
+  width: 95%;
+}
+#submitbt {
+  width: 100%;
+  align-self: center;
+  margin: 15px;
+}
+
+#prodListWrapper {
+  display: flex;
+  align-self: center;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+table {
+  border: 2px solid rgb(73, 92, 110);
+  overflow: auto;
+}
+th {
+  background-color: rgb(73, 92, 110);
+  color: white;
+  padding: 10px 5px;
+}
+tr {
+  padding: 5px;
+  border: 1px solid rgb(73, 92, 110);
+}
+td {
+  padding: 10px;
+}
+tr:nth-child(even) {
+  background-color: rgba(172, 207, 240, 0.589);
+}
+
+#editBt {
+  width: 70px;
+  height: 35px;
+}
+#removeBt {
+  width: 70px;
+  height: 35px;
+  background-color: tomato;
+}
+#editableRow {
+  background-color: lightgoldenrodyellow;
+}
+#updateForm {
+  width: 70%;
+  flex-direction: row;
+  align-content: space-around;
+  align-items: center;
+  margin: 20px;
+}
+.editInput {
+  width: 100%;
+}
+#signature {
+  text-align: center;
+  color: rgb(73, 92, 110);
+}
+hr {
+  margin-top: 150px;
+  color: rgb(73, 92, 110);
+}
+#profile {
+  margin: 1rem;
+}
+
+#profile > ul > li {
+  margin: 1rem;
+}
+#adminNav {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.selected {
+  background-color: rgb(248, 192, 69);
+  padding: 13.5px;
+}
+
+.topNav {
+  display: none;
+}
+
+div.splashpic {
+  background-image: url('/img/beer_splash.jpg');
+  background-color: blanchedalmond;
+  height: 1000px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }

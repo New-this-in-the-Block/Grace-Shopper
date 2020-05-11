@@ -59,7 +59,7 @@ async function seed() {
       description:
         'An American India Pale Ale with firm bitterness and intense citrusy hop aromas. Made with two-row pale ale malt and dry hopped with simcoe, cascade, summit, and more for the full experience of an American IPA.',
       price: 4,
-      quantity: 50,
+      quantity: 3,
       imageURL:
         'https://cdn.shopify.com/s/files/1/0058/8854/0731/products/missile-ipa-349069_1024x1024@2x.jpg?v=1582526620',
       categoryId: ipa.id

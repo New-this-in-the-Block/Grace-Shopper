@@ -37,11 +37,13 @@ export default function Nav() {
   const char = categories.find(cat => cat.name === 'Chardonnay')
   const beer = products.filter(pro => pro.alcohol === 'Beer')
   const wine = products.filter(pro => pro.alcohol === 'Wine')
+  const path = location.pathname.slice(1)
 
+  
   return (
-    <nav>
+    <nav className={path === '' ? 'topNav' : ''}>
       <Link to="/home">
-        <img width="75%" src="/img/logo.jpg" />
+        <img width="73%" src="/img/logo.jpg" />
       </Link>
       <Link to="/products">All Drinks ()</Link>
       <div id="styleDropdown">
@@ -73,7 +75,7 @@ export default function Nav() {
         </div>
       </div>
       <div id="search">
-        <img width="16px" src="/img/search.jpg" />
+        <img width="20px" src="/img/search.jpg" />
         <form onSubmit={searchSubmit}>
           <input onChange={ev => setSearch(ev.target.value)} />
         </form>
@@ -87,7 +89,6 @@ export default function Nav() {
           ) : (
             <Link to="/profile">{user.email}</Link>
           )}
-
           <span className="horDivider" />
           <a href="#" onClick={() => dispatch(logout())}>
             Logout
@@ -102,7 +103,7 @@ export default function Nav() {
         </div>
       )}
       <Link to="/cart">
-        <img width="75%" src="/img/cart.jpg" />
+        <img width="73%" src="/img/cart.jpg" />
       </Link>
     </nav>
   )

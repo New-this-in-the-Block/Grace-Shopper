@@ -296,3 +296,17 @@ hr {
   background-color: rgb(248, 192, 69);
   padding: 13.5px;
 }
+
+.topNav {
+  display: none;
+}
+
+div.splashpic {
+  background-image: url('/img/beer_splash.jpg');
+  background-color: blanchedalmond;
+  height: 1000px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}

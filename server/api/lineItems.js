@@ -1,5 +1,7 @@
 const router = require('express').Router()
+const {Order} = require('../db/models')
 const {LineItem} = require('../db/models')
+const {Product} = require('../db/models')
 module.exports = router
 
 //get all line items
@@ -17,9 +19,16 @@ router.get('/:id', (req, res, next) => {
 })
 
 //add to an order
-router.post('/', (req, res, next) => {
-  console.log(req.body)
-  LineItem.create(req.body)
+router.post('/', async(req, res, next) => {
+  const lineItem = await LineItem.create(req.body)
+  const cart = await Order.findOne(
+    {where: {id: lineItem.orderId},
+    include: [
+      {model: LineItem, include: [{model: Product}]
+    }
+    ]
+  })
+  await res.status(201).send(cart)
 })
 
 router.put('/:id', (req, res, next) => {

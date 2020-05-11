@@ -17,8 +17,7 @@ const LOAD_ORDERS = 'LOAD_ORDERS'
 const LOAD_CART = 'LOAD_CART'
 
 const CREATE_ORDER = 'CREATE_ORDER'
-
-const CREATE_LINEITEM = 'CREATE_LINEITEM'
+const ADD_TO_ORDER = 'ADD_TO_ORDER'
 
 //Action Creators
 const actionLoadProducts = products => ({type: LOAD_PRODUCTS, products})
@@ -31,8 +30,7 @@ const actionLoadCategories = categories => ({type: LOAD_CATEGORIES, categories})
 const actionLoadOrders = orders => ({type: LOAD_ORDERS, orders})
 const actionLoadCart = cart => ({type: LOAD_CART, cart})
 const actionCreateOrder = order => ({type: CREATE_ORDER, order})
-
-const actionCreatLineItem = lineItem => ({type: CREATE_LINEITEM, lineItem})
+const actionAddToOrder = order => ({type: ADD_TO_ORDER, order})
 
 //Thunks
 const thunkLoadProducts = () => async dispatch => {
@@ -75,9 +73,14 @@ const thunkLoadMyCart = id => async dispatch => {
   return dispatch(actionLoadCart(cart))
 }
 
-const thunkCreateOrder = order => async dispatch => {
-  const order = (await axios.post('/api/orders')).data
+const thunkCreateOrder = (product, user) => async dispatch => {
+  const order = (await axios.post('/api/orders', {productId: product.id, userId: user.id})).data
   return dispatch(actionCreateOrder(order))
+}
+
+const thunkAddToOrder = (product, cart) => async dispatch => {
+  const lineItem = (await axios.post('/api/lineItems', {quantity: 1, productId: product.id, orderId: cart.id})).data
+  return dispatch(actionAddToOrder(lineItem))
 }
 
 //Reducers
@@ -119,6 +122,14 @@ const orderReducer = (state = [], action) => {
       return action.cart
     case CREATE_ORDER:
       return [...state, action.order]
+    case ADD_TO_ORDER:
+      return state.map(order => {
+        if (order.id === action.order.id) {
+          return action.order
+        }else {
+          return order
+        }
+      })
     default:
       return state
   }
@@ -148,5 +159,6 @@ export {
   thunkLoadAllOrders,
   thunkLoadMyOrders,
   thunkCreateOrder,
-  thunkLoadMyCart
+  thunkLoadMyCart,
+  thunkAddToOrder
 }

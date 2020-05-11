@@ -1,23 +1,12 @@
 import React from 'react'
 import {connect, useSelector} from 'react-redux'
-import {thunkLoadMyCart, thunkCreateOrder} from '../store'
+import {thunkCreateOrder, thunkAddToOrder} from '../store'
 import axios from 'axios'
 
-const ProductDetails = ({currentProduct, user, getCart, createCart}) => {
+const ProductDetails = ({currentProduct, orders, user, cart, createCart, addItem}) => {
 
-
-  const addToCart = async () => {
-    if (user.id === 0) return
-    const cart = (await axios.get(`/api/orders/cart/${user.id}`)).data
-    let lineItem = undefined
-    if (cart) lineItem = cart.lineItems.find(item => item.productId === currentProduct.id)
-    if (lineItem) {
-      const quantity = lineItem.quantity + 1
-      await axios.put(`/api/lineItems/${lineItem.id}`, {quantity}).data
-    } else {
-      lineItem = {quantity: 1, productId: currentProduct.id, orderId: cart.id}
-      await axios.post('/api/lineItems', lineItem).data
-    }
+  const addToCart = () => {
+    cart ? addItem(currentProduct, cart) : createCart(currentProduct, user)
   }
 
   return (
@@ -36,19 +25,23 @@ const ProductDetails = ({currentProduct, user, getCart, createCart}) => {
   )
 }
 
-const mapState = ({products, user}, ownProps) => {
+const mapState = ({products, orders, user}, ownProps) => {
   const currentProduct = products.find(
     product => product.id === ownProps.match.params.id
   )
+  const cart = orders.find(order => order.status === 'Cart')
   return {
     currentProduct,
-    user
+    orders,
+    user,
+    cart
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    getCart: (id) => dispatch(thunkLoadMyCart(id))
+    createCart(product, user) { dispatch(thunkCreateOrder(product, user)) },
+    addItem(product, cart) { dispatch(thunkAddToOrder(product, cart))}
   }
 }
 

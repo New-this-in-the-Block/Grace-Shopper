@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, useEffect} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -16,11 +16,17 @@ import {
   Cart,
   SplashPage
 } from './components'
-import {me, thunkLoadProducts, thunkLoadCategories} from './store'
+import {me, thunkLoadProducts, thunkLoadCategories, thunkLoadMyOrders} from './store'
 
 class Routes extends Component {
-  componentDidMount() {
+  componentDidMount () {
     this.props.loadInitialData()
+  }
+
+  componentDidUpdate (prevProps) {
+    if (prevProps.user !== this.props.user && this.props.user.id) {
+      this.props.LoadMyOrders(this.props.user.id)
+    }
   }
 
   render() {
@@ -53,11 +59,11 @@ class Routes extends Component {
 }
 
 const mapState = state => {
-  // console.log(state.products)
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    user: state.user
   }
 }
 
@@ -67,6 +73,9 @@ const mapDispatch = dispatch => {
       dispatch(me())
       dispatch(thunkLoadCategories())
       dispatch(thunkLoadProducts())
+    },
+    LoadMyOrders(id) {
+      dispatch(thunkLoadMyOrders(id))
     }
   }
 }

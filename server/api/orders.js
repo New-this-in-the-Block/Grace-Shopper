@@ -11,11 +11,18 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-//create a cart - might not need this
-router.post('/', (req, res, next) => {
-  Order.create({status: 'Cart'})
-  .then( cart => res.status(201).send(cart))
-  .catch(next)
+//create a cart with the initial item
+router.post('/', async (req, res, next) => {
+  const order = await Order.create({status: 'Cart', userId: req.body.userId})
+  const lineItem = await LineItem.create({quantity: 1, productId: req.body.productId, orderId: order.id})
+  const cart = await Order.findOne(
+    {where: {id: order.id},
+    include: [
+      {model: LineItem, include: [{model: Product}]
+    }
+    ]
+  })
+  await res.status(201).send(cart)
 })
 
 

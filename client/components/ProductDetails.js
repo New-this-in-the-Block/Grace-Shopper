@@ -21,20 +21,8 @@ const ProductDetails = ({currentProduct, user, getCart, createCart}) => {
   }
 
   return (
-<<<<<<< HEAD
-    <div className="detailBox">
-      <img
-        className="detailPhoto"
-        src={currentProduct && currentProduct.imageURL}
-      />
-      <div className="prodInfo">
-        <h1>{currentProduct && currentProduct.name}</h1>
-        <h3>${currentProduct && currentProduct.price}</h3>
-        <p>{currentProduct && currentProduct.description}</p>
-        <button type="submit" onClick={addToCart}>Add To Cart</button>
-=======
     <div>
-      <div id="spacer" />
+      <div id='spacer'/>
       <div className="detailBox">
         <img
           className="detailPhoto"
@@ -44,18 +32,15 @@ const ProductDetails = ({currentProduct, user, getCart, createCart}) => {
           <h1>{currentProduct && currentProduct.name}</h1>
           <h3>${currentProduct && currentProduct.price}</h3>
           <p>{currentProduct && currentProduct.description}</p>
-          <button type="submit">Add To Cart</button>
+          <button type="submit" onClick={addToCart}>Add To Cart</button>
         </div>
->>>>>>> home_page
       </div>
     </div>
   )
 }
 
 const mapState = ({products, user}, ownProps) => {
-  const currentProduct = products.find(
-    product => product.id === ownProps.match.params.id
-  )
+  const currentProduct = products.find(product => product.id === ownProps.match.params.id)
   return {
     currentProduct,
     user

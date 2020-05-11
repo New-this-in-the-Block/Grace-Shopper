@@ -8,8 +8,8 @@ const ProductCard = product => {
         <div className="prodImgBox">
           <img className="productImg" src={product.imageURL} />
         </div>
-        <h3 className="prodName">{product.name}</h3>
-        <h4 className="prodPrice">${product.price}</h4>
+        <h4 className="prodName">{product.name}</h4>
+        <h5 className="prodPrice">${product.price}</h5>
       </Link>
     </li>
   )

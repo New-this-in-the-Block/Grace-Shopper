@@ -11,7 +11,6 @@ export default function Cart() {
    if (!cart || !cart.lineItems.length) return (
     <h1>Your cart is empty buy some <Link to='/products'>products</Link></h1>
   )
-
   return (
     <div>
       <div>
@@ -30,17 +29,26 @@ export default function Cart() {
                 <span><img className="cartPhoto" src={item.product.imageURL} /></span>
                 <Link to={`/products/${item.productId}`}>{item.product.name}</Link>
                 <span>${item.product.price}/each</span>
-                <span><input type="number" min="0" max={item.product.quantity} step="1" value={item.quantity} size="6"></input>
+                <span><input type="number" min="0" max={item.product.quantity} step="1" defaultValue={item.quantity} size="6"></input>
                 </span>
                 <span>${item.quantity * item.product.price}</span>
               </li>
             ))
             }
+              <li className="cartItem" key="footer">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span>
+                Subtotal: {subTotal}
+                <br />Tax(8%): {tax}
+                <br />Total: {total}
+                </span>
+              </li>
           </ul>
-          Subtotal: {subTotal}
-          <br />Tax(8%): {tax}
-          <br />Total: {total}
         </div>
+        <button>Update</button>
       <button>Checkout</button>
     </div>
   )

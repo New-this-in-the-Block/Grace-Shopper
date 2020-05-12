@@ -15,6 +15,9 @@ const LOAD_CATEGORIES = 'LOAD_CATEGORIES'
 
 const LOAD_ORDERS = 'LOAD_ORDERS'
 
+const LOAD_USERS = 'LOAD_USERS'
+
+
 //Action Creators
 const actionLoadProducts = products => ({type: LOAD_PRODUCTS, products})
 const actionCreateProduct = product => ({type: CREATE_PRODUCT, product})
@@ -24,6 +27,8 @@ const actionRemoveProduct = id => ({type: REMOVE_PRODUCT, id})
 const actionLoadCategories = categories => ({type: LOAD_CATEGORIES, categories})
 
 const actionLoadOrders = orders => ({type: LOAD_ORDERS, orders})
+
+const actionLoadUsers = users => ({type: LOAD_USERS, users})
 
 //Thunks
 const thunkLoadProducts = () => async dispatch => {
@@ -59,6 +64,13 @@ const thunkLoadAllOrders = () => async dispatch => {
 const thunkLoadMyOrders = id => async dispatch => {
   const orders = (await axios.get(`/api/orders/user/${id}`)).data
   return dispatch(actionLoadOrders(orders))
+}
+
+const thunkLoadUsers = () => {
+  return async(dispatch) => {
+    const users = (await axios.get('/api/users')).data
+    return dispatch(actionLoadUsers(users))
+  }
 }
 
 //Reducers
@@ -101,11 +113,21 @@ const orderReducer = (state = [], action) => {
   }
 }
 
+const usersReducer = (state = [], action) => {
+  switch (action.type) {
+    case LOAD_USERS:
+      return action.users
+    default: 
+      return state
+  }
+}
+
 const reducer = combineReducers({
   user,
   products: productReducer,
   categories: categoryReducer,
-  orders: orderReducer
+  orders: orderReducer,
+  allUsers: usersReducer
 })
 
 const middleware = composeWithDevTools(
@@ -123,5 +145,6 @@ export {
   thunkRemoveProduct,
   thunkLoadCategories,
   thunkLoadAllOrders,
-  thunkLoadMyOrders
+  thunkLoadMyOrders,
+  thunkLoadUsers
 }

@@ -14,7 +14,7 @@ import {
   AdminProdList,
   AdminProfile
 } from './components'
-import {me, thunkLoadProducts, thunkLoadCategories} from './store'
+import {me, thunkLoadProducts, thunkLoadCategories, thunkLoadUsers} from './store'
 
 class Routes extends Component {
   componentDidMount() {
@@ -52,7 +52,6 @@ class Routes extends Component {
 }
 
 const mapState = state => {
-  // console.log(state.products)
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
@@ -64,6 +63,7 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
+      // dispatch(thunkLoadUsers())
       dispatch(thunkLoadCategories())
       dispatch(thunkLoadProducts())
     }

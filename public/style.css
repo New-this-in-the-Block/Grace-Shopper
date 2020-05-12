@@ -135,7 +135,7 @@ nav > * {
   margin: 10px 40px;
 }
 .productCard {
-  border: solid rgb(248, 192, 69) 2px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 5px 10px 0 rgba(0, 0, 0, 0.19);
   width: 250px;
   height: 250px;
   list-style-type: none;
@@ -149,15 +149,10 @@ nav > * {
   color: rgb(73, 92, 110);
 }
 .prodName {
-  background-image: linear-gradient(
-    to bottom right,
-    rgb(248, 192, 69),
-    rgb(248, 210, 86),
-    rgb(248, 232, 86)
-  );
   /* background-color: rgb(248, 192, 69); */
   padding: 4px;
   margin: 0;
+  color: #495c6e;
 }
 .productImg {
   width: auto;
@@ -171,8 +166,7 @@ nav > * {
   justify-content: center;
   justify-items: center;
   align-items: center;
-  border: rgb(248, 192, 69) solid 8px;
-  border-style: dashed;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 5px 10px 0 rgba(0, 0, 0, 0.19);
   border-radius: 30px;
   padding: 50px 50px 70px 50px;
   color: rgb(73, 92, 110);
@@ -187,9 +181,15 @@ nav > * {
   flex-direction: column;
 }
 button {
-  background-color: rgb(248, 192, 69);
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(248, 192, 69),
+    rgb(248, 210, 86),
+    rgb(248, 232, 86)
+  );  
   padding: 12px;
   width: 70%;
+  color: #495c6e;
 }
 .productCard > a:hover {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg id='squiggle-link' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:ev='http://www.w3.org/2001/xml-events' viewBox='0 0 20 4'%3E%3Cstyle type='text/css'%3E.squiggle{animation:shift .3s linear infinite;}@keyframes shift {from {transform:translateX(0);}to {transform:translateX(-20px);}}%3C/style%3E%3Cpath fill='none' stroke='%23453886' stroke-width='2' class='squiggle' d='M0,3.5 c 5,0,5,-3,10,-3 s 5,3,10,3 c 5,0,5,-3,10,-3 s 5,3,10,3'/%3E%3C/svg%3E");
@@ -287,7 +287,6 @@ hr {
   margin: 1rem;
 }
 #adminNav {
-  margin-top: 10px;
   display: flex;
   justify-content: space-around;
 }
@@ -295,4 +294,31 @@ hr {
 .selected {
   background-color: rgb(248, 192, 69);
   padding: 13.5px;
+}
+#adminHello {
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(248, 192, 69),
+    rgb(248, 210, 86),
+    rgb(248, 232, 86)
+  );
+  color: rgb(73, 92, 110);
+  font-size: 20px;
+  padding: 20px;
+}
+#orderListWrapper {
+  display: flex;
+  align-self: center;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+#userListWrapper {
+  margin-left: 30%;
+  margin-right: 30%;
+}
+#userRmvBt {
+  width: 70px;
+}
+#usersTable {
+  align-self: center;
 }

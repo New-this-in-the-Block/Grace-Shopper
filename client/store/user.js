@@ -6,7 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
-
+// const LOAD_USERS = 'LOAD_USERS'
 /**
  * INITIAL STATE
  */
@@ -16,6 +16,7 @@ const defaultUser = {}
  * ACTION CREATORS
  */
 const getUser = user => ({type: GET_USER, user})
+// const actionLoadUsers = users => ({type: LOAD_USERS, users})
 const removeUser = () => ({type: REMOVE_USER})
 
 /**
@@ -29,6 +30,13 @@ export const me = () => async dispatch => {
     console.error(err)
   }
 }
+
+// export const thunkLoadUsers = () => {
+//   return async(dispatch) => {
+//     const users = (await axios.get('/api/users')).data
+//     return dispatch(actionLoadUsers(users))
+//   }
+// }
 
 export const auth = (email, password, method) => async dispatch => {
   let res
@@ -65,7 +73,10 @@ export default function(state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+    // case LOAD_USERS:
+    //   return action.users
     default:
       return state
   }
 }
+

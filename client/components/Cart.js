@@ -31,20 +31,20 @@ export default function Cart() {
                 <span>${item.product.price}/each</span>
                 <span><input type="number" min="0" max={item.product.quantity} step="1" defaultValue={item.quantity} size="6"></input>
                 </span>
-                <span>${item.quantity * item.product.price}</span>
+                <span className='bold'>${(item.quantity * item.product.price).toFixed(2)}</span>
               </li>
             ))
             }
-              <li className="cartItem" key="footer">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span>
-                Subtotal: {subTotal}
-                <br />Tax(8%): {tax}
-                <br />Total: {total}
-                </span>
+              <li className="cartItemFooter" key="footer">
+                  <span>
+                    <span>Subtotal: </span> <span className='bold'> ${subTotal}</span>
+                  </span>
+                  <span>
+                  <span>Tax(8%): </span> <span className='bold'> ${tax}</span>
+                    </span>
+                  <span>
+                  <span>Total: </span> <span className='bold'> ${total}</span>
+                    </span>
               </li>
           </ul>
         </div>

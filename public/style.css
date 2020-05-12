@@ -327,6 +327,21 @@ div.splashpic {
   border-bottom: solid 1px #aaaaaa;
 }
 
+.cartItemFooter {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  border-bottom: solid 1px #aaaaaa;
+  margin-right: 20px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+
+
 .cartItem>*:first-child {
   width: 80px;
   display: flex;
@@ -352,9 +367,8 @@ div.splashpic {
 }
 
 .cartItem>*:nth-child(5) {
-  width: 100px;
+  width: 150px;
   display: flex;
   justify-content: flex-end;
   margin-right: 20px;
-  font-weight: bold;
 }

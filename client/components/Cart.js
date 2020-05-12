@@ -16,15 +16,24 @@ export default function Cart() {
     <div>
       <div>
         <h1>Your Cart</h1>
-          <ul>
+          <ul className="cartList">
+            <li className="cartItem" key="header">
+              <span>Product</span>
+              <span></span>
+              <span>Price</span>
+              <span>Quantity</span>
+              <span>Total</span>
+            </li>
             {
             cart.lineItems.map( item => (
-              <li key={item.id}>
-              <Link to={`/products/${item.productId}`}>
-                {item.product.name}
-              </Link>
-              ({item.quantity}) for ${item.quantity * item.product.price}
-            </li>
+              <li className="cartItem" key={item.id}>
+                <span><img className="cartPhoto" src={item.product.imageURL} /></span>
+                <Link to={`/products/${item.productId}`}>{item.product.name}</Link>
+                <span>${item.product.price}/each</span>
+                <span><input type="number" min="0" max={item.product.quantity} step="1" value={item.quantity} size="6"></input>
+                </span>
+                <span>${item.quantity * item.product.price}</span>
+              </li>
             ))
             }
           </ul>

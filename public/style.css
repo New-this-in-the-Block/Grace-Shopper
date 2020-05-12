@@ -304,9 +304,31 @@ hr {
 div.splashpic {
   background-image: url('/img/beer_splash.jpg');
   background-color: blanchedalmond;
-  height: 1000px;
+  height: 800px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+}
+ 
+div.splashContainer {
+  display: flex;
+  flex-direction: row;  
+  justify-content: space-evenly;
+  padding: 3rem;
+}
+
+div.h5 {
+  margin-top: 2rem;
+}
+
+.splashProductsURL {
+  width: 250px;
+}
+
+.splashButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
 }

@@ -37,11 +37,10 @@ export default function Nav() {
   const char = categories.find(cat => cat.name === 'Chardonnay')
   const beer = products.filter(pro => pro.alcohol === 'Beer')
   const wine = products.filter(pro => pro.alcohol === 'Wine')
-  const path = location.pathname.slice(1)
 
   
   return (
-    <nav className={path === '' ? 'topNav' : ''}>
+    <nav>
       <Link to="/home">
         <img width="73%" src="/img/logo.jpg" />
       </Link>

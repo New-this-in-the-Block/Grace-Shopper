@@ -43,7 +43,7 @@ const Product = db.define('product', {
   },
   imageURL: {
     type: STRING,
-    defaultValue: ''
+    defaultValue: 'https://i.pinimg.com/originals/73/fe/f3/73fef34a961330f8cd24fc1b1d8ef139.jpg'
   }
 })
 

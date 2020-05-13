@@ -16,7 +16,8 @@ import {
   Cart,
   SplashPage
 } from './components'
-import {me, thunkLoadProducts, thunkLoadCategories, thunkLoadMyOrders} from './store'
+import {me, thunkLoadProducts, thunkLoadCategories, thunkLoadUsers, thunkLoadMyOrders} from './store'
+
 
 class Routes extends Component {
   componentDidMount () {
@@ -71,6 +72,7 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
+      dispatch(thunkLoadUsers())
       dispatch(thunkLoadCategories())
       dispatch(thunkLoadProducts())
     },

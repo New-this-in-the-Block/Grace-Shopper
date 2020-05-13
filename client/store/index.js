@@ -19,6 +19,10 @@ const LOAD_CART = 'LOAD_CART'
 const CREATE_ORDER = 'CREATE_ORDER'
 const ADD_TO_ORDER = 'ADD_TO_ORDER'
 
+const LOAD_USERS = 'LOAD_USERS'
+const REMOVE_USER = 'REMOVE_USER'
+
+
 //Action Creators
 const actionLoadProducts = products => ({type: LOAD_PRODUCTS, products})
 const actionCreateProduct = product => ({type: CREATE_PRODUCT, product})
@@ -31,6 +35,9 @@ const actionLoadOrders = orders => ({type: LOAD_ORDERS, orders})
 const actionLoadCart = cart => ({type: LOAD_CART, cart})
 const actionCreateOrder = order => ({type: CREATE_ORDER, order})
 const actionAddToOrder = order => ({type: ADD_TO_ORDER, order})
+
+const actionLoadUsers = users => ({type: LOAD_USERS, users})
+const actionRemoveUser = id => ({type: REMOVE_USER, id})
 
 //Thunks
 const thunkLoadProducts = () => async dispatch => {
@@ -68,6 +75,15 @@ const thunkLoadMyOrders = id => async dispatch => {
   return dispatch(actionLoadOrders(orders))
 }
 
+const thunkLoadUsers = () => {
+  return async(dispatch) => {
+    const users = (await axios.get('/api/users')).data
+    return dispatch(actionLoadUsers(users))
+  }
+}
+const thunkRemoveUser = id => async dispatch => {
+  await axios.delete(`/api/users/${id}`)
+  dispatch(actionRemoveUser(id))
 const thunkLoadMyCart = id => async dispatch => {
   const cart = (await axios.get(`/api/orders/cart/${id}`)).data
   return dispatch(actionLoadCart(cart))
@@ -135,11 +151,23 @@ const orderReducer = (state = [], action) => {
   }
 }
 
+const usersReducer = (state = [], action) => {
+  switch (action.type) {
+    case LOAD_USERS:
+      return action.users
+    case REMOVE_USER:
+      return state.filter(user => user.id !== action.id)
+    default: 
+      return state
+  }
+}
+
 const reducer = combineReducers({
   user,
   products: productReducer,
   categories: categoryReducer,
-  orders: orderReducer
+  orders: orderReducer,
+  allUsers: usersReducer
 })
 
 const middleware = composeWithDevTools(
@@ -158,6 +186,8 @@ export {
   thunkLoadCategories,
   thunkLoadAllOrders,
   thunkLoadMyOrders,
+  thunkLoadUsers,
+  thunkRemoveUser
   thunkCreateOrder,
   thunkLoadMyCart,
   thunkAddToOrder

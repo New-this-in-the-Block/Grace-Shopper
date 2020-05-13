@@ -84,6 +84,8 @@ const thunkLoadUsers = () => {
 const thunkRemoveUser = id => async dispatch => {
   await axios.delete(`/api/users/${id}`)
   dispatch(actionRemoveUser(id))
+}
+
 const thunkLoadMyCart = id => async dispatch => {
   const cart = (await axios.get(`/api/orders/cart/${id}`)).data
   return dispatch(actionLoadCart(cart))
@@ -187,7 +189,7 @@ export {
   thunkLoadAllOrders,
   thunkLoadMyOrders,
   thunkLoadUsers,
-  thunkRemoveUser
+  thunkRemoveUser,
   thunkCreateOrder,
   thunkLoadMyCart,
   thunkAddToOrder

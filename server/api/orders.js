@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
 //create a cart with the initial item
 router.post('/', async (req, res, next) => {
   const order = await Order.create({status: 'Cart', userId: req.body.userId})
-  const lineItem = await LineItem.create({quantity: 1, productId: req.body.productId, orderId: order.id})
+  const lineItem = await LineItem.create({quantity: req.body.quantity, productId: req.body.productId, orderId: order.id})
   const cart = await Order.findOne(
     {where: {id: order.id},
     include: [

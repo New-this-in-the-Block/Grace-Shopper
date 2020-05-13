@@ -9,7 +9,10 @@ const ProductCard = product => {
           <img className="productImg" src={product.imageURL} />
         </div>
         <h4 className="prodName">{product.name}</h4>
-        <h5 className="prodPrice">${product.price}</h5>
+        <div className="priceCart">
+          <h5 className="prodPrice">${product.price}</h5>
+          <img className="cartWhiteCard" src="/img/cart_white.jpg" />
+        </div>
       </Link>
     </li>
   )

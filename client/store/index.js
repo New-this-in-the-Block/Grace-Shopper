@@ -14,6 +14,10 @@ const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 const LOAD_CATEGORIES = 'LOAD_CATEGORIES'
 
 const LOAD_ORDERS = 'LOAD_ORDERS'
+const LOAD_CART = 'LOAD_CART'
+
+const CREATE_ORDER = 'CREATE_ORDER'
+const ADD_TO_ORDER = 'ADD_TO_ORDER'
 
 const LOAD_USERS = 'LOAD_USERS'
 const REMOVE_USER = 'REMOVE_USER'
@@ -28,6 +32,9 @@ const actionRemoveProduct = id => ({type: REMOVE_PRODUCT, id})
 const actionLoadCategories = categories => ({type: LOAD_CATEGORIES, categories})
 
 const actionLoadOrders = orders => ({type: LOAD_ORDERS, orders})
+const actionLoadCart = cart => ({type: LOAD_CART, cart})
+const actionCreateOrder = order => ({type: CREATE_ORDER, order})
+const actionAddToOrder = order => ({type: ADD_TO_ORDER, order})
 
 const actionLoadUsers = users => ({type: LOAD_USERS, users})
 const actionRemoveUser = id => ({type: REMOVE_USER, id})
@@ -77,6 +84,19 @@ const thunkLoadUsers = () => {
 const thunkRemoveUser = id => async dispatch => {
   await axios.delete(`/api/users/${id}`)
   dispatch(actionRemoveUser(id))
+const thunkLoadMyCart = id => async dispatch => {
+  const cart = (await axios.get(`/api/orders/cart/${id}`)).data
+  return dispatch(actionLoadCart(cart))
+}
+
+const thunkCreateOrder = (product, user) => async dispatch => {
+  const order = (await axios.post('/api/orders', {productId: product.id, userId: user.id})).data
+  return dispatch(actionCreateOrder(order))
+}
+
+const thunkAddToOrder = (product, cart) => async dispatch => {
+  const lineItem = (await axios.post('/api/lineItems', {quantity: 1, productId: product.id, orderId: cart.id})).data
+  return dispatch(actionAddToOrder(lineItem))
 }
 
 //Reducers
@@ -114,6 +134,18 @@ const orderReducer = (state = [], action) => {
   switch (action.type) {
     case LOAD_ORDERS:
       return action.orders
+    case LOAD_CART:
+      return action.cart
+    case CREATE_ORDER:
+      return [...state, action.order]
+    case ADD_TO_ORDER:
+      return state.map(order => {
+        if (order.id === action.order.id) {
+          return action.order
+        }else {
+          return order
+        }
+      })
     default:
       return state
   }
@@ -156,4 +188,7 @@ export {
   thunkLoadMyOrders,
   thunkLoadUsers,
   thunkRemoveUser
+  thunkCreateOrder,
+  thunkLoadMyCart,
+  thunkAddToOrder
 }

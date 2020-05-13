@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 
 export default function Profile() {
   const user = useSelector(state => state.user)
-  const orderData = useSelector(state => state.orders)
+  const orderData = useSelector(state => state.orders.filter(order => order.status !== 'Cart'))
   const dispatch = useDispatch()
 
   useEffect(

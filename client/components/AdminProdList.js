@@ -64,6 +64,7 @@ class AdminProdList extends Component {
       category,
       categoryId
     } = this.state
+    
     if (this.state.isEditing) {
       return (
         <form id="updateForm" onSubmit={updateProd}>
@@ -117,14 +118,13 @@ class AdminProdList extends Component {
               <th>Description</th>
               <th>Price</th>
               <th>Quantity</th>
-              <th>Category</th>
+              {/* <th>Category</th> */}
               <th />
             </tr>
           </thead>
           <tbody>
             {products &&
               products.map(product => {
-                console.log(product)
                 return (
                   <tr key={product.id}>
                     <td>{product.name}</td>

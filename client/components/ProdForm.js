@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, useCallback} from 'react'
 import {connect} from 'react-redux'
 import {thunkCreateProduct} from '../store'
 
@@ -11,30 +11,45 @@ class ProdForm extends Component {
       description: '',
       price: 0,
       quantity: 0,
-      categoryId: ''
+      categoryId: '',
+      imageURL: ''
     }
     this.onSubmit = this.onSubmit.bind(this)
+    this.reset = this.reset.bind(this)
   }
 
   async onSubmit(ev) {
     ev.preventDefault()
-    console.log(this.state)
     try {
       await this.props.create({
         name: this.state.name,
         description: this.state.description,
         price: this.state.price,
         quantity: this.state.quantity,
-        categoryId: this.state.categoryId
+        categoryId: this.state.categoryId,
+        imageURL: this.state.imageURL
       })
     } catch (ev) {
       console.log(ev)
     }
+    this.reset()
   }
+
+  reset() {
+    this.setState({
+      name: '',
+      description: '',
+      price: 0,
+      quantity: 0,
+      categoryId: '',
+      imageURL: ''
+    })
+  }
+
   render() {
     const {onSubmit} = this
     const {categories} = this.props
-    const {name, description, price, quantity, categoryId} = this.state
+    const {name, description, price, quantity, categoryId, imageURL} = this.state
     return (
       <div>
         <form id="prodform" onSubmit={onSubmit}>
@@ -69,6 +84,7 @@ class ProdForm extends Component {
               )
             })}
           </select>
+          Image URL<input value={imageURL} onChange={ev => this.setState({imageURL: ev.target.value})}></input>
           <button id="submitbt">Add</button>
         </form>
       </div>

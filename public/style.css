@@ -337,7 +337,69 @@ div.splashpic {
   background-size: cover;
   position: relative;
 }
- 
+
+.cartList {
+  width: 750px;
+  margin: auto;
+}
+
+.cartPhoto {
+  height: 70px;
+  margin: 10px;
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  border-bottom: solid 1px #aaaaaa;
+}
+
+.cartItemFooter {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  border-bottom: solid 1px #aaaaaa;
+  margin-right: 20px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+
+
+.cartItem>*:first-child {
+  width: 80px;
+  display: flex;
+  justify-content: center;
+}
+
+.cartItem>*:nth-child(2) {
+  width: 300px;
+  display: flex;
+  justify-content: left;
+}
+
+.cartItem>*:nth-child(3) {
+  width: 180px;
+  display: flex;
+  justify-content: center;
+}
+
+.cartItem>*:nth-child(4) {
+  width: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.cartItem>*:nth-child(5) {
+  width: 150px;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+} 
+
 div.splashContainer {
   display: flex;
   flex-direction: row;  

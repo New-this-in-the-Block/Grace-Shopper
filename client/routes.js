@@ -63,7 +63,7 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
-      // dispatch(thunkLoadUsers())
+      dispatch(thunkLoadUsers())
       dispatch(thunkLoadCategories())
       dispatch(thunkLoadProducts())
     }

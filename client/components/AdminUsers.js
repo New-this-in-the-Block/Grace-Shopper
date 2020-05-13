@@ -1,16 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {thunkLoadUsers} from '../store'
+import {thunkLoadUsers, thunkRemoveUser} from '../store'
 
 class AdminUsers extends Component {
-
-    componentDidMount() {
-        this.props.loadInitialData()
-    }
-
     render() {
-      const {allUsers} = this.props
-        return ( 
+      const {destroy, allUsers} = this.props
+      return ( 
           <div>
               <h3>Users</h3>
             <div id="userListWrapper">
@@ -30,7 +25,7 @@ class AdminUsers extends Component {
                           <td>{user.email}</td>
                           <td>{user.id}</td>
                           <td>
-                            <button id='userRmvBt'>Remove</button>
+                            <button id='userRmvBt' onClick={() => destroy(user.id)}>Remove</button>
                           </td>
                         </tr>
                       )
@@ -44,7 +39,7 @@ class AdminUsers extends Component {
 }
 
 const mapState = ({allUsers}) => {
-    // console.log('adminusers state here', state)
+  console.log(allUsers)
   return {
     allUsers
   } 
@@ -52,9 +47,10 @@ const mapState = ({allUsers}) => {
 
 const mapDispatch = dispatch => {
     return {
-      loadInitialData() {
-        dispatch(thunkLoadUsers())
-      }
+      // loadInitialData() {
+      //   dispatch(thunkLoadUsers())
+      // },
+      destroy: id => dispatch(thunkRemoveUser(id))
     }
   }
 

@@ -16,6 +16,7 @@ const LOAD_CATEGORIES = 'LOAD_CATEGORIES'
 const LOAD_ORDERS = 'LOAD_ORDERS'
 
 const LOAD_USERS = 'LOAD_USERS'
+const REMOVE_USER = 'REMOVE_USER'
 
 
 //Action Creators
@@ -29,6 +30,7 @@ const actionLoadCategories = categories => ({type: LOAD_CATEGORIES, categories})
 const actionLoadOrders = orders => ({type: LOAD_ORDERS, orders})
 
 const actionLoadUsers = users => ({type: LOAD_USERS, users})
+const actionRemoveUser = id => ({type: REMOVE_USER, id})
 
 //Thunks
 const thunkLoadProducts = () => async dispatch => {
@@ -71,6 +73,10 @@ const thunkLoadUsers = () => {
     const users = (await axios.get('/api/users')).data
     return dispatch(actionLoadUsers(users))
   }
+}
+const thunkRemoveUser = id => async dispatch => {
+  await axios.delete(`/api/users/${id}`)
+  dispatch(actionRemoveUser(id))
 }
 
 //Reducers
@@ -117,6 +123,8 @@ const usersReducer = (state = [], action) => {
   switch (action.type) {
     case LOAD_USERS:
       return action.users
+    case REMOVE_USER:
+      return state.filter(user => user.id !== action.id)
     default: 
       return state
   }
@@ -146,5 +154,6 @@ export {
   thunkLoadCategories,
   thunkLoadAllOrders,
   thunkLoadMyOrders,
-  thunkLoadUsers
+  thunkLoadUsers,
+  thunkRemoveUser
 }

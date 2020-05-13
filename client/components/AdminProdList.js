@@ -64,6 +64,7 @@ class AdminProdList extends Component {
       category,
       categoryId
     } = this.state
+    
     if (this.state.isEditing) {
       return (
         <form id="updateForm" onSubmit={updateProd}>

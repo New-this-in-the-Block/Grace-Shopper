@@ -1,8 +1,7 @@
 const router = require('express').Router()
-const {Order} = require('../db/models')
-const {LineItem} = require('../db/models')
-const {Product} = require('../db/models')
+const {Order, LineItem, Product} = require('../db/models')
 module.exports = router
+
 
 //get all orders - ADMIN ONLY
 router.get('/', (req, res, next) => {
@@ -24,7 +23,6 @@ router.post('/', async (req, res, next) => {
   })
   await res.status(201).send(cart)
 })
-
 
 //get the cart - if no cart, create one - only works for users atm
 router.get('/cart/:id', (req, res, next) => {

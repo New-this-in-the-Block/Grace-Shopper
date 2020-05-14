@@ -331,7 +331,7 @@ hr {
 div.splashpic {
   background-image: url('/img/beer_splash.jpg');
   background-color: blanchedalmond;
-  height: 800px;
+  height: 650px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -366,8 +366,6 @@ div.splashpic {
 .bold {
   font-weight: bold;
 }
-
-
 
 .cartItem>*:first-child {
   width: 80px;

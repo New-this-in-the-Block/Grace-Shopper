@@ -3,12 +3,14 @@ import {Link} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import {calculateTotal} from '../../script/utils'
 
+
 export default function Cart() {
   const user = useSelector(state => state.user)
   const [cart] = useSelector(state => state.orders.filter(order => order.status === 'Cart'))
   const [subTotal, tax, total] = cart ? calculateTotal(cart) : [0,0,0]
 
-   if (!cart || !cart.lineItems.length) return (
+
+  if (!cart || !cart.lineItems.length) return (
     <h1>Your cart is empty buy some <Link to='/products'>products</Link></h1>
   )
   return (
@@ -40,7 +42,7 @@ export default function Cart() {
                     <span>Subtotal: </span> <span className='bold'> ${subTotal}</span>
                   </span>
                   <span>
-                  <span>Tax(8%): </span> <span className='bold'> ${tax}</span>
+                  <span>Tax(8.875%): </span> <span className='bold'> ${tax}</span>
                     </span>
                   <span>
                   <span>Total: </span> <span className='bold'> ${total}</span>
@@ -48,8 +50,8 @@ export default function Cart() {
               </li>
           </ul>
         </div>
-        <button>Update</button>
-      <button>Checkout</button>
+        <button type='button'>Update</button>
+        <button type='button'>Checkout</button>
     </div>
   )
 }

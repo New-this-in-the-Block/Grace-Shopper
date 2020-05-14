@@ -2,10 +2,10 @@ import React from 'react'
 import {connect} from 'react-redux'
 import ProductCard from './ProductCard'
 
+
 const Categories = ({filteredProducts}) => {
   return (
     <div>
-      <div id="spacer" />
       <ul className="productCards">
         {filteredProducts &&
           filteredProducts.map(product => (

@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect, useSelector} from 'react-redux'
 import {thunkCreateOrder, thunkAddToOrder} from '../store'
-import axios from 'axios'
 
 const ProductDetails = ({currentProduct, orders, user, cart, createCart, addItem}) => {
 
@@ -11,7 +10,6 @@ const ProductDetails = ({currentProduct, orders, user, cart, createCart, addItem
 
   return (
     <div>
-      <div id='spacer'/>
       <div className="detailBox">
         <img
           className="detailPhoto"

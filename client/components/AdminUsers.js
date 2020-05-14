@@ -7,7 +7,7 @@ class AdminUsers extends Component {
       const {destroy, allUsers} = this.props
       return ( 
           <div>
-              <h3>Users</h3>
+            <h3>Users</h3>
             <div id="userListWrapper">
               <table id='usersTable'>
                 <thead id="usersHeader">
@@ -25,7 +25,7 @@ class AdminUsers extends Component {
                           <td>{user.email}</td>
                           <td>{user.id}</td>
                           <td>
-                            <button id='userRmvBt' onClick={() => destroy(user.id)}>Remove</button>
+                            <button type='button' id='userRmvBt' onClick={() => destroy(user.id)}>Remove</button>
                           </td>
                         </tr>
                       )
@@ -38,20 +38,15 @@ class AdminUsers extends Component {
     }
 }
 
-const mapState = ({allUsers}) => {
-  console.log(allUsers)
-  return {
-    allUsers
-  } 
-}
+const mapState = ({allUsers}) => ({allUsers})
 
 const mapDispatch = dispatch => {
-    return {
-      // loadInitialData() {
-      //   dispatch(thunkLoadUsers())
-      // },
-      destroy: id => dispatch(thunkRemoveUser(id))
-    }
+  return {
+    // loadInitialData() {
+    //   dispatch(thunkLoadUsers())
+    // },
+    destroy: id => dispatch(thunkRemoveUser(id))
   }
+}
 
 export default connect(mapState, mapDispatch)(AdminUsers)

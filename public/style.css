@@ -343,9 +343,19 @@ div.splashpic {
   margin: auto;
 }
 
+.itemList {
+  width: 600px;
+  margin: auto;
+}
+
 .cartPhoto {
   height: 70px;
   margin: 10px;
+}
+
+.linePhoto {
+  height: 40px;
+  margin: 2px;
 }
 
 .cartItem {
@@ -354,6 +364,45 @@ div.splashpic {
   align-items: center;
   border-bottom: solid 1px #aaaaaa;
 }
+
+.lineItem {
+  height: 55px;
+  display: flex;
+  align-items: center;
+  border-bottom: solid 1px #aaaaaa;
+}
+
+.lineItem>*:first-child {
+  width: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.lineItem>*:nth-child(2) {
+  width: 300px;
+  display: flex;
+  justify-content: left;
+}
+
+.lineItem>*:nth-child(3) {
+  width: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.lineItem>*:nth-child(4) {
+  width: 60px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.lineItem>*:nth-child(5) {
+  width: 80px;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+} 
 
 .cartItemFooter {
   display: flex;

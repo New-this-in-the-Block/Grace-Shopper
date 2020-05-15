@@ -27,7 +27,6 @@ export default function Cart() {
             {
             cart.lineItems.map( item => (
               <li key={item.id}>
-
                 <CartItem item={item}/>
               </li>
             ))

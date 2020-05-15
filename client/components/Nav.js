@@ -28,7 +28,6 @@ export default function Nav() {
   if (!categories[0]) {
     return null
   }
-
   const ipa = categories.find(cat => cat.name === 'IPA')
   const lager = categories.find(cat => cat.name === 'Lager')
   const stout = categories.find(cat => cat.name === 'Stout')
@@ -37,8 +36,6 @@ export default function Nav() {
   const char = categories.find(cat => cat.name === 'Chardonnay')
   const beer = products.filter(pro => pro.alcohol === 'Beer')
   const wine = products.filter(pro => pro.alcohol === 'Wine')
-
-  
   return (
     <nav>
       <Link to="/home">

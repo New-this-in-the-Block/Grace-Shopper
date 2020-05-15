@@ -7,7 +7,6 @@ export const UserHome = props => {
 
   return (
     <div>
-      <div id="spacer" />
       <div>
         <h3>Welcome, {email}</h3>
       </div>

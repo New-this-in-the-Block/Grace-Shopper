@@ -1,6 +1,5 @@
-import React, {Component} from 'react'
-import {NavLink, HashRouter, Route} from 'react-router-dom'
-import {connect} from 'react-redux'
+import React from 'react'
+import {NavLink} from 'react-router-dom'
 import AdminProdList from './AdminProdList'
 import ProdForm from './ProdForm'
 import AdminOrders from './AdminOrders'
@@ -12,7 +11,6 @@ const AdminProfile = ({path}) => {
       <div id='adminHello'>Welcome Admin</div>
       <div>
         <nav id="adminNav">
-          {/* <NavLink>Orders</NavLink> */}
           <NavLink activeClassName="selected" to="/admin/addproduct">
             Add Product
           </NavLink>

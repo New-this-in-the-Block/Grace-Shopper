@@ -5,7 +5,6 @@ import {thunkCreateProduct} from '../store'
 class ProdForm extends Component {
   constructor() {
     super()
-
     this.state = {
       name: '',
       description: '',
@@ -85,7 +84,7 @@ class ProdForm extends Component {
             })}
           </select>
           Image URL<input value={imageURL} onChange={ev => this.setState({imageURL: ev.target.value})}></input>
-          <button id="submitbt">Add</button>
+          <button type='button' id="submitbt">Add</button>
         </form>
       </div>
     )
@@ -103,4 +102,5 @@ const mapState = ({categories}, ownprops) => {
     ownprops
   }
 }
+
 export default connect(mapState, mapDispatch)(ProdForm)

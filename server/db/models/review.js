@@ -12,11 +12,11 @@ const Review = db.define('review', {
   },
   rating: {
     type: INTEGER,
+    allowNull: true,
     validate: {
-      min: 0,
+      min: 1,
       max: 5
-    },
-    defaultValue: 0
+    }
   }
 })
 

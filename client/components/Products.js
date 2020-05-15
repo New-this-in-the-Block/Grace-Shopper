@@ -36,7 +36,7 @@ const Products = ({products}) => {
   //if not searching return all products
   return (
     <div>
-      <div id="spacer" />
+      {/* <div id="spacer" /> */}
       <div>
         <ul className="productCards">
           {products &&

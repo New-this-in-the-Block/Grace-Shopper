@@ -1,8 +1,7 @@
 const router = require('express').Router()
-const {Order} = require('../db/models')
-const {LineItem} = require('../db/models')
-const {Product} = require('../db/models')
+const {Order, Product, LineItem} = require('../db/models')
 module.exports = router
+
 
 //get all line items
 router.get('/', (req, res, next) => {
@@ -30,7 +29,7 @@ router.post('/', async(req, res, next) => {
     }
     ]
   })
-  await res.status(201).send(cart)
+  res.status(201).send(cart)
 })
 
 router.put('/', async(req, res, next) => {

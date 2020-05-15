@@ -19,9 +19,11 @@ router.get('/:id', (req, res, next) => {
 
 //add to an order
 router.post('/', async(req, res, next) => {
-  const lineItem = await LineItem.create(req.body)
+  const existing = await LineItem.findOne({where: {productId: req.body.productId, orderId: req.body.orderId}})
+  if (existing) await existing.update({quantity: existing.quantity*1 + req.body.quantity*1})
+  else await LineItem.create(req.body)
   const cart = await Order.findOne(
-    {where: {id: lineItem.orderId},
+    {where: {id: req.body.orderId},
     include: [
       {model: LineItem, include: [{model: Product}]
     }
@@ -30,11 +32,17 @@ router.post('/', async(req, res, next) => {
   res.status(201).send(cart)
 })
 
-router.put('/:id', (req, res, next) => {
-  LineItem.findByPk(req.params.id)
-    .then(thisProduct =>
-      thisProduct.update({
+router.put('/', async(req, res, next) => {
+  const lineItem = await LineItem.findByPk(req.body.id)
+  await lineItem.update({
         quantity: req.body.quantity
-      }))
-    .catch(next)
+      })
+  const cart = await Order.findOne(
+    {where: {id: lineItem.orderId},
+    include: [
+      {model: LineItem, include: [{model: Product}]
+    }
+    ]
+  })
+  await res.status(201).send(cart)
 })

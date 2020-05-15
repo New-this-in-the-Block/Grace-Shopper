@@ -18,6 +18,7 @@ const LOAD_CART = 'LOAD_CART'
 
 const CREATE_ORDER = 'CREATE_ORDER'
 const ADD_TO_ORDER = 'ADD_TO_ORDER'
+const UPDATE_ORDER = 'UPDATE_ORDER'
 
 const LOAD_USERS = 'LOAD_USERS'
 const REMOVE_USER = 'REMOVE_USER'
@@ -35,6 +36,7 @@ const actionLoadOrders = orders => ({type: LOAD_ORDERS, orders})
 const actionLoadCart = cart => ({type: LOAD_CART, cart})
 const actionCreateOrder = order => ({type: CREATE_ORDER, order})
 const actionAddToOrder = order => ({type: ADD_TO_ORDER, order})
+const actionUpdateOrder = order => ({type: UPDATE_ORDER, order})
 
 const actionLoadUsers = users => ({type: LOAD_USERS, users})
 const actionRemoveUser = id => ({type: REMOVE_USER, id})
@@ -91,14 +93,19 @@ const thunkLoadMyCart = id => async dispatch => {
   return dispatch(actionLoadCart(cart))
 }
 
-const thunkCreateOrder = (product, user) => async dispatch => {
-  const order = (await axios.post('/api/orders', {productId: product.id, userId: user.id})).data
+const thunkCreateOrder = (quantity, product, user) => async dispatch => {
+  const order = (await axios.post('/api/orders', {quantity, productId: product.id, userId: user.id})).data
   return dispatch(actionCreateOrder(order))
 }
 
-const thunkAddToOrder = (product, cart) => async dispatch => {
-  const lineItem = (await axios.post('/api/lineItems', {quantity: 1, productId: product.id, orderId: cart.id})).data
+const thunkAddToOrder = (quantity, product, cartId) => async dispatch => {
+  const lineItem = (await axios.post('/api/lineItems', {quantity: quantity, productId: product.id, orderId: cartId})).data
   return dispatch(actionAddToOrder(lineItem))
+}
+
+const thunkUpdateOrder = (quantity, id) => async dispatch => {
+  const lineItem = (await axios.put('/api/lineItems', {quantity, id})).data
+  return dispatch(actionUpdateOrder(lineItem))
 }
 
 //Reducers
@@ -141,6 +148,14 @@ const orderReducer = (state = [], action) => {
     case CREATE_ORDER:
       return [...state, action.order]
     case ADD_TO_ORDER:
+      return state.map(order => {
+        if (order.id === action.order.id) {
+          return action.order
+        }else {
+          return order
+        }
+      })
+    case UPDATE_ORDER:
       return state.map(order => {
         if (order.id === action.order.id) {
           return action.order
@@ -192,5 +207,6 @@ export {
   thunkRemoveUser,
   thunkCreateOrder,
   thunkLoadMyCart,
-  thunkAddToOrder
+  thunkAddToOrder,
+  thunkUpdateOrder
 }

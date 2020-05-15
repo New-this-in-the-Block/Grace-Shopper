@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import {calculateTotal} from '../../script/utils'
+import CartItem from './CartItem'
 
 export default function Cart() {
   const user = useSelector(state => state.user)
@@ -25,13 +26,8 @@ export default function Cart() {
             </li>
             {
             cart.lineItems.map( item => (
-              <li className="cartItem" key={item.id}>
-                <span><img className="cartPhoto" src={item.product.imageURL} /></span>
-                <Link to={`/products/${item.productId}`}>{item.product.name}</Link>
-                <span>${item.product.price}/each</span>
-                <span><input type="number" min="0" max={item.product.quantity} step="1" defaultValue={item.quantity} size="6"></input>
-                </span>
-                <span className='bold'>${(item.quantity * item.product.price).toFixed(2)}</span>
+              <li key={item.id}>
+                <CartItem item={item}/>
               </li>
             ))
             }
@@ -48,7 +44,6 @@ export default function Cart() {
               </li>
           </ul>
         </div>
-        <button>Update</button>
       <button>Checkout</button>
     </div>
   )

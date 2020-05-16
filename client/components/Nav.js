@@ -41,9 +41,9 @@ export default function Nav() {
       <Link to="/home">
         <img width="73%" src="/img/logo.jpg" />
       </Link>
-      <Link to="/products">All Drinks ()</Link>
+      <Link to="/products/page/:id">All Drinks ()</Link>
       <div id="styleDropdown">
-        <Link to="/products">Beer ({beer.length})</Link>
+        <Link to="/products/page/:id">Beer ({beer.length})</Link>
         <div id="styleContent">
           <Link to={`/products/categories/${ipa.id}`}>
             IPA ({ipa.products.length})
@@ -57,7 +57,7 @@ export default function Nav() {
         </div>
       </div>
       <div id="styleDropdown">
-        <Link to="/products">Wine ({wine.length})</Link>
+        <Link to="/products/page/:id">Wine ({wine.length})</Link>
         <div id="styleContent">
           <Link to={`/products/categories/${pinot.id}`}>
             Pinot ({pinot.products.length})

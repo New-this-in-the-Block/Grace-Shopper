@@ -43,6 +43,7 @@ class Routes extends Component {
         <Route exact path="/products/:id" component={ProductDetails} />
         <Route path="/products/page/:id" component={Products} />
         <Route path="/products/categories/:id" component={Categories} />
+        <Route path="/products" component={Products} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/admin" render={({location}) => <AdminProfile path={location.pathname} />}/>

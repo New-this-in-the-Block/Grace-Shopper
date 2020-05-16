@@ -82,7 +82,7 @@ class SplashPage extends Component {
                  </div>
             </div>
             <div className="splashButton">
-                <button type='button'><Link to='/products'>All Products</Link></button>
+                <button type='button'><Link to='/products/page/:id'>All Products</Link></button>
             </div>
             <hr />
             <p id="signature">© 2020, Craft Beer and Wine</p>

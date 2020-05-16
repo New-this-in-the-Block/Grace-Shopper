@@ -1,9 +1,21 @@
 import React from 'react'
-import {useSelector} from 'react-redux'
+import LineItem from './LineItem'
+import {calculateTotal} from '../../script/utils'
 
-export default function Order() {
-  const user = useSelector(state => state.user)
-  const products = useSelector(state => state.products)
+export default function Order({order}) {
+  const [subTotal, tax, total] = order ? calculateTotal(order) : [0,0,0]
 
-  return <h3>{user.email}'s Order</h3>
+  if (!order) return <h3>Loading...</h3>
+  return (
+                  <ul>
+                {order.lineItems.map(item => (
+                  <li key={item.id}>
+                    <LineItem item={item} />
+                  </li>
+                ))}
+                <li>
+                <span>Total: </span> <span className='bold'> ${total}</span>
+                </li>
+              </ul> 
+  )
 }

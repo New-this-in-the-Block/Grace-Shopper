@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import {thunkUpdateOrder} from '../store'
+import {thunkUpdateOrder, thunkRemoveFromOrder} from '../store'
 
 export default function CartItem({item}) {
   const [quantity, setQuantity] = useState(item.quantity)
@@ -11,9 +11,7 @@ export default function CartItem({item}) {
     if (quantity*1 !== item.quantity*1) dispatch(thunkUpdateOrder(quantity, item.id))
   }
 
-  const destroy = (item) => {
-    console.log(item)
-  }
+  const destroy = (item) => dispatch(thunkRemoveFromOrder(item.id))
 
   if (!item) return <h2>Loading...</h2>  
   return (

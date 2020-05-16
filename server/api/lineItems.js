@@ -32,6 +32,16 @@ router.post('/', async(req, res, next) => {
   res.status(201).send(cart)
 })
 
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const deleteItem = await LineItem.findByPk(req.params.id)
+    await deleteItem.destroy()
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.put('/', async(req, res, next) => {
   const lineItem = await LineItem.findByPk(req.body.id)
   await lineItem.update({

@@ -6,13 +6,11 @@ import CartItem from './CartItem'
 
 
 export default function Cart() {
-  const user = useSelector(state => state.user)
   const [cart] = useSelector(state => state.orders.filter(order => order.status === 'Cart'))
   const [subTotal, tax, total] = cart ? calculateTotal(cart) : [0,0,0]
 
-
   if (!cart || !cart.lineItems.length) return (
-    <h1>Your cart is empty buy some <Link to='/products'>products</Link></h1>
+    <h2>Your cart is empty buy some <Link to='/products'>products</Link></h2>
   )
   return (
     <div>

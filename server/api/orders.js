@@ -2,9 +2,13 @@ const router = require('express').Router()
 const {Order, LineItem, Product} = require('../db/models')
 module.exports = router
 
+const isAdmin = (req, res, next) => {
+  if (req.user && req.user.isAdmin) next()
+  else res.send("nope")
+}
 
 //get all orders - ADMIN ONLY
-router.get('/', (req, res, next) => {
+router.get('/', isAdmin, (req, res, next) => {
   Order.findAll()
     .then(orders => res.send(orders))
     .catch(next)
@@ -13,7 +17,7 @@ router.get('/', (req, res, next) => {
 //create a cart with the initial item
 router.post('/', async (req, res, next) => {
   const order = await Order.create({status: 'Cart', userId: req.body.userId})
-  const lineItem = await LineItem.create({quantity: req.body.quantity, productId: req.body.productId, orderId: order.id})
+  await LineItem.create({quantity: req.body.quantity, productId: req.body.productId, orderId: order.id})
   const cart = await Order.findOne(
     {where: {id: order.id},
     include: [

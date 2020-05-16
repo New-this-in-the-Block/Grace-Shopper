@@ -52,17 +52,17 @@ class AdminUsers extends Component {
   }
 }
 
-const mapState = ({allUsers}) => {
+const mapState = (state) => {
   return {
-    allUsers
+    allUsers: state.allUsers
   } 
 }
 
 const mapDispatch = dispatch => {
   return {
-    // loadInitialData() {
-    //   dispatch(thunkLoadUsers())
-    // },
+    loadInitialData() {
+      dispatch(thunkLoadUsers())
+    },
     destroy: id => dispatch(thunkRemoveUser(id))
   }
 }

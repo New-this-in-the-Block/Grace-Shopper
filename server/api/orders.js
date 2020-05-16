@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Order, LineItem, Product} = require('../db/models')
+const stripe = require("stripe")('sk_test_NJ4FK76R31JmK0V9mLtp7eOE00yFjf8urJ')
 module.exports = router
 
 
@@ -64,4 +65,40 @@ router.put('/user/:id', (req, res, next) => {
       }))
     .then(updatedOrder => res.send(updatedOrder))
     .catch(next)
+})
+
+router.post('/cart', async (req, res) => {
+  try {
+    const {total, token} = req.body
+    const customer = await stripe.customers.create({email: token.email, source: token.id})
+
+    //so that customers arent charged twice
+    // const idempotency_key = uuid()
+    const charge = await stripe.charges.create(
+      {
+        amount: total * 100,
+        currency: 'usd',
+        customer: customer.id,
+        receipt_email: token.email,
+        shipping: {
+          name: token.card.name,
+          address: {
+            line1: token.card.address_line1,
+            line2: token.card.address_line2,
+            city: token.card.address_city,
+            country: token.card.address_country,
+            postal_code: token.card.address_zip
+          }
+        }
+      },
+      {
+        // idempotency_key
+      }
+    )
+    console.log('Charge', {charge})
+    status = 'success'
+  } catch (error) {
+    console.error('Error:', error)
+    status = 'failure'
+  } 
 })

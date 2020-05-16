@@ -2,7 +2,9 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import {calculateTotal} from '../../script/utils'
+import StripeCheckout from 'react-stripe-checkout'
 import CartItem from './CartItem'
+import axios from 'axios'
 
 
 export default function Cart() {
@@ -12,6 +14,13 @@ export default function Cart() {
   if (!cart || !cart.lineItems.length) return (
     <h2>Your cart is empty buy some <Link to='/products'>products</Link></h2>
   )
+  const handleToken = async (token) => {
+    const response = await axios.post('/api/orders/cart', {
+      total,
+      token
+    })
+    const {status} = response.data
+  }
   return (
     <div>
       <div>
@@ -44,7 +53,13 @@ export default function Cart() {
               </li>
           </ul>
         </div>
-      <button>Checkout</button>
+        <StripeCheckout 
+        stripeKey='pk_test_0ERHKADFrWWEg53FQw37D3fo00viT3HemM'
+        token={handleToken}
+        billingAddress
+        shippingAddress
+        amount={total * 100}
+        />
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import React, {Component, useCallback} from 'react'
+import {ToastContainer, toast} from 'react-toastify'
 import {connect} from 'react-redux'
 import {thunkCreateProduct} from '../store'
 
@@ -16,8 +17,16 @@ class ProdForm extends Component {
     }
     this.onSubmit = this.onSubmit.bind(this)
     this.reset = this.reset.bind(this)
+    this.Notify = this.Notify.bind(this)
   }
 
+  Notify() {
+    toast('Product Added!', {
+      autoClose: 30,
+      hideProgressBar: false,
+      closeOnClick: true,
+      })
+  }
   async onSubmit(ev) {
     ev.preventDefault()
     try {
@@ -52,6 +61,9 @@ class ProdForm extends Component {
     const {name, description, price, quantity, categoryId, imageURL} = this.state
     return (
       <div>
+        <div id='prodFormToast'>
+          <ToastContainer closeButton={false} />
+        </div>
         <form id="prodform" onSubmit={onSubmit}>
           Name<input
             value={name}
@@ -85,7 +97,7 @@ class ProdForm extends Component {
             })}
           </select>
           Image URL<input value={imageURL} onChange={ev => this.setState({imageURL: ev.target.value})}></input>
-          <button id="submitbt">Add</button>
+          <button onClick={this.Notify} id="submitbt">Add</button>
         </form>
       </div>
     )

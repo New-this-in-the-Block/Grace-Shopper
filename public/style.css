@@ -436,3 +436,14 @@ div.h5 {
   padding: 20px;
   font-weight: bold;
 }
+#orderUpdateForm {
+  display: flex;
+  border: 1px black solid;
+  width: 250px;
+  justify-content: space-evenly;
+}
+#toast, #prodToast, #prodFormToast, #usersToast {
+  background-color: greenyellow;
+  text-align: center;
+  color: rgb(73, 92, 110);
+}

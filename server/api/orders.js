@@ -62,3 +62,14 @@ router.get('/user/:id', (req, res, next) => {
     .then(processed => res.send(processed))
     .catch(next)
 })
+
+router.put('/user/:id', (req, res, next) => {
+  // console.log('LOOOK HEREEEEE',req)
+  Order.findByPk(req.params.id)
+    .then(order => 
+      order.update({
+        status: req.body.status
+      }))
+    .then(updatedOrder => res.send(updatedOrder))
+    .catch(next)
+})

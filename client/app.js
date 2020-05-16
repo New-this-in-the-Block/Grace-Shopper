@@ -6,8 +6,6 @@ const App = () => {
   return (
     <div>
       <Nav />
-      <div id='spacer'/>
-      {/* <Navbar /> */}
       <Routes />
     </div>
   )

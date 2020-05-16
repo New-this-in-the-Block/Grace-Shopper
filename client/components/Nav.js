@@ -11,15 +11,6 @@ export default function Nav() {
   const products = useSelector(state => state.products)
   const dispatch = useDispatch()
 
-  // real time search functionality - Buggy come back to later
-  // useEffect(
-  //   () =>
-  //     !search
-  //       ? history.push(`/products/`)
-  //       : history.push(`/products/?${search}`),
-  //   [search]
-  // )
-
   const searchSubmit = ev => {
     ev.preventDefault()
     history.push(`/products/?${search}`)
@@ -37,7 +28,7 @@ export default function Nav() {
   const beer = products.filter(pro => pro.alcohol === 'Beer')
   const wine = products.filter(pro => pro.alcohol === 'Wine')
   return (
-    <nav>
+    <nav className='topnav'>
       <Link to="/home">
         <img width="73%" src="/img/logo.jpg" />
       </Link>

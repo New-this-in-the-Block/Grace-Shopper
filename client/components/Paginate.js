@@ -9,7 +9,7 @@ export default function Paginate ({prodPerPage, totalProds, paginator}) {
     }
 
     return (
-        <nav>
+        <nav className='pagenav'>
             <ul className='pagination'>{pageNums.map(page=> (
                 <li key={page} className='page-item'>
                     <Link to={`/products/page/${page}`} onClick={()=> paginator(page)} className='page-link'>{page}</Link>

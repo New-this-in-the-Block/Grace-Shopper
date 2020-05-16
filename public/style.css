@@ -102,8 +102,7 @@ input:focus {
   padding: 0.5rem;
 }
 
-nav {
-  /* position: fixed; */
+.topnav {
   top: 0;
   width: 100%;
   height: 45px;
@@ -112,7 +111,16 @@ nav {
   justify-content: space-around;
   align-items: center;
   color: white;
-  margin-bottom: 2rem;
+}
+
+.pagenav {
+  top: 0;
+  width: 100%;
+  height: 45px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
 }
 
 nav > * {

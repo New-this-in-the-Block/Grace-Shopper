@@ -9,7 +9,7 @@ const Categories = ({filteredProducts}) => {
       <ul className="productCards">
         {filteredProducts &&
           filteredProducts.map(product => (
-            <ProductCard {...product} key={product.id} />
+            <ProductCard product={product} key={product.id} />
           ))}
       </ul>
     </div>

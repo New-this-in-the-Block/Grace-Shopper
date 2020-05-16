@@ -7,15 +7,15 @@ export default function Order({order}) {
 
   if (!order) return <h3>Loading...</h3>
   return (
-                  <ul>
-                {order.lineItems.map(item => (
-                  <li key={item.id}>
-                    <LineItem item={item} />
-                  </li>
-                ))}
-                <li>
-                <span>Total: </span> <span className='bold'> ${total}</span>
-                </li>
-              </ul> 
+    <ul className="orderlist">
+      {order.lineItems.map(item => (
+        <li key={item.id}>
+          <LineItem item={item} />
+        </li>
+      ))}
+      <li>
+        <span>Total: </span> <span className='bold'> ${total}</span>
+      </li>
+    </ul> 
   )
 }

@@ -76,7 +76,7 @@ router.post('/cart', async (req, res) => {
     // const idempotency_key = uuid()
     const charge = await stripe.charges.create(
       {
-        amount: total * 100,
+        amount: Math.floor(total * 100),
         currency: 'usd',
         customer: customer.id,
         receipt_email: token.email,
@@ -90,9 +90,6 @@ router.post('/cart', async (req, res) => {
             postal_code: token.card.address_zip
           }
         }
-      },
-      {
-        // idempotency_key
       }
     )
     console.log('Charge', {charge})

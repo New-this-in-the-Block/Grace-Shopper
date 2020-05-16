@@ -59,12 +59,12 @@ const mapState = ({allUsers}) => {
 }
 
 const mapDispatch = dispatch => {
-    return {
-      // loadInitialData() {
-      //   dispatch(thunkLoadUsers())
-      // },
-      destroy: id => dispatch(thunkRemoveUser(id))
-    }
+  return {
+    // loadInitialData() {
+    //   dispatch(thunkLoadUsers())
+    // },
+    destroy: id => dispatch(thunkRemoveUser(id))
   }
+}
 
 export default connect(mapState, mapDispatch)(AdminUsers)

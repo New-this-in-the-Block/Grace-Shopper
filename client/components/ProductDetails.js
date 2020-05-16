@@ -1,17 +1,18 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {connect, useSelector} from 'react-redux'
 import {thunkCreateOrder, thunkAddToOrder} from '../store'
-import axios from 'axios'
 
 const ProductDetails = ({currentProduct, orders, user, cart, createCart, addItem}) => {
+  const [quantity, setQuantity] = useState(1)
 
   const addToCart = () => {
-    cart ? addItem(currentProduct, cart) : createCart(currentProduct, user)
+    cart ? addItem(quantity, currentProduct, cart.id) : createCart(quantity, currentProduct, user)
   }
+
+  if (!currentProduct) return <h2>Loading...</h2>
 
   return (
     <div>
-      <div id='spacer'/>
       <div className="detailBox">
         <img
           className="detailPhoto"
@@ -21,7 +22,8 @@ const ProductDetails = ({currentProduct, orders, user, cart, createCart, addItem
           <h1>{currentProduct && currentProduct.name}</h1>
           <h3>${currentProduct && currentProduct.price}</h3>
           <p>{currentProduct && currentProduct.description}</p>
-          <button type="submit" onClick={addToCart}>Add To Cart</button>
+          <input className="quantityCard" type="number" min="1" max={currentProduct.quantity} step="1" value={quantity} onChange={ev => setQuantity(ev.target.value)} size="6"></input>
+          <button className="cartButton" type="submit" onClick={addToCart}></button>
         </div>
       </div>
     </div>
@@ -44,8 +46,8 @@ const mapState = ({products, orders, user}, ownProps) => {
 
 const mapDispatch = dispatch => {
   return {
-    createCart(product, user) { dispatch(thunkCreateOrder(product, user)) },
-    addItem(product, cart) { dispatch(thunkAddToOrder(product, cart))}
+    createCart(quantity, product, user) { dispatch(thunkCreateOrder(quantity, product, user)) },
+    addItem(quantity, product, cartId) { dispatch(thunkAddToOrder(quantity, product, cartId))}
   }
 }
 

@@ -1,16 +1,8 @@
 const router = require('express').Router()
-const {Order} = require('../db/models')
-const {LineItem} = require('../db/models')
-const {Product} = require('../db/models')
+const {Order, LineItem, Product} = require('../db/models')
 module.exports = router
 
 
-//get all orders - ADMIN ONLY
-// router.get('/', (req, res, next) => {
-//   Order.findAll()
-//     .then(orders => res.send(orders))
-//     .catch(next)
-// })
 router.get('/', async(req, res, next) => {
   try {
     res.send(await Order.findAll())
@@ -19,10 +11,11 @@ router.get('/', async(req, res, next) => {
   }
 })
 
+
 //create a cart with the initial item
 router.post('/', async (req, res, next) => {
   const order = await Order.create({status: 'Cart', userId: req.body.userId})
-  const lineItem = await LineItem.create({quantity: 1, productId: req.body.productId, orderId: order.id})
+  await LineItem.create({quantity: req.body.quantity, productId: req.body.productId, orderId: order.id})
   const cart = await Order.findOne(
     {where: {id: order.id},
     include: [
@@ -32,7 +25,6 @@ router.post('/', async (req, res, next) => {
   })
   await res.status(201).send(cart)
 })
-
 
 //get the cart - if no cart, create one - only works for users atm
 router.get('/cart/:id', (req, res, next) => {

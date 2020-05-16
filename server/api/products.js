@@ -64,6 +64,5 @@ router.put('/:id', isAdmin, (req, res, next) => {
       )
       .then(updatedProduct => res.send(updatedProduct))
       .catch(next)
-
 })
 

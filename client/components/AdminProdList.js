@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {thunkUpdateProduct, thunkRemoveProduct} from '../store'
+import {ToastContainer, toast} from 'react-toastify'
+
 
 class AdminProdList extends Component {
   constructor() {
@@ -14,10 +16,13 @@ class AdminProdList extends Component {
       category: '',
       categoryId: '',
       id: ''
-    }
+    } 
 
     this.toggleEdit = this.toggleEdit.bind(this)
     this.updateProd = this.updateProd.bind(this)
+    this.Notify = this.Notify.bind(this)
+    this.RemoveNotify = this.RemoveNotify.bind(this)
+
   }
   toggleEdit(ev) {
     const {products, categories} = this.props
@@ -52,6 +57,20 @@ class AdminProdList extends Component {
     } catch (ev) {
       console.log(ev)
     }
+  }
+  Notify() {
+    toast('Product Updated!', {
+      autoClose: 30,
+      hideProgressBar: false,
+      closeOnClick: true,
+      })
+  }
+  RemoveNotify() {
+    toast('Product Removed!', {
+      autoClose: 30,
+      hideProgressBar: false,
+      closeOnClick: true,
+      })
   }
   render() {
     const {products, categories, destroy} = this.props
@@ -104,51 +123,56 @@ class AdminProdList extends Component {
               }
             })}
           </select>
-          <button id="submitbt">Update</button>
+          <button onClick={this.Notify} id="submitbt">Update</button>
         </form>
       )
     }
 
     return (
-      <div id="prodListWrapper">
-        <table>
-          <thead id="header">
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              {/* <th>Category</th> */}
-              <th />
-            </tr>
-          </thead>
-          <tbody>
-            {products &&
-              products.map(product => {
-                return (
-                  <tr key={product.id}>
-                    <td>{product.name}</td>
-                    <td>{product.description}</td>
-                    <td>${product.price}</td>
-                    <td>{product.quantity}</td>
-                    {/* <td>{product.category.name}</td> */}
-                    <td>
-                      <button
-                        id="editBt"
-                        value={product.id}
-                        onClick={ev => this.toggleEdit(ev)}
-                      >
-                        Edit
-                      </button>
-                      <button id="removeBt" onClick={() => destroy(product.id)}>
-                        Remove
-                      </button>
-                    </td>
-                  </tr>
-                )
-              })}
-          </tbody>
-        </table>
+      <div>
+        <div id='prodToast'>
+          <ToastContainer closeButton={false} />
+        </div>
+        <div id="prodListWrapper">
+          <table>
+            <thead id="header">
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                {/* <th>Category</th> */}
+                <th />
+              </tr>
+            </thead>
+            <tbody>
+              {products &&
+                products.map(product => {
+                  return (
+                    <tr key={product.id}>
+                      <td>{product.name}</td>
+                      <td>{product.description}</td>
+                      <td>${product.price}</td>
+                      <td>{product.quantity}</td>
+                      {/* <td>{product.category.name}</td> */}
+                      <td>
+                        <button
+                          id="editBt"
+                          value={product.id}
+                          onClick={ev => this.toggleEdit(ev)}
+                        >
+                          Edit
+                        </button>
+                        <button id="removeBt" onClick={() => destroy(product.id)} onClick={this.RemoveNotify}>
+                          Remove
+                        </button>
+                      </td>
+                    </tr>
+                  )
+                })}
+            </tbody>
+          </table>
+        </div>
       </div>
     )
   }

@@ -145,7 +145,7 @@ nav > * {
   justify-items: center;
   text-align: center;
   border-radius: 30px;
-  margin: 10px;
+  margin: 30px;
   color: rgb(73, 92, 110);
 }
 .prodName {
@@ -180,7 +180,7 @@ nav > * {
   width: 50%;
   flex-direction: column;
 }
-button {
+#editBt, #submitbt {
   background-image: linear-gradient(
     to bottom right,
     rgb(248, 192, 69),
@@ -253,7 +253,7 @@ tr:nth-child(even) {
   width: 70px;
   height: 35px;
 }
-#removeBt {
+#removeBt, #userRmvBt {
   width: 70px;
   height: 35px;
   background-color: tomato;
@@ -292,16 +292,17 @@ hr {
 }
 
 .selected {
-  background-color: rgb(248, 192, 69);
-  padding: 13.5px;
+  background-color: rgb(224, 223, 221);
+  color: rgb(73, 92, 110);
+  padding: 11px;
 }
 
 #adminHello {
   background-image: linear-gradient(
     to bottom right,
-    rgb(248, 192, 69),
-    rgb(248, 210, 86),
-    rgb(248, 232, 86)
+    rgb(228, 228, 227),
+    rgb(189, 188, 186),
+    rgb(149, 150, 150)
   );
   color: rgb(73, 92, 110);
   font-size: 20px;
@@ -487,6 +488,32 @@ div.h5 {
   justify-content: center;
   align-items: center;
   height: 80px;
+}
+
+#allProdsBanner {
+  width: 100%vw;
+  background-image: url("https://brewpublic.com/wp-content/uploads/2017/11/image-courtesy-of-Cheers-Oregon.jpg");
+  height: 150px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.5;
+}
+#allProdsH {
+  color: white;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding: 20px;
+  font-weight: bold;
+}
+#orderUpdateForm {
+  display: flex;
+  border: 1px black solid;
+  width: 250px;
+  justify-content: space-evenly;
+}
+#toast, #prodToast, #prodFormToast, #usersToast {
+  background-color: greenyellow;
+  text-align: center;
+  color: rgb(73, 92, 110);
 }
 
 .priceCart {

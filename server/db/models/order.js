@@ -11,7 +11,7 @@ const uuidDef = {
 const Order = db.define('order', {
   id: uuidDef,
   status: {
-    type: ENUM('Cart', 'Invoice')
+    type: ENUM('Cart', 'Invoice', 'Processing', 'Shipped', 'Complete', 'Cancel')
   }
 })
 

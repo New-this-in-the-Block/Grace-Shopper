@@ -292,8 +292,8 @@ async function seed() {
     })
   ])
 
-  const order1 = await Order.create({userId: cody.id})
-  const order2 = await Order.create({userId: cody.id})
+  const order1 = await Order.create({userId: cody.id, status: 'Invoice'})
+  const order2 = await Order.create({userId: cody.id, status: 'Invoice'})
 
   const [line1, line2, line3, line4, line5, line6] = await Promise.all([
     LineItem.create({quantity: 3, productId: beer01.id, orderId: order1.id}),

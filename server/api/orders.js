@@ -2,17 +2,15 @@ const router = require('express').Router()
 const {Order, LineItem, Product} = require('../db/models')
 module.exports = router
 
-const isAdmin = (req, res, next) => {
-  if (req.user && req.user.isAdmin) next()
-  else res.send("nope")
-}
 
-//get all orders - ADMIN ONLY
-router.get('/', isAdmin, (req, res, next) => {
-  Order.findAll()
-    .then(orders => res.send(orders))
-    .catch(next)
+router.get('/', async(req, res, next) => {
+  try {
+    res.send(await Order.findAll())
+  } catch (error) {
+    next(error)
+  }
 })
+
 
 //create a cart with the initial item
 router.post('/', async (req, res, next) => {
@@ -54,5 +52,16 @@ router.get('/user/:id', (req, res, next) => {
     ]
   })
     .then(processed => res.send(processed))
+    .catch(next)
+})
+
+router.put('/user/:id', (req, res, next) => {
+  // console.log('LOOOK HEREEEEE',req)
+  Order.findByPk(req.params.id)
+    .then(order => 
+      order.update({
+        status: req.body.status
+      }))
+    .then(updatedOrder => res.send(updatedOrder))
     .catch(next)
 })

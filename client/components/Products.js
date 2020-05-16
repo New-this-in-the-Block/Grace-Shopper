@@ -37,6 +37,9 @@ const Products = ({products}) => {
   return (
     <div>
       {/* <div id="spacer" /> */}
+      <div id='allProdsBanner'>
+        <h1 id='allProdsH'>All Products</h1>
+      </div>
       <div>
         <ul className="productCards">
           {products &&

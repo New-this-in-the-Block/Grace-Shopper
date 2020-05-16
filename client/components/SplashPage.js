@@ -104,7 +104,6 @@ const mapState = ({products, categories}) => {
     const ranCat = categories[getRandomInt(5)]
     const saleProducts = products.filter(pro => pro.categoryId === ranCat.id)
     const ranPerCat = saleProducts[getRandomInt(saleProducts.length-1)]
-    console.log('sale', ranPerCat)
     return {
         biggestSeller,
         random,

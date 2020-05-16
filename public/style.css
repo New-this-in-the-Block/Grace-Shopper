@@ -530,9 +530,18 @@ div.h5 {
 }
 
 .cartWhiteCard {
-  height: 10%;
+  height: 70%;
   width: 10%;
   margin-left: 0.5rem;
+}
+
+#cartButtonCard {
+  background-image: url('/img/cart_white.jpg');
+  background-size: 34px;
+  background-position: center;
+  border: 0;
+  width: 34px;
+  height: 29px;
 }
 
 .cartWhiteDetail {

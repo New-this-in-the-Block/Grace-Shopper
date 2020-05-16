@@ -52,7 +52,7 @@ const Products = ({products}) => {
         <Paginate prodPerPage={prodPerPage} totalProds={products.length} paginator={paginator}/>
         <ul className='productCards'>
           {currentProds && currentProds.map(currentProd => 
-            <ProductCard {...currentProd} key={currentProd.id}/>
+            <ProductCard product={currentProd} key={currentProd.id}/>
           )}
         </ul>
         <hr />

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {thunkLoadAllOrders, thunkUpdateOrder} from '../store'
+import {thunkLoadAllOrders, thunkUpdateOrderStatus} from '../store'
 import {ToastContainer, toast} from 'react-toastify'
 
 
@@ -104,7 +104,7 @@ const mapDispatch = dispatch => {
       loadInitialData() {
         dispatch(thunkLoadAllOrders())
       },
-      update: order => dispatch(thunkUpdateOrder(order)) 
+      update: order => dispatch(thunkUpdateOrderStatus(order)) 
     }
   }
 

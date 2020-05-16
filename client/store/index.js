@@ -20,7 +20,7 @@ const UPDATE_ORDER = 'UPDATE_ORDER'
 const CREATE_ORDER = 'CREATE_ORDER'
 const ADD_TO_ORDER = 'ADD_TO_ORDER'
 const REMOVE_FROM_ORDER = 'REMOVE_FROM_ORDER'
-const UPDATE_ORDER = 'UPDATE_ORDER'
+const UPDATE_ORDER_STATUS = 'UPDATE_ORDER_STATUS'
 
 const LOAD_USERS = 'LOAD_USERS'
 const REMOVE_USER = 'REMOVE_USER'
@@ -41,6 +41,7 @@ const actionAddToOrder = order => ({type: ADD_TO_ORDER, order})
 
 const actionRemoveFromOrder = id => ({type: REMOVE_FROM_ORDER, id})
 const actionUpdateOrder = order => ({type: UPDATE_ORDER, order})
+const actionUpdateOrderStatus = order => ({type: UPDATE_ORDER_STATUS, order})
 
 const actionLoadUsers = users => ({type: LOAD_USERS, users})
 const actionRemoveUser = id => ({type: REMOVE_USER, id})
@@ -81,7 +82,7 @@ const thunkLoadMyOrders = id => async dispatch => {
   return dispatch(actionLoadOrders(orders))
 }
 
-const thunkUpdateOrder = order => async dispatch => {
+const thunkUpdateOrderStatus = order => async dispatch => {
   const currentOrder = (await axios.put(
     `/api/orders/user/${order.id}`,
     order
@@ -164,7 +165,7 @@ const orderReducer = (state = [], action) => {
       return action.cart
     case CREATE_ORDER:
       return [...state, action.order]
-    case UPDATE_ORDER:
+    case UPDATE_ORDER_STATUS:
       return state.map(order => {
         if (order.id === action.order.id) {
           return action.order
@@ -243,5 +244,6 @@ export {
   thunkLoadMyCart,
   thunkAddToOrder,
   thunkUpdateOrder,
-  thunkRemoveFromOrder
+  thunkRemoveFromOrder,
+  thunkUpdateOrderStatus
 }

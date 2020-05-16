@@ -25,7 +25,7 @@ class Routes extends Component {
   }
 
   componentDidUpdate (prevProps) {
-    if (prevProps.user !== this.props.user && this.props.user.id) {
+    if (prevProps.user !== this.props.user && this.props.user.id && !this.props.user.isAdmin) {
       this.props.LoadMyOrders(this.props.user.id)
     }
   }

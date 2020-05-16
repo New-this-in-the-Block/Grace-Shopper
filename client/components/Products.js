@@ -45,6 +45,10 @@ const Products = ({products}) => {
   //if not searching return all products
   return (
     <div>
+      {/* <div id="spacer" /> */}
+      <div id='allProdsBanner'>
+        <h1 id='allProdsH'>All Products</h1>
+      </div>
       <div>
         <Paginate prodPerPage={prodPerPage} totalProds={products.length} paginator={paginator}/>
         <ul className='productCards'>

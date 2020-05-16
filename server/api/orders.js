@@ -3,17 +3,19 @@ const {Order, LineItem, Product} = require('../db/models')
 module.exports = router
 
 
-//get all orders - ADMIN ONLY
-router.get('/', (req, res, next) => {
-  Order.findAll()
-    .then(orders => res.send(orders))
-    .catch(next)
+router.get('/', async(req, res, next) => {
+  try {
+    res.send(await Order.findAll())
+  } catch (error) {
+    next(error)
+  }
 })
+
 
 //create a cart with the initial item
 router.post('/', async (req, res, next) => {
   const order = await Order.create({status: 'Cart', userId: req.body.userId})
-  const lineItem = await LineItem.create({quantity: 1, productId: req.body.productId, orderId: order.id})
+  await LineItem.create({quantity: req.body.quantity, productId: req.body.productId, orderId: order.id})
   const cart = await Order.findOne(
     {where: {id: order.id},
     include: [
@@ -50,5 +52,16 @@ router.get('/user/:id', (req, res, next) => {
     ]
   })
     .then(processed => res.send(processed))
+    .catch(next)
+})
+
+router.put('/user/:id', (req, res, next) => {
+  // console.log('LOOOK HEREEEEE',req)
+  Order.findByPk(req.params.id)
+    .then(order => 
+      order.update({
+        status: req.body.status
+      }))
+    .then(updatedOrder => res.send(updatedOrder))
     .catch(next)
 })

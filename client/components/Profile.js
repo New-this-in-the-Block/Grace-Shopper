@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {thunkLoadMyOrders} from '../store'
 import {Link} from 'react-router-dom'
+import Order from './Order'
 
 export default function Profile() {
   const user = useSelector(state => state.user)
@@ -22,18 +23,9 @@ export default function Profile() {
       <ul>
         {orderData.map(order => {
           return (
-            <li key={order.id}>
-              Order from {order.createdAt}
-              <ul>
-                {order.lineItems.map(item => (
-                  <li key={item.id}>
-                    <Link to={`/products/${item.productId}`}>
-                      {item.product.name}
-                    </Link>
-                    ({item.quantity}) for ${item.quantity * item.product.price}
-                  </li>
-                ))}
-              </ul>
+            <li className="itemList" key={order.id}>
+              Order from {order.createdAt} Status: {order.status}
+              <Order order={order} />
             </li>
           )
         })}

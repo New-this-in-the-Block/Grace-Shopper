@@ -18,6 +18,7 @@ const LOAD_CART = 'LOAD_CART'
 
 const CREATE_ORDER = 'CREATE_ORDER'
 const ADD_TO_ORDER = 'ADD_TO_ORDER'
+const REMOVE_FROM_ORDER = 'REMOVE_FROM_ORDER'
 const UPDATE_ORDER = 'UPDATE_ORDER'
 
 const LOAD_USERS = 'LOAD_USERS'
@@ -36,6 +37,7 @@ const actionLoadOrders = orders => ({type: LOAD_ORDERS, orders})
 const actionLoadCart = cart => ({type: LOAD_CART, cart})
 const actionCreateOrder = order => ({type: CREATE_ORDER, order})
 const actionAddToOrder = order => ({type: ADD_TO_ORDER, order})
+const actionRemoveFromOrder = id => ({type: REMOVE_FROM_ORDER, id})
 const actionUpdateOrder = order => ({type: UPDATE_ORDER, order})
 
 const actionLoadUsers = users => ({type: LOAD_USERS, users})
@@ -103,6 +105,11 @@ const thunkAddToOrder = (quantity, product, cartId) => async dispatch => {
   return dispatch(actionAddToOrder(lineItem))
 }
 
+const thunkRemoveFromOrder = (id) => async dispatch => {
+  await axios.delete(`/api/lineItems/${id}`)
+  return dispatch(actionRemoveFromOrder(id))
+}
+
 const thunkUpdateOrder = (quantity, id) => async dispatch => {
   const lineItem = (await axios.put('/api/lineItems', {quantity, id})).data
   return dispatch(actionUpdateOrder(lineItem))
@@ -155,6 +162,15 @@ const orderReducer = (state = [], action) => {
           return order
         }
       })
+      case REMOVE_FROM_ORDER:
+        return state.map(order => {
+          if (order.status === 'Cart') {
+            order.lineItems = order.lineItems.filter( item => item.id !== action.id)
+            return order
+          }else {
+            return order
+          }
+        })
     case UPDATE_ORDER:
       return state.map(order => {
         if (order.id === action.order.id) {
@@ -208,5 +224,6 @@ export {
   thunkCreateOrder,
   thunkLoadMyCart,
   thunkAddToOrder,
-  thunkUpdateOrder
+  thunkUpdateOrder,
+  thunkRemoveFromOrder
 }

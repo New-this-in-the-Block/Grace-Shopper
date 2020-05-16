@@ -339,7 +339,7 @@ div.splashpic {
 }
 
 .cartList {
-  width: 750px;
+  width: 800px;
   margin: auto;
 }
 
@@ -440,7 +440,7 @@ li {
 }
 
 .cartItem>*:nth-child(4) {
-  width: 80px;
+  width: 200px;
   display: flex;
   justify-content: center;
 }
@@ -451,11 +451,21 @@ li {
 }
 
 .cartItem>*:nth-child(5) {
-  width: 150px;
+  width: 120px;
   display: flex;
   justify-content: flex-end;
   margin-right: 20px;
 } 
+
+.orderlist>*:last-child {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+
+.orderlist>*:last-child>* {
+  margin-left: 0.5rem;
+}
 
 div.splashContainer {
   display: flex;

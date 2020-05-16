@@ -14,7 +14,7 @@ class AdminProdList extends Component {
       category: '',
       categoryId: '',
       id: ''
-    }
+    } 
 
     this.toggleEdit = this.toggleEdit.bind(this)
     this.updateProd = this.updateProd.bind(this)

@@ -39,7 +39,6 @@ class AdminUsers extends Component {
 }
 
 const mapState = ({allUsers}) => {
-  console.log(allUsers)
   return {
     allUsers
   } 

@@ -4,11 +4,19 @@ const {LineItem} = require('../db/models')
 const {Product} = require('../db/models')
 module.exports = router
 
+
 //get all orders - ADMIN ONLY
-router.get('/', (req, res, next) => {
-  Order.findAll()
-    .then(orders => res.send(orders))
-    .catch(next)
+// router.get('/', (req, res, next) => {
+//   Order.findAll()
+//     .then(orders => res.send(orders))
+//     .catch(next)
+// })
+router.get('/', async(req, res, next) => {
+  try {
+    res.send(await Order.findAll())
+  } catch (error) {
+    next(error)
+  }
 })
 
 //create a cart with the initial item

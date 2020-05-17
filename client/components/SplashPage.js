@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {Modal} from 'react-bootstrap'
-import ProductCard from './ProductCard'
+
 
 class SplashPage extends Component {
   constructor() {
@@ -112,4 +112,4 @@ const mapState = ({products, categories}) => {
     }
 }
 
-export default connect(mapState, null)(SplashPage)
+export default connect(mapState)(SplashPage)

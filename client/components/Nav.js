@@ -33,7 +33,7 @@ export default function Nav() {
       <Link to="/home">
         <img width="73%" src="/img/logo.jpg" />
       </Link>
-      <Link to="/products/page/:id">All Drinks</Link>
+      <Link to="/products/page/1">All Drinks</Link>
       <div id="styleDropdown">
         <div to="/products/page/:id">Beer ({beer.length})</div>
         <div id="styleContent">

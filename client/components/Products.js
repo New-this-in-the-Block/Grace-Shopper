@@ -49,12 +49,13 @@ const Products = ({products}) => {
         <h1 id='allProdsH'>All Products</h1>
       </div>
       <div>
-        <Paginate prodPerPage={prodPerPage} totalProds={products.length} paginator={paginator}/>
+        <Paginate prodPerPage={prodPerPage} totalProds={products.length} paginator={paginator} currentPage={currentPage}/>
         <ul className='productCards'>
           {currentProds && currentProds.map(currentProd => 
             <ProductCard product={currentProd} key={currentProd.id}/>
           )}
         </ul>
+        <Paginate prodPerPage={prodPerPage} totalProds={products.length} paginator={paginator} currentPage={currentPage}/>
         <hr />
         <p id="signature">© 2020, Craft Beer and Wine</p>
       </div>

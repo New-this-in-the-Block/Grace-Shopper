@@ -16,7 +16,7 @@ export default function Cart() {
   )
   const handleToken = async (token) => {
     const response = await axios.post('/api/orders/cart', {
-      total,
+      total, 
       token
     })
     const {status} = response.data
@@ -24,7 +24,9 @@ export default function Cart() {
   return (
     <div>
       <div>
-        <h1>Your Cart</h1>
+        <div id='cartBanner'>
+          <h1 id='cartH'>Cart</h1>
+        </div>
           <ul className="cartList">
             <li className="cartItem" key="header">
               <span>Product</span>
@@ -53,13 +55,15 @@ export default function Cart() {
               </li>
           </ul>
         </div>
-        <StripeCheckout 
-        stripeKey='pk_test_0ERHKADFrWWEg53FQw37D3fo00viT3HemM'
-        token={handleToken}
-        billingAddress
-        shippingAddress
-        amount={total * 100}
-        />
+        <div id='stripeButton'>
+          <StripeCheckout 
+          stripeKey='pk_test_0ERHKADFrWWEg53FQw37D3fo00viT3HemM'
+          token={handleToken}
+          billingAddress
+          shippingAddress
+          amount={total * 100}
+          />
+        </div>
     </div>
   )
 }

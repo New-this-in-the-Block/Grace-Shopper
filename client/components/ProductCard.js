@@ -15,7 +15,7 @@ const ProductCard = ({product, cart, user, addItem, createCart}) => {
         <div className="prodImgBox">
           <img className="productImg" src={product.imageURL} />
         </div>
-        <h4 className="prodName">{product.name}</h4>
+        <h5 className="prodName">{product.name}</h5>
       </Link>
         <div className="priceCart">
           <h5 className="prodPrice">${product.price}</h5>

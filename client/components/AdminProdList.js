@@ -21,7 +21,7 @@ class AdminProdList extends Component {
     this.toggleEdit = this.toggleEdit.bind(this)
     this.updateProd = this.updateProd.bind(this)
     this.Notify = this.Notify.bind(this)
-    this.RemoveNotify = this.RemoveNotify.bind(this)
+    this.RemoveItem = this.RemoveItem.bind(this)
 
   }
   toggleEdit(ev) {
@@ -65,7 +65,8 @@ class AdminProdList extends Component {
       closeOnClick: true,
       })
   }
-  RemoveNotify() {
+  RemoveItem(ev) {
+    this.props.destroy(ev.target.value)
     toast('Product Removed!', {
       autoClose: 30,
       hideProgressBar: false,
@@ -163,7 +164,7 @@ class AdminProdList extends Component {
                         >
                           Edit
                         </button>
-                        <button id="removeBt" onClick={() => destroy(product.id)} onClick={this.RemoveNotify}>
+                        <button id="removeBt" value={product.id} onClick={this.RemoveItem}>
                           Remove
                         </button>
                       </td>

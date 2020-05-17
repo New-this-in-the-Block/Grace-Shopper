@@ -120,7 +120,22 @@ router.post('/cart', async (req, res) => {
     from: 'newthisintheblock@gmail.com',
     to: req.body.token.email,
     subject: 'Stripe Payment Confirmation',
-    text: `Thanks for shopping at Craft Beer and Wine, this is to confirm your payment of ${req.body.total}`
+    html: `
+    <body style="text-align: center; font-family: verdana; color: rgb(73, 92, 110);;">
+
+    <h1 style="background-color: rgb(73, 92, 110); color: white; padding: 10px;">Craft Beer and Wine</h1> 
+    <h3>Thanks for shopping at Craft Beer and Wine</h3>
+        <p>We are writing to confirm your payment of $${req.body.total}.</p>
+        <h3 style="border-radius: 30px">Cheers!</h3>
+        <img style="border-radius: 50%;"src='https://i.pinimg.com/originals/e7/33/b1/e733b126ab4e7c07e9ee2e0d52f5583a.gif'/>
+        <hr/>
+        <h6 style="background-color: rgb(73, 92, 110); color: white; bottom-margin: 0;">© 2020, Craft Beer and Wine
+        <br/>Terms & Conditions <br/>   Privacy Policy
+        </h6>
+    
+    
+    </body>
+    `
   };
   
   transporter.sendMail(mailOptions, function(error, info){

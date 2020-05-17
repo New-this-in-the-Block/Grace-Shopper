@@ -506,6 +506,15 @@ div.h5 {
   background-size: cover;
   opacity: 1;
 }
+#categoriesBanner {
+  width: 100%vw;
+  background-image: url('https://images.favordelivery.com/retailers/18090/1551389263733.jpg/w-3000_q-50');
+  height: 150px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.5;
+
+}
 #cartBanner {
   width: 100%vw;
   background-image: url("https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F905884450%2F0x0.jpg");
@@ -514,13 +523,12 @@ div.h5 {
   background-size: cover;
   opacity: 0.5;
 }
-#allProdsH, #cartH, #adminH {
+#allProdsH, #cartH, #adminH, #categoriesH {
   color: white;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   padding: 20px;
   font-weight: bold;
 }
-
 
 #orderUpdateForm {
   display: flex;

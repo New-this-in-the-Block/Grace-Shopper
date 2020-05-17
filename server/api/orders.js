@@ -8,7 +8,17 @@ module.exports = router
 
 router.get('/', async(req, res, next) => {
   try {
-    res.send(await Order.findAll())
+    res.send(await Order.findAll({
+      include: [
+        {
+          model: LineItem,
+          include: [{model: Product}]
+        }
+      ],
+      order: [
+        ['updatedAt', 'DESC']
+    ]
+    }))
   } catch (error) {
     next(error)
   }
@@ -29,20 +39,6 @@ router.post('/', async (req, res, next) => {
   await res.status(201).send(cart)
 })
 
-//get the cart - if no cart, create one - only works for users atm
-router.get('/cart/:id', (req, res, next) => {
-  Order.findOne(
-    {where: {userId: req.params.id, status: 'Cart'},
-    include: [{model: LineItem}]
-  })
-  .then( cart => {
-    if (cart) return cart
-    else return Order.create({userId: req.params.id, status: 'Cart'})
-  })
-  .then( cart => res.status(201).send(cart))
-  .catch(next)
-})
-
 //get all the orders for a user with the lineitems and products attached
 router.get('/user/:id', (req, res, next) => {
   Order.findAll({
@@ -52,14 +48,26 @@ router.get('/user/:id', (req, res, next) => {
         model: LineItem,
         include: [{model: Product}]
       }
-    ]
+    ],
+    order: [
+      ['updatedAt', 'DESC']
+  ]
   })
     .then(processed => res.send(processed))
     .catch(next)
 })
 
 router.put('/user/:id', (req, res, next) => {
-  Order.findByPk(req.params.id)
+  Order.findOne(
+    {where: {id: req.params.id},
+    include: [
+      {model: LineItem, include: [{model: Product}]
+    }
+    ],
+    order: [
+      ['updatedAt', 'DESC']
+  ]
+  })
     .then(order => 
       order.update({
         status: req.body.status
@@ -91,8 +99,8 @@ router.post('/cart', async (req, res) => {
         }
       }
     )
-    console.log('Charge', {charge})
     status = 'success'
+    await res.status(201)
   } catch (error) {
     console.error('Error:', error)
     status = 'failure'

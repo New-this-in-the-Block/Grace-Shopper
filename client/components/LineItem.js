@@ -1,7 +1,5 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import {thunkUpdateOrder} from '../store'
 
 export default function LineItem({item}) {
 

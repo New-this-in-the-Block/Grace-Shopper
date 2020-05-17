@@ -12,7 +12,7 @@ body {
   font-family: sans-serif;
   box-sizing: border-box;
   margin: 0;
-  background-color: white;
+  background-color: rgb(249, 250, 252);
 }
 
 a {
@@ -144,8 +144,9 @@ nav > * {
 }
 .productCard {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 5px 10px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
   width: 250px;
-  height: 250px;
+  height: 270px;
   list-style-type: none;
   display: flex;
   flex-direction: column;
@@ -499,11 +500,11 @@ div.h5 {
 
 #allProdsBanner {
   width: 100%vw;
-  background-image: url("https://brewpublic.com/wp-content/uploads/2017/11/image-courtesy-of-Cheers-Oregon.jpg");
+  background-image: url('/img/prodbanner.png');
   height: 150px;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 0.5;
+  opacity: 1;
 }
 #cartBanner {
   width: 100%vw;
@@ -527,7 +528,7 @@ div.h5 {
   width: 250px;
   justify-content: space-evenly;
 }
-#toast, #prodToast, #prodFormToast, #usersToast {
+#toast, #prodToast, #formToast, #usersToast {
   background-color: greenyellow;
   text-align: center;
   color: rgb(73, 92, 110);
@@ -551,6 +552,7 @@ div.h5 {
   border: 0;
   width: 34px;
   height: 29px;
+  margin-left: 10px;
 }
 
 .cartWhiteDetail {

@@ -3,10 +3,9 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-
 export const UserHome = props => {
   const {email, biggestSeller, random, ranCat, ranPerCat} = props
-
+ 
   return (
     biggestSeller.name ? 
     <div>
@@ -67,6 +66,7 @@ const mapState = ({products, categories, user}) => {
       ranCat,
       ranPerCat,
       email: user.email
+
   }
 }
 

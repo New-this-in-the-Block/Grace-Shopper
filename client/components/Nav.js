@@ -9,6 +9,7 @@ export default function Nav() {
   const user = useSelector(state => state.user)
   const categories = useSelector(state => state.categories)
   const products = useSelector(state => state.products)
+  const [cart] = useSelector(state => state.orders.filter(order => order.status === 'Cart'))
   const dispatch = useDispatch()
 
   const searchSubmit = ev => {
@@ -34,7 +35,7 @@ export default function Nav() {
       </Link>
       <Link to="/products/page/1">All Drinks</Link>
       <div id="styleDropdown">
-        <Link to="/products/page/:id">Beer ({beer.length})</Link>
+        <div to="/products/page/:id">Beer ({beer.length})</div>
         <div id="styleContent">
           <Link to={`/products/categories/${ipa.id}`}>
             IPA ({ipa.products.length})
@@ -48,7 +49,7 @@ export default function Nav() {
         </div>
       </div>
       <div id="styleDropdown">
-        <Link to="/products/page/:id">Wine ({wine.length})</Link>
+        <div to="/products/page/:id">Wine ({wine.length})</div>
         <div id="styleContent">
           <Link to={`/products/categories/${pinot.id}`}>
             Pinot ({pinot.products.length})
@@ -69,8 +70,7 @@ export default function Nav() {
       </div>
       {user.id ? (
         <div id="navLogin">
-          <img width="20px" src="/img/user.jpg" />
-          {/* //if admin Link to='/admin' */}
+          <img width="20px" height="18px" src="/img/user.jpg" />
           {user.isAdmin ? (
             <Link to="/admin">{user.email}</Link>
           ) : (
@@ -90,7 +90,7 @@ export default function Nav() {
         </div>
       )}
       <Link to="/cart">
-        <img width="73%" src="/img/cart.jpg" />
+        <img width="60%" src="/img/cart.jpg" />({cart ? cart.lineItems.length : 0})
       </Link>
     </nav>
   )

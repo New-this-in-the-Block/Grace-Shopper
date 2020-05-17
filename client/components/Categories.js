@@ -3,9 +3,12 @@ import {connect} from 'react-redux'
 import ProductCard from './ProductCard'
 
 
-const Categories = ({filteredProducts}) => {
+const Categories = ({filteredProducts}) => { 
   return (
     <div>
+      <div id='categoriesBanner'>
+        <h1 id='categoriesH'></h1>
+      </div>
       <ul className="productCards">
         {filteredProducts &&
           filteredProducts.map(product => (
@@ -21,7 +24,7 @@ const mapStateToProps = ({products}, ownProps) => {
     product => product.categoryId === ownProps.match.params.id
   )
   return {
-    filteredProducts
+    filteredProducts,
   }
 }
 

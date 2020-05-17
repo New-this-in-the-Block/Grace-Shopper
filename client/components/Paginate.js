@@ -1,9 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { connect } from 'react-redux'
 
 
-function Paginate ({prodPerPage, totalProds, paginator, currentPage}) {
+export default function Paginate ({prodPerPage, totalProds, paginator, currentPage}) {
     const pageNums = []
     
     for (let i=0; i<= Math.floor(totalProds/prodPerPage); i++){
@@ -24,7 +23,6 @@ function Paginate ({prodPerPage, totalProds, paginator, currentPage}) {
     }
 
   
-    // id={pathname < 1 ? 'paginatePage' : ''}
     if(!currentPage) return null
     return (
         <nav className='pagenav'>
@@ -41,10 +39,3 @@ function Paginate ({prodPerPage, totalProds, paginator, currentPage}) {
     ) 
 }
 
-const mapState = (state, ownProps) => {
-    return {
-        ownProps
-    }
-}
-
-export default connect(mapState)(Paginate)

@@ -5,8 +5,6 @@ import history from '../history'
 
 export const UserHome = props => {
   const {email, user} = props
-  user.id ? history.push('/profile') : history.push('/products/page/1')
-
   return (
     <div>
       <div>

@@ -297,24 +297,23 @@ hr {
 #adminNav {
   display: flex;
   justify-content: space-around;
+  background-color: rgb(73, 92, 110);
 }
 
 .selected {
   background-color: rgb(224, 223, 221);
   color: rgb(73, 92, 110);
   padding: 11px;
+  margin: 0;
 }
 
 #adminHello {
-  background-image: linear-gradient(
-    to bottom right,
-    rgb(228, 228, 227),
-    rgb(189, 188, 186),
-    rgb(149, 150, 150)
-  );
-  color: rgb(73, 92, 110);
-  font-size: 20px;
-  padding: 20px;
+  background-image: url('https://www.3sisterswinery.com/assets/client/Image/winestorage.jpg') ;
+  width: 100%vw;
+  height: 150px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.5;
 }
 #orderListWrapper {
   display: flex;
@@ -506,12 +505,22 @@ div.h5 {
   background-size: cover;
   opacity: 1;
 }
-#allProdsH {
+#cartBanner {
+  width: 100%vw;
+  background-image: url("https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fspecials-images.forbesimg.com%2Fimageserve%2F905884450%2F0x0.jpg");
+  height: 150px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.5;
+}
+#allProdsH, #cartH, #adminH {
   color: white;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   padding: 20px;
   font-weight: bold;
 }
+
+
 #orderUpdateForm {
   display: flex;
   border: 1px black solid;
@@ -568,4 +577,9 @@ div.h5 {
   width: 80px;
   font-size: 0.75rem;
   margin-left: 0.5rem;
+}
+
+#stripeButton {
+  display: flex;
+  margin: 5% 5% 5% 80%;
 }

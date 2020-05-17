@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const {Order, LineItem, Product} = require('../db/models')
 const stripe = require("stripe")('sk_test_NJ4FK76R31JmK0V9mLtp7eOE00yFjf8urJ')
+const nodemailer = require('nodemailer')
+
 module.exports = router
 
 
@@ -81,7 +83,7 @@ router.post('/cart', async (req, res) => {
 
     const charge = await stripe.charges.create(
       {
-        amount: total * 100,
+        amount: Math.floor(total * 100),
         currency: 'usd',
         customer: customer.id,
         receipt_email: token.email,
@@ -103,4 +105,30 @@ router.post('/cart', async (req, res) => {
     console.error('Error:', error)
     status = 'failure'
   } 
+
+
+//Nodemailer portion
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'newthisintheblock@gmail.com',
+      pass: '2001-new-this-in-the-block' 
+    }
+  });
+  
+  const mailOptions = {
+    from: 'newthisintheblock@gmail.com',
+    to: req.body.token.email,
+    subject: 'Stripe Payment Confirmation',
+    text: `Thanks for shopping at Craft Beer and Wine, this is to confirm your payment of ${req.body.total}`
+  };
+  
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+    console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+  
 })

@@ -41,6 +41,17 @@ async function seed() {
     beer08,
     beer09,
     beer10,
+    beer11,
+    beer12,
+    beer13,
+    beer14,
+    beer15,
+    beer16,
+    beer17,
+    beer18,
+    beer19,
+    beer20,
+
     wine01,
     wine02,
     wine03,
@@ -50,7 +61,16 @@ async function seed() {
     wine07,
     wine08,
     wine09,
-    wine10
+    wine11,
+    wine12,
+    wine13,
+    wine14,
+    wine15,
+    wine16,
+    wine17,
+    wine18,
+    wine19,
+    wine20,
   ] = await Promise.all([
     //01
     Product.create({
@@ -171,6 +191,127 @@ async function seed() {
         'https://cdn.shopify.com/s/files/1/0058/8854/0731/products/mcdoogles-nitro-irish-stout-435016_1024x1024@2x.jpg?v=1588445533',
       categoryId: stout.id
     }),
+    //11
+    Product.create({
+      alcohol: 'Beer',
+      name: 'Resistance is Fruitile (Tropical Fruit)',
+      description:
+        'Resistance is Fruitile is here to bring you early summer in a can! This kettle sour features 500 lbs of tropical fruit per batch. Gentle aromas of pineapple, mango, passion fruit, and guava carry through the beer start to finish. The sour factor is not mouth puckering but instead, delicate – allowing the fruit to present. The beer pours a straw gold. Light bodied and very refreshing. Grab a beach towel and set up shop for an island vacation in your living room. Tiny island umbrellas for your glass or can not included.',
+      price: 4,
+      quantity: 150,
+      imageURL:
+        'https://cdn.shopify.com/s/files/1/0058/8854/0731/products/resistance-is-fruitile-tropical-fruit-573636_1024x1024@2x.jpg?v=1588019460',
+      categoryId: lager.id
+    }),
+    //12
+    Product.create({
+      alcohol: 'Beer',
+      name: 'Lavenade',
+      description:
+        'Fresh sour fermented in stainless steel tanks with lavender, lemon juice, and lemon zest.',
+      price: 14,
+      quantity: 150,
+      imageURL:
+        'https://cdn.shopify.com/s/files/1/0058/8854/0731/products/lavenade_1024x1024@2x.jpg?v=1588939000',
+      categoryId: ipa.id
+    }),
+    //13
+    Product.create({
+      alcohol: 'Beer',
+      name: 'Zone Expansion',
+      description:
+        'Sour IPA blended with fresh peach and tangerine purees, dry-hopped with Cascade.',
+      price: 13,
+      quantity: 50,
+      imageURL:
+        'https://cdn.shopify.com/s/files/1/0058/8854/0731/products/zone-expansion-341715_1024x1024@2x.jpg?v=1582526696',
+      categoryId: stout.id
+    }),
+    //14
+    Product.create({
+      alcohol: 'Beer',
+      name: 'Fourth Wave',
+      description:
+        'Sour Ale with Lingonberry, Sanshō and Lemon Verbena. Dry-hopped with 2020 Pink Boots blend: Azacca, El Dorado, Idaho Gem + Loral. Notes of violet, coriander, fruity pebbles, lemonheads, tongue tingles.',
+      price: 12,
+      quantity: 150,
+      imageURL:
+        'https://cdn.shopify.com/s/files/1/0058/8854/0731/products/fourth-wave-500648_1024x1024@2x.jpg?v=1588445468',
+      categoryId: stout.id
+    }),
+    //15
+    Product.create({
+      alcohol: 'Beer',
+      name: 'Can I Get A Wit Wit?',
+      description:
+        'Refreshing Belgian-style Wit dry-hopped with all-American Amarillo. The traditional ingredients of coriander and orange peel combine with modern brewing styles to create a uniquely balanced and bright beer.',
+      price: 15,
+      quantity: 50,
+      imageURL:
+        'https://cdn.shopify.com/s/files/1/0058/8854/0731/products/can-i-get-a-wit-wit-224005_1024x1024@2x.jpg?v=1588204934',
+      categoryId: stout.id
+    }),
+    //16
+    Product.create({
+      alcohol: 'Beer',
+      name: 'Post No Pils',
+      description:
+        'New York City Pilsner brewed with New York City water. A thoroughly local craft beer, clean and crisp.',
+      price: 14,
+      quantity: 57,
+      imageURL:
+        'https://cdn.shopify.com/s/files/1/0058/8854/0731/products/post-no-pils-367438_1024x1024@2x.jpg?v=1582526627',
+      categoryId: ipa.id
+    }),
+    //17
+    Product.create({
+      alcohol: 'Beer',
+      name: 'Queens County Pilsner',
+      description:
+        'Crisp, clean Pilsner from Mikkeller NYC, brewed at Citi Field in Queens.',
+      price: 13,
+      quantity: 50,
+      imageURL:
+        'https://cdn.shopify.com/s/files/1/0058/8854/0731/products/queens-county-pilsner-675025_1024x1024@2x.jpg?v=1588958709',
+      categoryId: lager.id
+    }),
+    //18
+    Product.create({
+      alcohol: 'Beer',
+      name: 'Aperitif Pilsner',
+      description:
+        'A standout representation of a classic pilsner, this lager is light, crisp, and bready.',
+      price: 11,
+      quantity: 50,
+      imageURL:
+        'https://cdn.shopify.com/s/files/1/0058/8854/0731/products/aperitif-pilsner-448662_1024x1024@2x.jpg?v=1582526382',
+      categoryId: stout.id
+    }),
+    //19
+    Product.create({
+      alcohol: 'Beer',
+      name: 'Steeped Emperors Lemon Saison',
+      description:
+        'The lemon combination within the Steeped Emperors Lemon Saison highlights intense flavors and aromas that are balanced by the acidity and fruit flavors of the Saison yeast and Sorachi Ace hops. We use a double-steep process to showcase the lemon profile and the resulting Saison highlights flavors of lemon meringue pie with the aromatics of a Meyer lemon. This beer pairs well with lighter seafood dishes such as grilled shrimp or sautéed scallops or after dark with a lemon tart or lemon sugar cookie.',
+      price: 11,
+      quantity: 53,
+      imageURL:
+        'https://cdn.shopify.com/s/files/1/0058/8854/0731/products/steeped-emperors-lemon-saison-552734_1024x1024@2x.jpg?v=1582526648',
+      categoryId: stout.id
+    }),
+    //20
+    Product.create({
+      alcohol: 'Beer',
+      name: 'Watermelon & Cucumber',
+      description:
+        'Quite simply two of our favorite ingredients in any cocktail, the Watermelon and Cucumber is a perfectly refreshing hard seltzer. Aroma and taste is fairly balanced between the two flavors. Made with simple and real ingredients including sparkling water, alcohol from cold fermented cane sugar, watermelon extract and cucumber extract.',
+      price: 13,
+      quantity: 50,
+      imageURL:
+        'https://cdn.shopify.com/s/files/1/0058/8854/0731/products/watermelon-cucumber-217931_1024x1024@2x.jpg?v=1588181397',
+      categoryId: stout.id
+    }),
+
     //01
     Product.create({
       alcohol: 'Wine',
@@ -289,7 +430,127 @@ async function seed() {
       imageURL:
         'https://www.totalwine.com/dynamic/x490,sq/media/sys_master/twmmedia/h55/h75/12291728539678.png',
       categoryId: cabernet.id
-    })
+    }),
+    //11
+    Product.create({
+      alcohol: 'Wine',
+      name: 'Cloud Break Chardonnay',
+      description:
+        'The Cloud Break Chardonnay is rich with flavors of toasted oak, vanilla, butter, apple, pear and hints of coconut. Refined acidity and hints of green apple linger on the elegant finish. Excellent with grilled pork chops.',
+      price: 8.99,
+      quantity: 50,
+      imageURL:
+        'https://www.totalwine.com/dynamic/x300,sq/media/sys_master/twmmedia/ha7/h1f/11675609989150.png',
+      categoryId: chardonnay.id
+    }),
+    //12
+    Product.create({
+      alcohol: 'Wine',
+      name: 'Mascota Vineyards Unanime',
+      description:
+        'Alto Adige, Italy- Crisp and refreshing Pinot Grigio handcrafted by award-winning winemaker Peter Zemmer. This complex white reveals flavors of citrus and tree fruits with nuances of mineral, all showcased by a lengthy finish. Try with catfish, cod or snapper.',
+      price: 24.99,
+      quantity: 55,
+      imageURL:
+        'https://www.totalwine.com/dynamic/x300,sq/media/sys_master/twmmedia/h36/h64/12279038705694.png',
+      categoryId: cabernet.id
+    }),
+    //13
+    Product.create({
+      alcohol: 'Wine',
+      name: 'Sextant Cabernet Sauvignon Paso Robles',
+      description:
+        'Paso Robles, Central Coast, CA- Cherries combine with crushed cranberries to offer a delectable first impression. Accents of pomegranate and dark chocolate are infused with hints of sandalwood. The limber tannins and balanced acidity provide an elastic structure.',
+      price: 22.99,
+      quantity: 50,
+      imageURL:
+        'https://www.totalwine.com/dynamic/x300,sq/media/sys_master/twmmedia/hd0/h3d/8802780217374.png',
+      categoryId: cabernet.id
+    }),
+    //14
+    Product.create({
+      alcohol: 'Wine',
+      name: 'Vennstone Pinot Noir Tri',
+      description:
+        'California - We are big fans of Joe Wagner and we think you will be too! The creator of Belle Glos brings together the best fruit from Monterey, Sonoma, and Santa Barbara counties for a full-bodied fruit-bomb thats stunning with grilled salmon, pork ribs or mushroom pizza.',
+      price: 19.99,
+      quantity: 68,
+      imageURL:
+        'https://www.totalwine.com/dynamic/x300,sq/media/sys_master/twmmedia/h9b/h23/11931338407966.png',
+      categoryId: pinot.id
+    }),
+    //15
+    Product.create({
+      alcohol: 'Wine',
+      name: 'Verada Pinot Noir Tri-County',
+      description:
+        'Monterey, Sonoma, Santa Barbara, CA - This Pinot Noir has an excellent oak structure, rich, complex, and nuanced black currant and raspberry notes. The grapes are hand picked and the wine spends 16 months in French oak to smooth it out and preserve the richness and finesse. Vegan',
+      price: 16.99,
+      quantity: 56,
+      imageURL:
+        'https://www.totalwine.com/dynamic/x300,sq/media/sys_master/twmmedia/h55/hfe/12279039328286.png',
+      categoryId: pinot.id
+    }),
+    //16
+    Product.create({
+      alcohol: 'Wine',
+      name: 'Yellow Tail Chardonnay',
+      description:
+        'South East Australia- A blend of selected parcels of fruit from some of Australias best growing areas, this wine reveals citrus and honeydew flavors nuanced by subtle oak aromas. The palate is soft yet fresh, with balanced acidity and a smooth, creamy finish. A great party wine.',
+      price: 11.97,
+      quantity: 57,
+      imageURL:
+        'https://www.totalwine.com/dynamic/x300,sq/media/sys_master/twmmedia/h5e/he0/12140754042910.png',
+      categoryId: chardonnay.id
+    }),
+    //17
+    Product.create({
+      alcohol: 'Wine',
+      name: 'Frank Family Chardonnay Napa',
+      description:
+        'Beverage Dynamics-Carneros, Napa, California - "Soft pear nose; creamy texture with a lovely, balanced style and good length; juicy and bright with lively acidity, vanilla, and oak." Try pairing this wine with poultry, pasta dishes, and salads.',
+      price: 34.97,
+      quantity: 50,
+      imageURL:
+        'https://www.totalwine.com/dynamic/x300,sq/media/sys_master/twmmedia/h27/hc4/9014678913054.png',
+      categoryId: chardonnay.id
+    }),
+    //18
+    Product.create({
+      alcohol: 'Wine',
+      name: 'Santa Margherita Pinot Grigio',
+      description:
+        'Alto Adige, Italy- This dry white wine has a straw yellow color. Its clean, intense aroma and bone-dry taste (with an appealing flavor of Golden Delicious apples) make Santa Margheritas Pinot Grigio a wine of great personality and versatility.',
+      price: 22.97,
+      quantity: 50,
+      imageURL:
+        'https://www.totalwine.com/dynamic/x300,sq/media/sys_master/twmmedia/h83/h00/12291761602590.png',
+      categoryId: pinot.id
+    }),
+    //19
+    Product.create({
+      alcohol: 'Wine',
+      name: 'Albino Armani Pinot Grigio Corvara',
+      description:
+        'Valdadige, Italy - A single vineyard of unparalleled purity. The flavors of apple and pear are accented with traces of white flower and mineral notes. Perfectly balanced with a long and complex finish. This wine is medium-bodied and pairs great with seafood.',
+      price: 14.99,
+      quantity: 50,
+      imageURL:
+        'https://www.totalwine.com/dynamic/x300,sq/media/sys_master/twmmedia/h72/hcc/12262836502558.png',
+      categoryId: pinot.id
+    }),
+    //20
+    Product.create({
+      alcohol: 'Wine',
+      name: 'Kupelwieser Pinot Grigio Alto Adige',
+      description:
+        'Alto Adige, Italy- Crisp and refreshing Pinot Grigio handcrafted by award-winning winemaker Peter Zemmer. This complex white reveals flavors of citrus and tree fruits with nuances of mineral, all showcased by a lengthy finish. Try with catfish, cod or snapper.',
+      price: 16.99,
+      quantity: 50,
+      imageURL:
+        'https://www.totalwine.com/dynamic/x300,sq/media/sys_master/twmmedia/h0d/h72/9067094016030.png',
+      categoryId: cabernet.id
+    }),
   ])
 
   const order1 = await Order.create({userId: cody.id, status: 'Invoice'})
@@ -326,9 +587,9 @@ async function seed() {
   console.log(`seeded successfully`)
 }
 
-// We've separated the `seed` function from the `runSeed` function.
+// We've separated the `` function from the `run` function.
 // This way we can isolate the error handling and exit trapping.
-// The `seed` function is concerned only with modifying the database.
+// The `` function is concerned only with modifying the database.
 async function runSeed() {
   console.log('seeding...')
   try {
@@ -343,12 +604,12 @@ async function runSeed() {
   }
 }
 
-// Execute the `seed` function, IF we ran this module directly (`node seed`).
+// Execute the `` function, IF we ran this module directly (`node `).
 // `Async` functions always return a promise, so we can use `catch` to handle
-// any errors that might occur inside of `seed`.
+// any errors that might occur inside of ``.
 if (module === require.main) {
   runSeed()
 }
 
-// we export the seed function for testing purposes (see `./seed.spec.js`)
+// we export the  function for testing purposes (see `./.spec.js`)
 module.exports = seed

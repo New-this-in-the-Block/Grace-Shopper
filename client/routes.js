@@ -25,7 +25,9 @@ class Routes extends Component {
   }
 
   componentDidUpdate (prevProps) {
-    if (prevProps.user !== this.props.user && this.props.user.id && !this.props.user.isAdmin) {
+    //if this line is left then the cart doesnt fetch 'my orders'
+    // if (prevProps.user !== this.props.user && this.props.user.id && !this.props.user.isAdmin) {
+    if (prevProps.user !== this.props.user && this.props.user.id) {
       this.props.LoadMyOrders(this.props.user.id)
     }
   }

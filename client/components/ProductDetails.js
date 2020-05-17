@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {connect, useSelector} from 'react-redux'
+import {connect} from 'react-redux'
 import {thunkCreateOrder, thunkAddToOrder} from '../store'
 
 const ProductDetails = ({currentProduct, orders, user, cart, createCart, addItem}) => {

@@ -87,7 +87,7 @@ const thunkUpdateOrderStatus = order => async dispatch => {
     `/api/orders/user/${order.id}`,
     order
   )).data
-  dispatch(actionUpdateOrder(currentOrder))
+  dispatch(actionUpdateOrderStatus(currentOrder))
 }
 
 const thunkLoadUsers = () => {

@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {thunkLoadMyOrders} from '../store'
-import {Link} from 'react-router-dom'
 import Order from './Order'
 
 export default function Profile() {
@@ -15,7 +14,6 @@ export default function Profile() {
     },
     [user]
   )
-
   return (
     <div id="profile">
       <h3>{user.email}'s Profile</h3>

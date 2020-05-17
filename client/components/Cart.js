@@ -1,20 +1,30 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 import {calculateTotal} from '../../script/utils'
 import StripeCheckout from 'react-stripe-checkout'
 import CartItem from './CartItem'
 import axios from 'axios'
+import history from '../history'
+import {thunkUpdateOrderStatus} from '../store'
 
 
 export default function Cart() {
+  const user = useSelector(state => state.user)
   const [cart] = useSelector(state => state.orders.filter(order => order.status === 'Cart'))
   const [subTotal, tax, total] = cart ? calculateTotal(cart) : [0,0,0]
+  const dispatch = useDispatch()
 
   if (!cart || !cart.lineItems.length) return (
     <h2>Your cart is empty buy some <Link to='/products'>products</Link></h2>
   )
+
   const handleToken = async (token) => {
+    dispatch(thunkUpdateOrderStatus({
+      id: cart.id,
+      status: 'Processing'
+    }))
+    user.id ? history.push('/profile') : history.push('/signup')
     const response = await axios.post('/api/orders/cart', {
       total,
       token

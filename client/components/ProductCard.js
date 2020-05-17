@@ -5,12 +5,9 @@ import {thunkCreateOrder, thunkAddToOrder} from '../store'
 
 
 const ProductCard = ({product, cart, user, addItem, createCart}) => {
-  console.log('product', product)
-
   const addToCart = () => {
     cart ? addItem(1, product, cart.id) : createCart(1, product, user)
   }
-  // if (!product.name) return <h2>Loading...</h2>
 
   return (
     <li className="productCard">

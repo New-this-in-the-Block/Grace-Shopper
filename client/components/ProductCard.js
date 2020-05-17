@@ -1,12 +1,24 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {thunkCreateOrder, thunkAddToOrder} from '../store'
+import {thunkCreateOrder, thunkAddToOrder, thunkLoadMyCart} from '../store'
+import axios from 'axios'
 
 
-const ProductCard = ({product, cart, user, addItem, createCart}) => {
-  const addToCart = () => {
-    cart ? addItem(1, product, cart.id) : createCart(1, product, user)
+const ProductCard = ({product, cart, user, addItem, createCart, createGuestCart}) => {
+  const addToCart = async () => {
+    if (!user.id) {
+      if (cart) {
+        addItem(1, product, cart.id)
+      } else {
+        console.log('make cart')
+        const order = (await axios.post('/api/orders', {quantity: 1, productId: product.id, userId: user.id})).data
+        localStorage.setItem('cart', order.id)
+        createGuestCart(localStorage.getItem('cart'))
+      }
+    } else {
+      cart ? addItem(1, product, cart.id) : createCart(1, product, user)
+    }
   }
 
   return (
@@ -38,7 +50,8 @@ const mapState = ({orders, user}) => {
 const mapDispatch = dispatch => {
   return {
     createCart(quantity, product, user) { dispatch(thunkCreateOrder(quantity, product, user))},
-    addItem(quantity, product, cartId) { dispatch(thunkAddToOrder(quantity, product, cartId))}
+    addItem(quantity, product, cartId) { dispatch(thunkAddToOrder(quantity, product, cartId))},
+    createGuestCart(id) { dispatch(thunkLoadMyCart(id))}
   }
 }
 

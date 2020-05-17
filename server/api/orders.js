@@ -24,6 +24,21 @@ router.get('/', async(req, res, next) => {
   }
 })
 
+//get one order by id
+router.get('/cart/:id', async(req, res, next) => {
+  try {
+    res.send(await Order.findOne(
+      {where: {id: req.params.id},
+      include: [
+        {model: LineItem, include: [{model: Product}]
+      }
+      ]
+    }))
+  } catch (error) {
+    next(error)
+  }
+})
+
 
 //create a cart with the initial item
 router.post('/', async (req, res, next) => {

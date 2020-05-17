@@ -10,7 +10,9 @@ import {ToastContainer, toast} from 'react-toastify'
 const AdminProfile = ({path}) => {
   return (
     <div>
-      <div id='adminHello'>Welcome Admin</div>
+      <div id='adminHello'>
+        <h1 id='adminH'>Hello Admin</h1>
+      </div>
       <div>
         <nav id="adminNav">
           <NavLink activeClassName="selected" to="/admin/addproduct">

@@ -36,7 +36,7 @@ const Products = ({products}) => {
         </h2>
         <ul className="productCards">
           {displayProducts.map(product => (
-            <ProductCard {...product} key={product.id} />
+            <ProductCard product={product} key={product.id} />
           ))}
         </ul>
       </div>

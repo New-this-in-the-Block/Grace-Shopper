@@ -16,19 +16,24 @@ import {
   Cart,
   SplashPage
 } from './components'
-import {me, thunkLoadProducts, thunkLoadCategories, thunkLoadUsers, thunkLoadMyOrders} from './store'
+import {me, thunkLoadProducts, thunkLoadCategories, thunkLoadUsers, thunkLoadMyCart, thunkLoadMyOrders} from './store'
 
 
 class Routes extends Component {
   componentDidMount () {
     this.props.loadInitialData()
+    if (localStorage.getItem('cart')) this.props.LoadMyCart(localStorage.getItem('cart'))
   }
 
   componentDidUpdate (prevProps) {
     //if this line is left then the cart doesnt fetch 'my orders'
     // if (prevProps.user !== this.props.user && this.props.user.id && !this.props.user.isAdmin) {
-    if (prevProps.user !== this.props.user && this.props.user.id) {
-      this.props.LoadMyOrders(this.props.user.id)
+      if (prevProps !== this.props) {
+        if (localStorage.getItem('cart')) this.props.LoadMyCart(localStorage.getItem('cart'))
+      }
+    if (prevProps.user !== this.props.user) {
+      if (this.props.user.id) this.props.LoadMyOrders(this.props.user.id)
+      else if (localStorage.getItem('cart')) this.props.LoadMyCart(localStorage.getItem('cart'))
     }
   }
 
@@ -81,6 +86,9 @@ const mapDispatch = dispatch => {
     },
     LoadMyOrders(id) {
       dispatch(thunkLoadMyOrders(id))
+    },
+    LoadMyCart(id) {
+      dispatch(thunkLoadMyCart(id))
     }
   }
 }

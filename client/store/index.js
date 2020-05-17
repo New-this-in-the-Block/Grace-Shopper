@@ -162,7 +162,7 @@ const orderReducer = (state = [], action) => {
     case LOAD_ORDERS:
       return action.orders
     case LOAD_CART:
-      return action.cart
+      return [action.cart]
     case CREATE_ORDER:
       return [...state, action.order]
     case UPDATE_ORDER_STATUS:

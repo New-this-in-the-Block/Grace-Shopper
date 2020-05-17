@@ -1,12 +1,23 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
-import {thunkCreateOrder, thunkAddToOrder} from '../store'
+import {thunkCreateOrder, thunkAddToOrder, thunkLoadMyCart} from '../store'
+import axios from 'axios'
 
-const ProductDetails = ({currentProduct, orders, user, cart, createCart, addItem}) => {
+const ProductDetails = ({currentProduct, orders, user, cart, createCart, addItem, createGuestCart}) => {
   const [quantity, setQuantity] = useState(1)
 
-  const addToCart = () => {
-    cart ? addItem(quantity, currentProduct, cart.id) : createCart(quantity, currentProduct, user)
+  const addToCart = async() => {
+    if (!user.id) {
+      if (cart) {
+        addItem(quantity, currentProduct, cart.id)
+      } else {
+        const order = (await axios.post('/api/orders', {quantity, productId: currentProduct.id, userId: user.id})).data
+        localStorage.setItem('cart', order.id)
+        createGuestCart(localStorage.getItem('cart'))
+      }
+    } else {
+      cart ? addItem(quantity, currentProduct, cart.id) : createCart(quantity, currentProduct, user)
+    }
   }
 
   if (!currentProduct) return <h2>Loading...</h2>
@@ -47,7 +58,8 @@ const mapState = ({products, orders, user}, ownProps) => {
 const mapDispatch = dispatch => {
   return {
     createCart(quantity, product, user) { dispatch(thunkCreateOrder(quantity, product, user)) },
-    addItem(quantity, product, cartId) { dispatch(thunkAddToOrder(quantity, product, cartId))}
+    addItem(quantity, product, cartId) { dispatch(thunkAddToOrder(quantity, product, cartId))},
+    createGuestCart(id) { dispatch(thunkLoadMyCart(id))}
   }
 }
 

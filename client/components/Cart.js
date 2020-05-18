@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import {calculateTotal} from '../../script/utils'
@@ -6,7 +6,7 @@ import StripeCheckout from 'react-stripe-checkout'
 import CartItem from './CartItem'
 import axios from 'axios'
 import history from '../history'
-import {thunkUpdateOrderStatus, thunkLoadMyOrders, thunkLoadMyCart} from '../store'
+import {thunkUpdateOrderStatus} from '../store'
 
 
 export default function Cart() {
@@ -14,14 +14,6 @@ export default function Cart() {
   const [cart] = useSelector(state => state.orders.filter(order => order.status === 'Cart'))
   const [subTotal, tax, total] = cart ? calculateTotal(cart) : [0,0,0]
   const dispatch = useDispatch()
-
-  useEffect(
-    () => {
-      if (user.id)dispatch(thunkLoadMyOrders(user.id)) 
-      else if (localStorage.getItem('cart')) dispatch(thunkLoadMyCart(localStorage.getItem('cart')))
-    },
-    []
-  )
 
   if (!cart || !cart.lineItems.length) return (
     <h2>Your cart is empty buy some <Link to='/products'>products</Link></h2>

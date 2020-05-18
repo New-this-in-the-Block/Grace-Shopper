@@ -1,31 +1,32 @@
-import React, {Component} from 'react'
+import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {Modal} from 'react-bootstrap'
 import {getRandomInt, biggestSeller} from '../../script/utils'
 
 
-class SplashPage extends Component {
-  constructor() {
-    super()
-    this.state = {
-      show: true
+const SplashPage = ({biggestSeller2, random, ranCat, ranPerCat}) => {
+    const [show, setShow] = useState(true)
+//   constructor() {
+//     super()
+//     this.state = {
+//       show: true
+//     }
+//     this.handleClose = this.handleClose.bind(this)
+//   }
+
+//   handleClose() {
+//     this.setState({show: false})
+//   }
+    function handleClose() {
+        setShow(false)
     }
-    this.handleClose = this.handleClose.bind(this)
-  }
-
-  handleClose() {
-    this.setState({show: false})
-  }
-
-  render() {
-    const {biggestSeller2, random, ranCat, ranPerCat} = this.props
     return (
     biggestSeller2.name ? 
         <div id="splashdiv">
             <div className="splashpic">
                 <div>
-                    <Modal show={this.state.show}>
+                    <Modal show={show}>
                         <Modal.Header>
                         <Modal.Title>Age Verification</Modal.Title>
                         </Modal.Header>
@@ -37,7 +38,7 @@ class SplashPage extends Component {
                         <button
                             type="button"
                             variant="secondary"
-                            onClick={this.handleClose}
+                            onClick={handleClose}
                         >
                             I wish I was 21 again.
                         </button>
@@ -55,32 +56,32 @@ class SplashPage extends Component {
                 </div>
             </div>
             <div className="splashContainer">                
-                 <div>
+                    <div>
                     <h4 >Best Seller</h4>
                     <Link to={`/products/${biggestSeller2.id}`}>
                         <img src={biggestSeller2.imageURL} className='splashProductsURL'/>
                     </Link>
                     <h5>{biggestSeller2.name}</h5>
                     <h6>${biggestSeller2.price}</h6>
-                 </div>
+                    </div>
 
-                 <div>
-                     <h4 >..Or Try Something New</h4>
+                    <div>
+                        <h4 >..Or Try Something New</h4>
                     <Link to={`/products/${random.id}`}>
                         <img src={random.imageURL} className='splashProductsURL'/>
                     </Link>
-                     <h5>{random.name}</h5>
+                        <h5>{random.name}</h5>
                     <h6>${random.price}</h6>
-                 </div>
+                    </div>
 
-                 <div>
-                     <h4 style={{color: "red"}}>Sale on {ranCat.name}'s - 10% off!</h4>
+                    <div>
+                        <h4 style={{color: "red"}}>Sale on {ranCat.name}'s - 10% off!</h4>
                     <Link to={`/products/${ranPerCat.id}`}>
                         <img src={ranPerCat.imageURL} className='splashProductsURL'/>
                     </Link>
-                     <h5>{ranPerCat.name}</h5>
+                        <h5>{ranPerCat.name}</h5>
                     <h6>Price: ${ranPerCat.price}</h6>
-                 </div>
+                    </div>
             </div>
             <div className="splashButton">
                 <button type='button'><Link to='/products/page/:id'>All Products</Link></button>
@@ -88,10 +89,10 @@ class SplashPage extends Component {
             <hr />
             <p id="signature">© 2020, Craft Beer and Wine</p>
         </div>
-    : <span>Still Loading...</span>
+        : <span>Still Loading...</span>
     )
-  }
 }
+
 
 const mapState = ({products, categories}) => {
     const biggestSeller2 = biggestSeller(products) 

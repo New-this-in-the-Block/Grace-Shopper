@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
@@ -8,7 +8,7 @@ export default function Nav() {
   const [search, setSearch] = useState('')
   const user = useSelector(state => state.user)
   const categories = useSelector(state => state.categories)
-  const products = useSelector(state => state.products)
+  //const products = useSelector(state => state.products)
   const [cart] = useSelector(state => state.orders.filter(order => order.status === 'Cart'))
   const dispatch = useDispatch()
 
@@ -26,8 +26,7 @@ export default function Nav() {
   const pinot = categories.find(cat => cat.name === 'Pinot')
   const cab = categories.find(cat => cat.name === 'Cabernet')
   const char = categories.find(cat => cat.name === 'Chardonnay')
-  const beer = products.filter(pro => pro.alcohol === 'Beer')
-  const wine = products.filter(pro => pro.alcohol === 'Wine')
+
   return (
     <nav className='topnav'>
       <Link to="/home">

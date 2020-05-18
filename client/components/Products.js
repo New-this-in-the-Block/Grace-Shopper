@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import ProductCard from './ProductCard'
 import Paginate from './Paginate'
 
+
 const Products = ({products}) => {
   const [displayProducts, setDisplayProducts] = useState(products)
   const [currentPage, setCurrentPage] = useState(1)
@@ -63,6 +64,6 @@ const Products = ({products}) => {
   )
 }
 
-const mapStateToProps = ({products}) => ({products})
+const mapState = ({products}) => ({products})
 
-export default connect(mapStateToProps, null)(Products)
+export default connect(mapState, null)(Products)

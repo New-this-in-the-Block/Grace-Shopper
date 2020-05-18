@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
@@ -8,7 +8,6 @@ export default function Nav() {
   const [search, setSearch] = useState('')
   const user = useSelector(state => state.user)
   const categories = useSelector(state => state.categories)
-  const products = useSelector(state => state.products)
   const [cart] = useSelector(state => state.orders.filter(order => order.status === 'Cart'))
   const dispatch = useDispatch()
 
@@ -20,14 +19,14 @@ export default function Nav() {
   if (!categories[0]) {
     return null
   }
+
   const ipa = categories.find(cat => cat.name === 'IPA')
   const lager = categories.find(cat => cat.name === 'Lager')
   const stout = categories.find(cat => cat.name === 'Stout')
   const pinot = categories.find(cat => cat.name === 'Pinot')
   const cab = categories.find(cat => cat.name === 'Cabernet')
   const char = categories.find(cat => cat.name === 'Chardonnay')
-  const beer = products.filter(pro => pro.alcohol === 'Beer')
-  const wine = products.filter(pro => pro.alcohol === 'Wine')
+
   return (
     <nav className='topnav'>
       <Link to="/home">
@@ -35,7 +34,7 @@ export default function Nav() {
       </Link>
       <Link to="/products/page/1">All Drinks</Link>
       <div id="styleDropdown">
-        <div to="/products/page/:id">Beer ({beer.length})</div>
+        <div to="/products/page/:id">Beer</div>
         <div id="styleContent">
           <Link to={`/products/categories/${ipa.id}`}>
             IPA ({ipa.products.length})
@@ -49,7 +48,7 @@ export default function Nav() {
         </div>
       </div>
       <div id="styleDropdown">
-        <div to="/products/page/:id">Wine ({wine.length})</div>
+        <div to="/products/page/:id">Wine</div>
         <div id="styleContent">
           <Link to={`/products/categories/${pinot.id}`}>
             Pinot ({pinot.products.length})

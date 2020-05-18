@@ -434,14 +434,14 @@ async function seed() {
     //11
     Product.create({
       alcohol: 'Wine',
-      name: 'Cloud Break Chardonnay',
+      name: 'Gekkeikan Horin Sake',
       description:
-        'The Cloud Break Chardonnay is rich with flavors of toasted oak, vanilla, butter, apple, pear and hints of coconut. Refined acidity and hints of green apple linger on the elegant finish. Excellent with grilled pork chops.',
-      price: 8.99,
-      quantity: 50,
+        "Small batch microbrew, limited production. Slowly fermented at low temperatures for a more refined flavor. Mild, fruity aroma, hints of cantaloupe and honeysuckle, and a long, clean finish.",
+      price: 34.99,
+      quantity: 35,
       imageURL:
-        'https://www.totalwine.com/dynamic/x300,sq/media/sys_master/twmmedia/ha7/h1f/11675609989150.png',
-      categoryId: chardonnay.id
+        'https://www.totalwine.com/dynamic/x490,sq/media/sys_master/twmmedia/h30/h1e/9852004466718.png',
+      categoryId: pinot.id
     }),
     //12
     Product.create({

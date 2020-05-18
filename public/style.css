@@ -593,3 +593,38 @@ div.h5 {
   display: flex;
   margin: 5% 5% 5% 80%;
 }
+
+#authForm {
+  width: 25%;
+  padding: 20px;
+  vertical-align: middle;
+  color: white;
+  /* display: flex;
+  flex-direction: column;
+  align-content: center; */
+}
+.authInput {
+  width: 100%;
+  height: 26px;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+#authWrapper {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(73, 92, 110);
+  padding-top: 100px;
+  padding-bottom: 500px;
+}
+.googleBt{
+  background-color: white;
+  margin-top: 10px;
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+}
+#logoImg {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}

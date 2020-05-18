@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import Moment from 'react-moment';
 import {useSelector, useDispatch} from 'react-redux'
-import {thunkLoadMyOrders} from '../store'
+import {thunkLoadMyOrders} from '../store/thunks'
 import Order from './Order'
 
 

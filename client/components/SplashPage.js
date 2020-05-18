@@ -1,23 +1,14 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {Modal} from 'react-bootstrap'
+import {Modal, Button} from 'react-bootstrap'
 import {getRandomInt, biggestSeller} from '../../script/utils'
 
 
 const SplashPage = ({biggestSeller2, random, ranCat, ranPerCat}) => {
-    const [show, setShow] = useState(true)
-//   constructor() {
-//     super()
-//     this.state = {
-//       show: true
-//     }
-//     this.handleClose = this.handleClose.bind(this)
-//   }
 
-//   handleClose() {
-//     this.setState({show: false})
-//   }
+    const [show, setShow] = useState(true)
+
     function handleClose() {
         setShow(false)
     }
@@ -26,7 +17,7 @@ const SplashPage = ({biggestSeller2, random, ranCat, ranPerCat}) => {
         <div id="splashdiv">
             <div className="splashpic">
                 <div>
-                    <Modal show={show}>
+                    <Modal show={show} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                         <Modal.Header>
                         <Modal.Title>Age Verification</Modal.Title>
                         </Modal.Header>
@@ -35,14 +26,10 @@ const SplashPage = ({biggestSeller2, random, ranCat, ranPerCat}) => {
                         old?
                         </Modal.Body>
                         <Modal.Footer>
-                        <button
-                            type="button"
-                            variant="secondary"
-                            onClick={handleClose}
-                        >
+                        <Button variant="primary" onClick={handleClose}>
                             I wish I was 21 again.
-                        </button>
-                        <button type="button">
+                        </Button>
+                        <Button variant='secondary'>
                             <a
                             target="_blank"
                             rel="noopener noreferrer"
@@ -50,7 +37,7 @@ const SplashPage = ({biggestSeller2, random, ranCat, ranPerCat}) => {
                             >
                             Not yet
                             </a>
-                        </button>
+                        </Button>
                         </Modal.Footer>
                     </Modal>
                 </div>

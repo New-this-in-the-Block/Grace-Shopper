@@ -8,7 +8,6 @@ export default function Nav() {
   const [search, setSearch] = useState('')
   const user = useSelector(state => state.user)
   const categories = useSelector(state => state.categories)
-  //const products = useSelector(state => state.products)
   const [cart] = useSelector(state => state.orders.filter(order => order.status === 'Cart'))
   const dispatch = useDispatch()
 
@@ -20,6 +19,7 @@ export default function Nav() {
   if (!categories[0]) {
     return null
   }
+
   const ipa = categories.find(cat => cat.name === 'IPA')
   const lager = categories.find(cat => cat.name === 'Lager')
   const stout = categories.find(cat => cat.name === 'Stout')

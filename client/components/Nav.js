@@ -35,7 +35,7 @@ export default function Nav() {
       </Link>
       <Link to="/products/page/1">All Drinks</Link>
       <div id="styleDropdown">
-        <div to="/products/page/:id">Beer ({beer.length})</div>
+        <div to="/products/page/:id">Beer</div>
         <div id="styleContent">
           <Link to={`/products/categories/${ipa.id}`}>
             IPA ({ipa.products.length})
@@ -49,7 +49,7 @@ export default function Nav() {
         </div>
       </div>
       <div id="styleDropdown">
-        <div to="/products/page/:id">Wine ({wine.length})</div>
+        <div to="/products/page/:id">Wine</div>
         <div id="styleContent">
           <Link to={`/products/categories/${pinot.id}`}>
             Pinot ({pinot.products.length})

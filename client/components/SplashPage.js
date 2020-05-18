@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {Modal} from 'react-bootstrap'
+import {getRandomInt, biggestSeller} from '../../script/utils'
 
 
 class SplashPage extends Component {
@@ -18,9 +19,9 @@ class SplashPage extends Component {
   }
 
   render() {
-    const {biggestSeller, random, ranCat, ranPerCat} = this.props
+    const {biggestSeller2, random, ranCat, ranPerCat} = this.props
     return (
-    biggestSeller.name ? 
+    biggestSeller2.name ? 
         <div id="splashdiv">
             <div className="splashpic">
                 <div>
@@ -38,7 +39,7 @@ class SplashPage extends Component {
                             variant="secondary"
                             onClick={this.handleClose}
                         >
-                            Yes and I wish I was 21 again.
+                            I wish I was 21 again.
                         </button>
                         <button type="button">
                             <a
@@ -56,11 +57,11 @@ class SplashPage extends Component {
             <div className="splashContainer">                
                  <div>
                     <h4 >Best Seller</h4>
-                    <Link to={`/products/${biggestSeller.id}`}>
-                        <img src={biggestSeller.imageURL} className='splashProductsURL'/>
+                    <Link to={`/products/${biggestSeller2.id}`}>
+                        <img src={biggestSeller2.imageURL} className='splashProductsURL'/>
                     </Link>
-                    <h5>{biggestSeller.name}</h5>
-                    <h6>${biggestSeller.price}</h6>
+                    <h5>{biggestSeller2.name}</h5>
+                    <h6>${biggestSeller2.price}</h6>
                  </div>
 
                  <div>
@@ -93,19 +94,13 @@ class SplashPage extends Component {
 }
 
 const mapState = ({products, categories}) => {
-    const biggestSeller = products.reduce((acc, product)=> {
-        acc = acc.quantity < product.quantity ? acc : product
-        return acc
-    }, {})
-    function getRandomInt(max) {
-        return Math.floor(Math.random() * Math.floor(max));
-    }
+    const biggestSeller2 = biggestSeller(products) 
     const random = products[getRandomInt(19)]
     const ranCat = categories[getRandomInt(5)] ? categories[getRandomInt(5)] : categories[0]
     const saleProducts = products.filter(pro => pro.categoryId === ranCat.id)
     const ranPerCat = saleProducts[getRandomInt(saleProducts.length-1)]
     return {
-        biggestSeller,
+        biggestSeller2,
         random,
         ranCat,
         ranPerCat

@@ -101,7 +101,7 @@ const mapState = ({products, categories}) => {
         return Math.floor(Math.random() * Math.floor(max));
     }
     const random = products[getRandomInt(19)]
-    const ranCat = categories[getRandomInt(5)]
+    const ranCat = categories[getRandomInt(5)] ? categories[getRandomInt(5)] : categories[0]
     const saleProducts = products.filter(pro => pro.categoryId === ranCat.id)
     const ranPerCat = saleProducts[getRandomInt(saleProducts.length-1)]
     return {

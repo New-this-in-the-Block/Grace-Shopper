@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import ProductCard from './ProductCard'
 import Paginate from './Paginate'
-
+import BottomNav from './BottomNav'
 
 const Products = ({products}) => {
   const [displayProducts, setDisplayProducts] = useState(products)
@@ -57,8 +57,7 @@ const Products = ({products}) => {
           )}
         </ul>
         <Paginate prodPerPage={prodPerPage} totalProds={products.length} paginator={paginator} currentPage={currentPage}/>
-        <hr />
-        <p id="signature">© 2020, Craft Beer and Wine</p>
+        <BottomNav />
       </div>
     </div> 
   )

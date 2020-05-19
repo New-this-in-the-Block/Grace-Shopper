@@ -6,7 +6,9 @@ import StripeCheckout from 'react-stripe-checkout'
 import CartItem from './CartItem'
 import axios from 'axios'
 import history from '../history'
-import {thunkUpdateOrderStatus} from '../store/thunks'
+import {thunkUpdateOrderStatus, thunkLoadMyOrders, thunkLoadMyCart} from '../store/thunks'
+import BottomNav from './BottomNav'
+
 
 
 export default function Cart() {
@@ -75,6 +77,7 @@ export default function Cart() {
           amount={total * 100}
           />
         </div>
+        <BottomNav />
     </div>
   )
 }

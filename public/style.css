@@ -634,47 +634,45 @@ div.h5 {
   height: 320px;
   background-color: rgb(73, 92, 110);
   border-bottom: rgb(243, 158, 63) solid 30px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 #bottomLogo{
-  margin-left: 60px;
   margin-bottom: 20px;
   margin-top: 20px;
 }
 #blurb {
   width: 250px;
-  margin-left: 70px;
   color: white;
 }
 #contact{
   color: white;
-  margin-top: -170px;
-  width: 350px;
-  margin-left: 68%;
-  margin-bottom: 35px;
-  text-align: right; 
+  margin-top: -190px;
+  width: 320px;
+  margin-left: 70%;
+  margin-right: 10%;
+  text-align: right;
 }
 #terms {
-  margin-top: 30px;
+  margin-top: 25px;
 }
 #social {
-  margin-top: -115px;
+  margin-top: -90px;
   color: rgb(73, 92, 110);
-  width: 500px;
+  width: 33%;
   align-self: center;
-  margin-left: 37%;
+  margin-left: 33%;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: lightgray;
   height: 85px;
   border-radius: 30px;
-  width: 350px;
   padding-top: 6px;
 }
 
 .linkedin {
   width: 20%;
-  /* margin-left: 10px; */
 }
 #iconsLK {
   width: fit-content;
@@ -688,7 +686,6 @@ div.h5 {
   align-items: center;
 }
 #emptyH {
-  /* background-color: rgb(243, 158, 63); */
   background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQQHI4hTSZxWS0BV0n1DKKO6rr2uilf-GwBtI11OiybIREyai5t&usqp=CAU');
   text-align: center;
   height: 450px;

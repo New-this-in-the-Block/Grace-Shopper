@@ -5,6 +5,7 @@ import {
     REMOVE_PRODUCT,
     LOAD_CATEGORIES,
     LOAD_ORDERS,
+    CLEAR_ORDERS,
     LOAD_CART,
     UPDATE_ORDER,
     CREATE_ORDER,
@@ -26,6 +27,7 @@ const actionLoadOrders = orders => ({type: LOAD_ORDERS, orders})
 const actionLoadCart = cart => ({type: LOAD_CART, cart})
 const actionCreateOrder = order => ({type: CREATE_ORDER, order})
 const actionAddToOrder = order => ({type: ADD_TO_ORDER, order})
+const actionClearOrders = _ => ({type: CLEAR_ORDERS})
 
 const actionRemoveFromOrder = id => ({type: REMOVE_FROM_ORDER, id})
 const actionUpdateOrder = order => ({type: UPDATE_ORDER, order})
@@ -41,6 +43,7 @@ export {
     actionRemoveProduct,
     actionLoadCategories,
     actionLoadOrders,
+    actionClearOrders,
     actionLoadCart,
     actionCreateOrder,
     actionAddToOrder,

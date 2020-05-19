@@ -24,7 +24,7 @@ export default function Profile() {
         {orderData.map(order => {
           return (
             <li className="itemList" key={order.id}>
-              Order from <Moment>{order.createdAt}</Moment> Status: {order.status}
+              Order from <Moment>{order.createdAt}</Moment> Status: <span className='bold'>{order.status}</span>
               <Order order={order} />
             </li>
           )

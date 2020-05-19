@@ -10,6 +10,7 @@ import {
   REMOVE_PRODUCT,
   LOAD_CATEGORIES,
   LOAD_ORDERS,
+  CLEAR_ORDERS,
   LOAD_CART,
   UPDATE_ORDER,
   CREATE_ORDER,
@@ -56,6 +57,8 @@ const orderReducer = (state = [], action) => {
   switch (action.type) {
     case LOAD_ORDERS:
       return action.orders
+    case CLEAR_ORDERS:
+      return []
     case LOAD_CART:
       return [action.cart]
     case CREATE_ORDER:

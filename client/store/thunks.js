@@ -6,6 +6,7 @@ import {
     actionRemoveProduct,
     actionLoadCategories,
     actionLoadOrders,
+    actionClearOrders,
     actionLoadCart,
     actionCreateOrder,
     actionAddToOrder,

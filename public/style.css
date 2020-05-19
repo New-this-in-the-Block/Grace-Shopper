@@ -91,7 +91,7 @@ input:focus {
   display: none;
   position: absolute;
   background-color: #495c6e;
-  width: 100px;
+  width: 150px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
   z-index: 1;
   padding: 0.5rem;
@@ -592,4 +592,39 @@ div.h5 {
 #stripeButton {
   display: flex;
   margin: 5% 5% 5% 80%;
+}
+
+#authForm {
+  width: 25%;
+  padding: 20px;
+  vertical-align: middle;
+  color: white;
+  /* display: flex;
+  flex-direction: column;
+  align-content: center; */
+}
+.authInput {
+  width: 100%;
+  height: 26px;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+#authWrapper {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(73, 92, 110);
+  padding-top: 100px;
+  padding-bottom: 500px;
+}
+.googleBt{
+  background-color: white;
+  margin-top: 10px;
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+}
+#logoImg {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
 }

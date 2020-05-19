@@ -6,7 +6,7 @@ import StripeCheckout from 'react-stripe-checkout'
 import CartItem from './CartItem'
 import axios from 'axios'
 import history from '../history'
-import {thunkUpdateOrderStatus} from '../store'
+import {thunkUpdateOrderStatus} from '../store/thunks'
 
 
 export default function Cart() {

@@ -2,12 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {getRandomInt, biggestSeller} from '../../script/utils'
+
 
 export const UserHome = props => {
-  const {email, biggestSeller, random, ranCat, ranPerCat} = props
+  const {email, biggestSeller2, random, ranCat, ranPerCat} = props
  
   return (
-    biggestSeller.name ? 
+    biggestSeller2.name ? 
     <div>
       <div>
         <h3>Welcome, {email}</h3>
@@ -15,11 +17,11 @@ export const UserHome = props => {
         <div className="splashContainer">                
                  <div>
                     <h4 >Best Seller</h4>
-                    <Link to={`/products/${biggestSeller.id}`}>
-                        <img src={biggestSeller.imageURL} className='splashProductsURL'/>
+                    <Link to={`/products/${biggestSeller2.id}`}>
+                        <img src={biggestSeller2.imageURL} className='splashProductsURL'/>
                     </Link>
-                    <h5>{biggestSeller.name}</h5>
-                    <h6>${biggestSeller.price}</h6>
+                    <h5>{biggestSeller2.name}</h5>
+                    <h6>${biggestSeller2.price}</h6>
                  </div>
 
                  <div>
@@ -49,24 +51,17 @@ export const UserHome = props => {
 }
 
 const mapState = ({products, categories, user}) => {
-  const biggestSeller = products.reduce((acc, product)=> {
-    acc = acc.quantity < product.quantity ? acc : product
-    return acc
-  }, {})
-  function getRandomInt(max) {
-      return Math.floor(Math.random() * Math.floor(max));
-  }
+  const biggestSeller2 = biggestSeller(products)
   const random = products[getRandomInt(19)]
   const ranCat = categories[getRandomInt(5)]
   const saleProducts = products.filter(pro => pro.categoryId === ranCat.id)
   const ranPerCat = saleProducts[getRandomInt(saleProducts.length-1)]
   return {
-      biggestSeller,
+      biggestSeller2,
       random,
       ranCat,
       ranPerCat,
       email: user.email
-
   }
 }
 

@@ -21,8 +21,8 @@ export default function CartItem({item}) {
       <span>${item.product.price}/each</span>
       <span>
       <input className="quantityCard" type="number" min="1" max={item.product.quantity} step="1" value={quantity} onChange={ev => setQuantity(ev.target.value)} size="6"></input>
-        <button className="cartUpdate" onClick={() => update(quantity, item)}>Update</button>
-        <button className="cartUpdate" onClick={() => destroy(item)}>Remove</button>
+        <button type='button' className="cartUpdate" onClick={() => update(quantity, item)}>Update</button>
+        <button type='button' className="cartUpdate" onClick={() => destroy(item)}>Remove</button>
       </span>
       <span className='bold'>${(item.quantity * item.product.price).toFixed(2)}</span>
     </div>

@@ -35,7 +35,7 @@ class AdminOrders extends Component {
         status: this.state.status
       })
     } catch (error) {
-      
+      console.log(error)
     }
   }
   render() {
@@ -70,8 +70,6 @@ class AdminOrders extends Component {
                           <select 
                           onChange={ev => this.setState({id: order.id, status: ev.target.value})} 
                           >
-                            {/* <option value='' >{order.status}</option>
-                            <option value={order.status === 'Invoice' ? 'Cancelled' : 'Invoice'} >{order.status === 'Invoice' ? 'Cancel' : 'Invoice'}</option> */}
                             <option value=''>--change status--</option>
                             <option value='Invoice'>Invoice</option>
                             <option value='Processing'>Processing</option>
@@ -79,7 +77,7 @@ class AdminOrders extends Component {
                             <option value='Complete'>Complete</option>
                             <option value='Cancel'>Cancel</option>
                           </select>
-                          <button onClick={this.Notify}>Update</button>
+                          <button type='button' onClick={this.Notify}>Update</button>
                         </form>
                       </td>
                     </tr>

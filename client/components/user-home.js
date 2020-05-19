@@ -13,10 +13,10 @@ export const UserHome = props => {
     biggestSeller2.name ? 
     <div>
       <div>
-        <h3>Welcome, {email}</h3>
+        <h3 id='homeH'>Welcome, {email}</h3>
         <br/>
         <div className="splashContainer">                
-                 <div>
+                 <div className='homeCard'>
                     <h4 >Best Seller</h4>
                     <Link to={`/products/${biggestSeller2.id}`}>
                         <img src={biggestSeller2.imageURL} className='splashProductsURL'/>
@@ -25,7 +25,7 @@ export const UserHome = props => {
                     <h6>${biggestSeller2.price}</h6>
                  </div>
 
-                 <div>
+                 <div className='homeCard'>
                      <h4 >..Or Try Something New</h4>
                     <Link to={`/products/${random.id}`}>
                         <img src={random.imageURL} className='splashProductsURL'/>
@@ -34,7 +34,7 @@ export const UserHome = props => {
                     <h6>${random.price}</h6>
                  </div>
 
-                 <div>
+                 <div className='homeCard'>
                      <h4 style={{color: "red"}}>Sale on {ranCat.name}'s - 10% off!</h4>
                     <Link to={`/products/${ranPerCat.id}`}>
                         <img src={ranPerCat.imageURL} className='splashProductsURL'/>

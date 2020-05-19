@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import Moment from 'react-moment';
 import {useSelector, useDispatch} from 'react-redux'
-import {thunkLoadMyOrders} from '../store'
+import {thunkLoadMyOrders} from '../store/thunks'
 import Order from './Order'
 
 
@@ -24,7 +24,7 @@ export default function Profile() {
         {orderData.map(order => {
           return (
             <li className="itemList" key={order.id}>
-              Order from <Moment>{order.createdAt}</Moment> Status: {order.status}
+              Order from <Moment>{order.createdAt}</Moment> Status: <span className='bold'>{order.status}</span>
               <Order order={order} />
             </li>
           )

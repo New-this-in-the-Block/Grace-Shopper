@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {thunkLoadUsers, thunkRemoveUser} from '../store'
+import {thunkLoadUsers, thunkRemoveUser} from '../store/thunks'
 import {ToastContainer, toast} from 'react-toastify'
 
 class AdminUsers extends Component {

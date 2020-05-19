@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {connect} from 'react-redux'
-import {thunkCreateOrder, thunkAddToOrder, thunkLoadMyCart} from '../store'
+import {thunkCreateOrder, thunkAddToOrder, thunkLoadMyCart} from '../store/thunks'
 import axios from 'axios'
 
 const ProductDetails = ({currentProduct, orders, user, cart, createCart, addItem, createGuestCart}) => {

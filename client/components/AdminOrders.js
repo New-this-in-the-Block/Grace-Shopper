@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {thunkLoadAllOrders, thunkUpdateOrderStatus} from '../store'
+import {thunkLoadAllOrders, thunkUpdateOrderStatus} from '../store/thunks'
 import {ToastContainer, toast} from 'react-toastify'
 
 

@@ -484,6 +484,8 @@ div.splashContainer {
   flex-direction: row;  
   justify-content: space-evenly;
   padding: 3rem;
+  background-color: white;
+  border: 10px solid rgb(243, 158, 63);
 }
 
 div.h5 {
@@ -498,7 +500,7 @@ div.h5 {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80px;
+  height: 100px;
 }
 
 #allProdsBanner {
@@ -688,4 +690,32 @@ div.h5 {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+#emptyH {
+  /* background-color: rgb(243, 158, 63); */
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQQHI4hTSZxWS0BV0n1DKKO6rr2uilf-GwBtI11OiybIREyai5t&usqp=CAU');
+  text-align: center;
+  height: 450px;
+  width: 60%;
+  margin-left: 20%;
+  margin-top: 50px;
+  border-radius: 30px;
+  padding: 30px;
+}
+#cartH {
+  margin-top: 50px;
+  background-color: rgb(243, 158, 63);
+}
+.homeCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+}
+#homeH{
+  background-color: rgb(243, 158, 63);
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  padding: 30px;
 }

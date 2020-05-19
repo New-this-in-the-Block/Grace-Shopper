@@ -18,7 +18,12 @@ export default function Cart() {
   const dispatch = useDispatch()
 
   if (!cart || !cart.lineItems.length) return (
-    <h2>Your cart is empty buy some <Link to='/products'>products</Link></h2>
+    <div id='emptyH'>
+      <div id='cartH'>
+        <h1>Your Cart</h1>
+        <h2 >Your cart is empty buy some <Link to='/products'>products</Link></h2>
+      </div>
+    </div>
   )
 
   const handleToken = async (token) => {

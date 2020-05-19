@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import ProductCard from './ProductCard'
 import Paginate from './Paginate'
 import BottomNav from './BottomNav'
+import {compareNames, comparePrices} from '../../script/utils'
+import {DropdownButton, Dropdown} from 'react-bootstrap'
 
 const Products = ({products}) => {
   const [displayProducts, setDisplayProducts] = useState(products)
@@ -22,11 +24,26 @@ const Products = ({products}) => {
     },
     [search]
   )
+  
 
+  if(!displayProducts[0]) return null
+  function nameSortAsc() {
+    setDisplayProducts(products.slice().sort(compareNames('name')))
+  }
+  function nameSortDes() {
+    setDisplayProducts(products.slice().sort(compareNames('name', 'descending')))
+  }
+  function priceSortAsc() {
+    setDisplayProducts(products.slice().sort(comparePrices('price')))
+  }
+  function priceSortDes() {
+    setDisplayProducts(products.slice().sort(comparePrices('price', 'descending')))
+  }
   const indOfLast = currentPage * prodPerPage
   const indOfFirst = indOfLast - prodPerPage
-  const currentProds = products.slice(indOfFirst, indOfLast)
+  const currentProds = displayProducts.slice(indOfFirst, indOfLast)
   const paginator = (page) => setCurrentPage(page)
+  
 
   //if searching return the filtered products
   if (search)
@@ -50,6 +67,14 @@ const Products = ({products}) => {
         <h1 id='allProdsH'>All Products</h1>
       </div>
       <div>
+        <div>
+          <DropdownButton id="dropdown-basic-button" title="Sort By: Name/Price">
+            <Dropdown.Item onClick={nameSortAsc}>Name: A - Z</Dropdown.Item>
+            <Dropdown.Item onClick={nameSortDes}>Name: Z - A</Dropdown.Item>
+            <Dropdown.Item onClick={priceSortAsc}>Price: Low - High</Dropdown.Item>
+            <Dropdown.Item onClick={priceSortDes}>Price: High - Low</Dropdown.Item>
+          </DropdownButton>
+        </div>
         <Paginate prodPerPage={prodPerPage} totalProds={products.length} paginator={paginator} currentPage={currentPage}/>
         <ul className='productCards'>
           {currentProds && currentProds.map(currentProd => 
@@ -65,4 +90,4 @@ const Products = ({products}) => {
 
 const mapState = ({products}) => ({products})
 
-export default connect(mapState, null)(Products)
+export default connect(mapState)(Products)

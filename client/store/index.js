@@ -51,6 +51,7 @@ const categoryReducer = (state = [], action) => {
   }
 }
 
+// eslint-disable-next-line complexity
 const orderReducer = (state = [], action) => {
   switch (action.type) {
     case LOAD_ORDERS:

@@ -4,7 +4,6 @@ import AdminProdList from './AdminProdList'
 import ProdForm from './ProdForm'
 import AdminOrders from './AdminOrders'
 import AdminUsers from './AdminUsers'
-import {ToastContainer, toast} from 'react-toastify'
 
 
 const AdminProfile = ({path}) => {

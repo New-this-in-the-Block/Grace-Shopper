@@ -333,10 +333,6 @@ hr {
   align-self: center;
 }
 
-.topNav {
-  display: none;
-}
-
 div.splashpic {
   background-image: url('/img/beer_splash.jpg');
   background-color: blanchedalmond;

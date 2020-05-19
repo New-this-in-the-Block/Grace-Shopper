@@ -3,7 +3,7 @@ import LineItem from './LineItem'
 import {calculateTotal} from '../../script/utils'
 
 export default function Order({order}) {
-  const [subTotal, tax, total] = order ? calculateTotal(order) : [0,0,0]
+  const [total] = order ? calculateTotal(order) : [0,0,0]
 
   if (!order) return <h3>Loading...</h3>
   return (
@@ -13,6 +13,7 @@ export default function Order({order}) {
           <LineItem item={item} />
         </li>
       ))}
+      <br/>
       <li>
         <span>Total: </span> <span className='bold'> ${total}</span>
       </li>

@@ -66,21 +66,21 @@ export default function Cart() {
                     <span>Subtotal: </span> <span className='bold'> ${subTotal}</span>
                   </span>
                   <span>
-                  <span>Tax(8.875%): </span> <span className='bold'> ${tax}</span>
-                    </span>
+                    <span>Tax(8.875%): </span> <span className='bold'> ${tax}</span>
+                  </span>
                   <span>
-                  <span>Total: </span> <span className='bold'> ${total}</span>
-                    </span>
+                    <span>Total: </span> <span className='bold'> ${total}</span>
+                  </span>
               </li>
           </ul>
         </div>
         <div id='stripeButton'>
           <StripeCheckout 
-          stripeKey='pk_test_0ERHKADFrWWEg53FQw37D3fo00viT3HemM'
-          token={handleToken}
-          billingAddress
-          shippingAddress
-          amount={total * 100}
+            stripeKey='pk_test_0ERHKADFrWWEg53FQw37D3fo00viT3HemM'
+            token={handleToken}
+            billingAddress
+            shippingAddress
+            amount={total * 100}
           />
         </div>
     </div>

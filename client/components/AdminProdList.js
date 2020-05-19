@@ -54,8 +54,8 @@ class AdminProdList extends Component {
         id: this.state.id
       })
       await this.setState({isEditing: !this.state.isEditing})
-    } catch (ev) {
-      console.log(ev)
+    } catch (error) {
+      console.log(error)
     }
   }
   Notify() {
@@ -74,7 +74,7 @@ class AdminProdList extends Component {
       })
   }
   render() {
-    const {products, categories, destroy} = this.props
+    const {products, categories} = this.props
     const {updateProd} = this
     const {
       name,
@@ -124,7 +124,7 @@ class AdminProdList extends Component {
               }
             })}
           </select>
-          <button onClick={this.Notify} id="submitbt">Update</button>
+          <button type='button' onClick={this.Notify} id="submitbt">Update</button>
         </form>
       )
     }
@@ -158,13 +158,14 @@ class AdminProdList extends Component {
                       {/* <td>{product.category.name}</td> */}
                       <td>
                         <button
+                          type='button'
                           id="editBt"
                           value={product.id}
                           onClick={ev => this.toggleEdit(ev)}
                         >
                           Edit
                         </button>
-                        <button id="removeBt" value={product.id} onClick={this.RemoveItem}>
+                        <button type='button' id="removeBt" value={product.id} onClick={this.RemoveItem}>
                           Remove
                         </button>
                       </td>

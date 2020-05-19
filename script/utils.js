@@ -1,3 +1,5 @@
+
+
 const calculateTotal = (cart) => {
   const subTotal = cart.lineItems.reduce( (total, item) => total + (item.quantity * item.product.price), 0)
   const tax = (subTotal * 0.08)
@@ -14,6 +16,7 @@ function biggestSeller(products) {
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
+
 
 
 export {

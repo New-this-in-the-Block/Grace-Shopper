@@ -19,6 +19,7 @@ const Categories = ({filteredProducts}) => {
 }
 
 const mapStateToProps = ({products}, ownProps) => {
+  console.log('own', ownProps)
   const filteredProducts = products.filter(product => product.categoryId === ownProps.match.params.id)
   return {
     filteredProducts,

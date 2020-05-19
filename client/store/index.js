@@ -21,7 +21,6 @@ const CREATE_ORDER = 'CREATE_ORDER'
 const ADD_TO_ORDER = 'ADD_TO_ORDER'
 const REMOVE_FROM_ORDER = 'REMOVE_FROM_ORDER'
 const UPDATE_ORDER_STATUS = 'UPDATE_ORDER_STATUS'
-const CLEAR_ORDERS = 'CLEAR_ORDERS'
 
 const LOAD_USERS = 'LOAD_USERS'
 const REMOVE_USER = 'REMOVE_USER'
@@ -43,7 +42,6 @@ const actionAddToOrder = order => ({type: ADD_TO_ORDER, order})
 const actionRemoveFromOrder = id => ({type: REMOVE_FROM_ORDER, id})
 const actionUpdateOrder = order => ({type: UPDATE_ORDER, order})
 const actionUpdateOrderStatus = order => ({type: UPDATE_ORDER_STATUS, order})
-const actionClearOrders = _ => ({type: CLEAR_ORDERS})
 
 const actionLoadUsers = users => ({type: LOAD_USERS, users})
 const actionRemoveUser = id => ({type: REMOVE_USER, id})
@@ -164,8 +162,6 @@ const orderReducer = (state = [], action) => {
   switch (action.type) {
     case LOAD_ORDERS:
       return action.orders
-    case CLEAR_ORDERS:
-      return []
     case LOAD_CART:
       return [action.cart]
     case CREATE_ORDER:
@@ -250,6 +246,5 @@ export {
   thunkAddToOrder,
   thunkUpdateOrder,
   thunkRemoveFromOrder,
-  thunkUpdateOrderStatus,
-  actionClearOrders
+  thunkUpdateOrderStatus
 }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getRandomInt, biggestSeller} from '../../script/utils'
+import BottomNav from './BottomNav'
 
 
 export const UserHome = props => {
@@ -46,6 +47,7 @@ export const UserHome = props => {
                 <button type='button'><Link to='/products/page/:id'>All Products</Link></button>
             </div>
       </div>
+      <BottomNav />
     </div> : <span>still loading..</span>
   )
 }

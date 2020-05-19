@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import ProductCard from './ProductCard'
+import BottomNav from './BottomNav'
 
 
 const Categories = ({filteredProducts}) => { 
@@ -14,6 +15,7 @@ const Categories = ({filteredProducts}) => {
             <ProductCard product={product} key={product.id} />
         ))}
       </ul>
+      <BottomNav />
     </div>
   )
 }

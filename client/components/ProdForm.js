@@ -1,6 +1,6 @@
-import React, {Component, useCallback} from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {thunkCreateProduct} from '../store'
+import {thunkCreateProduct} from '../store/thunks'
 import {ToastContainer, toast} from 'react-toastify'
 
 class ProdForm extends Component {

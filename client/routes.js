@@ -16,8 +16,8 @@ import {
   Cart,
   SplashPage
 } from './components'
-import {me, thunkLoadProducts, thunkLoadCategories, thunkLoadUsers, thunkLoadMyCart, thunkLoadMyOrders} from './store'
-
+import {thunkLoadProducts, thunkLoadCategories, thunkLoadUsers, thunkLoadMyCart, thunkLoadMyOrders} from './store/thunks'
+import {me} from './store'
 
 class Routes extends Component {
   componentDidMount () {
